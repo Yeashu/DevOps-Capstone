@@ -12,9 +12,9 @@ Jump to the [recorded video and all 75 evidence images](#evidence-and-presentati
 
 ### Play the full capstone walkthrough
 
-https://github.com/user-attachments/assets/2d3aef91-7b75-4d46-bdcf-57bc39a37afa
+https://github.com/user-attachments/assets/47b02082-23fe-4a16-9df8-e2926443279e
 
-**[Play the 2:29 video](https://yeashu.github.io/DevOps-Capstone/recordings/?v=short149)** · **[Jump to AWS Console evidence at 01:09](https://yeashu.github.io/DevOps-Capstone/recordings/?v=short149&t=69.203)**
+**[Play the 2:29 video](https://yeashu.github.io/DevOps-Capstone/recordings/?v=short149r2)** · **[Jump to AWS Console evidence at 01:09](https://yeashu.github.io/DevOps-Capstone/recordings/?v=short149r2&t=69.203)**
 
 [Download full MP4](docs/recordings/orbit-capstone-walkthrough.mp4) · [Full captions](docs/recordings/orbit-capstone-walkthrough.vtt) · [Original 92-second live rollout](docs/recordings/orbit-eks-rollout.mp4) · [Presentation runbook](DEMO.md)
 

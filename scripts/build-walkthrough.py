@@ -42,7 +42,8 @@ def encode(s):
 with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:outputs=list(pool.map(encode,scenes))
 listing=build/'concat.txt';listing.write_text(''.join("file '"+str(p)+"'\n" for p in outputs))
 final=root/'docs/recordings/orbit-capstone-walkthrough.mp4'
-command(['ffmpeg','-hide_banner','-loglevel','error','-y','-f','concat','-safe','0','-i',str(listing),'-c','copy','-movflags','+faststart',str(final)])
+# Normalize the joined segments into one stream so Firefox seeks to fresh frames.
+command(['ffmpeg','-hide_banner','-loglevel','error','-y','-f','concat','-safe','0','-i',str(listing),'-vf','fps=25,setpts=PTS-STARTPTS','-af','asetpts=PTS-STARTPTS','-c:v','libx264','-threads','2','-preset','veryfast','-crf','23','-profile:v','baseline','-level:v','4.0','-pix_fmt','yuv420p','-g','50','-keyint_min','50','-sc_threshold','0','-c:a','aac','-b:a','64k','-ac','1','-movflags','+faststart',str(final)])
 def stamp(seconds):
  ms=round(seconds*1000);return f'{ms//3600000:02}:{ms//60000%60:02}:{ms//1000%60:02}.{ms%1000:03}'
 timeline=0;vtt='WEBVTT\n\n';chapters=[]
