@@ -7,7 +7,7 @@ Repository to submit: **https://github.com/Yeashu/DevOps-Capstone**
 | [Presentation video](orbit-capstone-video.mp4) | The existing 2:29 silent walkthrough with minimal subtitles, ready for your own voice-over |
 | [PowerPoint slide deck](orbit-capstone-slides.pptx) | Editable 11-slide capstone presentation with speaker notes |
 | [PDF slide deck](orbit-capstone-slides.pdf) | Portable copy of the same slides |
-| [Voice-over script](voiceover-script.md) | A connected explanation of what was built, why the tools were used, and how the deployment was verified |
+| [Voice-over script](voiceover-script.md) | A simple DevOps overview covering Git, Docker, CI/CD, security, AWS, Kubernetes, monitoring and cleanup |
 | [Plain-text narration](voiceover-script.txt) | Copy-ready version of the project explanation |
 | [Presentation notes](presentation-notes.md) | Read-aloud text for each slide |
 | [Subtitles](orbit-capstone-video.vtt) | Matching brief WebVTT subtitles |

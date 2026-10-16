@@ -1,26 +1,28 @@
-# Project narration for the 2:29 walkthrough
+# DevOps narration for the 2:29 walkthrough
 
-Read the narration below as a connected explanation of the project. The screenshots are supporting evidence; there is no need to name each image or match every screen change with a sentence.
+Read this as a simple overview of the DevOps work. Keep the calculator introduction brief. The screenshots are supporting evidence; there is no need to name each image or match every screen change with a sentence.
 
-This version is about 302 words. Aim for roughly 125–135 words per minute, allowing brief pauses. Use the [plain-text copy](voiceover-script.txt) if recording software needs a script without formatting.
+This version is about 262 words. Aim for roughly 110–120 words per minute, allowing brief pauses. Use the [plain-text copy](voiceover-script.txt) if recording software needs a script without formatting.
 
 ## Read aloud
 
-I built Orbit, a scientific calculator with a saved notebook. FastAPI handles expression validation and API requests, while PostgreSQL keeps calculation history separate from the application. This lets saved results survive application restarts.
+For my capstone, I used a simple scientific calculator to demonstrate a complete DevOps workflow. My main focus was building, testing, deploying, and monitoring the application.
 
-To make changes safer, I added sixty-nine backend tests against isolated databases so tests cannot overwrite saved data. Docker Compose makes the complete stack reproducible with one command. I kept frontend build tools out of the runtime image and ran both application containers without root privileges to limit process permissions.
+I used Git and GitHub to manage the code and track changes. I added automated tests to check that the application worked before building its Docker images.
 
-GitHub Actions checks each push before publication. Tests and security scans must pass before the images reach the container registry. Commit-based tags let me trace a deployment back to its exact source. Trivy initially blocked the backend image, so I fixed its dependencies while keeping the strict security gate.
+With Docker, I packaged the frontend, backend, and database into a stack that starts with one command. This made the application easier to run in a consistent environment.
 
-On AWS, I used Terraform to make infrastructure changes reviewable and repeatable. It provisioned the VPC, two public subnets across separate availability zones, and EKS with a managed worker group in Mumbai. I verified both workers before deploying, and kept credentials outside the repository.
+I created a GitHub Actions pipeline that runs on every push to main. It runs tests, builds the images, and scans them with Trivy. Images are published to GitHub Container Registry only after these checks pass. Each image uses a commit ID so I can identify the exact version.
 
-Helm packages the components into one release so the same configuration can be redeployed. I used two replicas per application tier and readiness checks to support rollouts. Ingress routes browser and API traffic, while PostgreSQL stores data outside the application pods.
+For AWS, I used Terraform to create the network and EKS cluster, including two public subnets and a worker group. Keeping this setup in code made it repeatable and easier to manage.
 
-I instrumented FastAPI so Prometheus could measure requests and latency. Grafana helped me check application behavior under traffic, alongside Kubernetes health checks.
+I used Kubernetes and Helm to deploy the application. The frontend and backend each had two replicas, and Ingress provided access to the application.
 
-After green CI, I upgraded EKS through the local Helm CLI. I verified the deployed commit and confirmed the saved notebook survived.
+For monitoring, I connected Prometheus and Grafana. This let me check application traffic and response times after deployment.
 
-Finally, I used Terraform destroy and audited for leftover AWS resources, including worker and database volumes. I removed temporary credentials as well. That completed the deployment lifecycle, with the source and evidence preserved for review without leaving the AWS environment running.
+After the pipeline passed, I updated the EKS deployment using Helm from my local terminal. I checked the deployed version and confirmed that the saved data was still available.
+
+Finally, I destroyed the AWS resources to avoid ongoing costs and checked for anything left behind. The repository contains the code, configuration, screenshots, and documentation for the complete workflow.
 
 ## Optional pacing guide
 
@@ -28,12 +30,12 @@ These times are approximate topic cues, not text to read aloud.
 
 | Time | Topic |
 | --- | --- |
-| 00:00–00:13 | Application purpose and architecture |
-| 00:13–00:33 | Testing decisions and reproducible containers |
-| 00:33–00:59 | CI, traceable image tags and fixing the security gate |
+| 00:00–00:13 | Capstone goal and brief application introduction |
+| 00:13–00:33 | Git, tests and Docker |
+| 00:33–00:59 | GitHub Actions, Trivy and container publication |
 | 00:59–01:25 | Infrastructure as code and AWS provisioning |
-| 01:25–01:44 | Helm, replicas, readiness and persistent data |
-| 01:44–01:57 | Why metrics and dashboards matter |
+| 01:25–01:44 | Kubernetes, Helm, replicas and Ingress |
+| 01:44–01:57 | Prometheus and Grafana monitoring |
 | 01:57–02:08 | Verifying the actual EKS update |
 | 02:08–02:29 | Teardown, residual-resource checks and evidence |
 
