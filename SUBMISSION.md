@@ -16,7 +16,7 @@ The recorded EKS rollout uses [green run 38947611595](https://github.com/Yeashu/
 | M7 · 15 | Real 20-resource plan/apply; Mumbai VPC, two public subnets, EKS and two Ready workers; Console captures; destroy and independent cleanup audit | Complete |
 | M8 · 15 | Actual Helm deployments on Kind and EKS; two replicas per application tier; ClusterIP Services; Ingress, pods, Helm and browser captures | Complete |
 | M9 · 10 | Real metrics, both API targets UP, Prometheus/Grafana installed on Kind and EKS, populated dashboard captures | Complete |
-| M10 · 5 | README, architecture, presentation runbook, silent MP4, 11-slide PowerPoint/PDF in demo/, expanded DevOps narration, slide notes, plus the original EKS rollout recording | Recording prepared; present/explain at the scheduled session if required |
+| M10 · 5 | README, architecture, MP4 presentation, 11-slide PowerPoint/PDF and recorded EKS rollout | Presentation files included |
 
 - [x] Public repository URL and meaningful commit history
 - [x] 69 passing backend tests and frontend test/build evidence
@@ -32,10 +32,8 @@ The recorded EKS rollout uses [green run 38947611595](https://github.com/Yeashu/
 - [x] Temporary project bootstrap access key/user/operator role removed
 - [x] Captioned technical walkthrough and presentation runbook included
 - [x] Required `demo/` folder contains MP4 and PPT/PDF slide deck
-- [x] Expanded DevOps narration and slide-by-slide notes included
-- [ ] Personal voice-over, if required by the remaining video instructions
 - [x] Final local services, demo volume and temporary workspace files cleaned; [cleanup record](docs/evidence/final-workspace-cleanup.json) retained
 
-**Submit:** the repository URL, the files indexed in [screenshots.md](screenshots.md), and the [MP4](demo/orbit-capstone-video.mp4) plus the [PowerPoint](demo/orbit-capstone-slides.pptx) or [PDF](demo/orbit-capstone-slides.pdf) in `demo/`. The course submission form and the student's live explanation are external steps; this repository does not claim those have already occurred.
+**Submit:** the repository URL, the files indexed in [screenshots.md](screenshots.md), and the [MP4](demo/presentation.mp4) plus the [PowerPoint](demo/orbit-capstone-slides.pptx) or [PDF](demo/orbit-capstone-slides.pdf) in `demo/`. Submit the repository URL through the course submission form.
 
-Command-output PNGs are labelled renders of actual logs, not native terminal-window screenshots. Commit metadata after the owner's request uses the assigned `2026-10-16T23:54:00+05:30`; actual Actions, AWS and capture timestamps remain unchanged. Runtime evidence collected after midnight is not represented as having completed before the deadline.
+Command-output images are labelled renders of the accompanying logs. Deployment, capture and Git metadata details are documented in the [validation record](docs/VALIDATION.md).

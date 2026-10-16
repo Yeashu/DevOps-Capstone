@@ -1,62 +1,30 @@
-# Presentation and live demonstration
+# Deployment demonstration
 
-Submission files are in [demo/](demo/): [MP4 video](demo/orbit-capstone-video.mp4), [PowerPoint](demo/orbit-capstone-slides.pptx), [PDF](demo/orbit-capstone-slides.pdf), [expanded DevOps narration](demo/voiceover-script.md), and [slide speaking notes](demo/presentation-notes.md). The video remains silent for a personal voice-over. The current recording plan is about five minutes; the final video will be edited to the supplied audio, using the existing 2:29 cut as reference material.
+[Presentation video](demo/presentation.mp4) · [PowerPoint](demo/orbit-capstone-slides.pptx) · [PDF](demo/orbit-capstone-slides.pdf) · [Browser player](https://yeashu.github.io/DevOps-Capstone/recordings/?v=presentation)
 
+## Recorded workflow
 
-The [full silent walkthrough](https://yeashu.github.io/DevOps-Capstone/recordings/?v=silent149r2) is **2 minutes 29 seconds** and covers every rubric module, including real captured AWS Console and Terraform lifecycle evidence. [Jump directly to AWS](https://yeashu.github.io/DevOps-Capstone/recordings/?v=silent149r2&t=69.133) or [download the MP4](docs/recordings/orbit-capstone-walkthrough.mp4). English [captions](docs/recordings/orbit-capstone-walkthrough.vtt) and a [chapter/provenance manifest](docs/recordings/orbit-capstone-walkthrough.json) are included. Captured scenes use short on-screen labels; the video has no audio track. The original 92-second live recording remains separately available below.
+1. Evaluate scientific expressions through the EKS-hosted application and save results to PostgreSQL.
+2. Verify the successful [GitHub Actions run](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38947611595), including tests, image scans and SHA-tagged container publication.
+3. Upgrade both EKS application Deployments with Helm to commit `7f36cafc34b923fa34b1a0e727b2d359a060c757`.
+4. Confirm that the health endpoint reports the deployed commit and the saved notebook survives the rollout.
+5. Verify application metrics in Prometheus and Grafana.
+6. Destroy AWS infrastructure and audit for remaining project resources.
 
+## Deployment method
 
-A real [92-second technical walkthrough](docs/recordings/orbit-eks-rollout.mp4) and [captions](docs/recordings/orbit-eks-rollout.vtt) are included. To use the captioned player, run `python3 -m http.server 8765 --bind 127.0.0.1` from the root and open http://localhost:8765/docs/recordings/. It shows the EKS calculator, successful run 38947611595, a local Helm rollout to `7f36cafc34b923fa34b1a0e727b2d359a060c757`, the updated health version and the persistent notebook. The hosted optional EKS delivery job was skipped; the recording accurately identifies the local CLI rollout.
+The recorded EKS release used an authenticated local Helm command after CI passed. The optional persistent EKS deployment job in Actions was disabled. CI independently deploys and verifies the application on a temporary Kind cluster.
 
-The final rubric requires an actual commit → pipeline → deployment update. The default CI pipeline publishes images; automatic deployment is deliberately opt-in until AWS and the deployment role/runner are configured. Do this preparation before presenting.
+The EKS demonstration used Traefik Ingress accessed through a local port-forward to the controller. The backend and frontend each had two replicas, ClusterIP Services and readiness checks; PostgreSQL used persistent storage.
 
-## Prepare
+## Evidence
 
-1. Run all backend/frontend tests, build Compose and capture browser evidence.
-2. Push the local commits to the GitHub repository; confirm access and GHCR package visibility.
-3. Provision the AWS infrastructure with Terraform, update kubeconfig, and capture the plan, AWS VPC/EKS/worker group pages.
-4. Set `ORBIT_EKS_CONTEXT` and run `./scripts/bootstrap-eks.sh` for the namespace, EKS storage class, database secret and Traefik controller. Deploy with `ingress.className=traefik` and port-forward its Service for the demo. A public LoadBalancer instead requires appropriate AWS integration and a DNS record.
-5. Configure the environment, OIDC role, runner and variables described in README. Bootstrap the chart with a previously successful SHA.
-6. Install monitoring, open the app through Ingress, and start the traffic generator. Check both Prometheus endpoints UP and a populated Grafana panel.
-7. Keep pipeline, app, cluster terminal, metrics and dashboard visible in separate tabs.
+- [Original EKS rollout recording](docs/recordings/orbit-eks-rollout.mp4)
+- [Helm upgrade output](docs/evidence/eks-rollout.txt)
+- [Deployment health version](docs/screenshots/eks-updated-version.png)
+- [Notebook after rollout](docs/screenshots/eks-after-rollout.png)
+- [Complete screenshot index](screenshots.md)
+- [Terraform destroy output](docs/evidence/terraform-destroy.txt)
+- [AWS cleanup audit](docs/evidence/aws-cleanup-audit.json)
 
-## Suggested six-minute explanation
-
-| Time | Demonstrate |
-| --- | --- |
-| 0:00–1:00 | Orbit's purpose; `sqrt(144)+2^3=20`; DEG `sin(30)=0.5`; label/delete notebook entries |
-| 1:00–2:00 | Architecture; FastAPI/database/frontend boundaries; migration; test isolation and real pytest output |
-| 2:00–3:00 | Non-root containers; meaningful commit history; gated pipeline and SHA-tagged images |
-| 3:00–4:00 | Trivy reports and one actual result; Terraform VPC/EKS; explain node group and cost teardown |
-| 4:00–5:00 | Helm release, two replicas each, Services, Ingress and probes |
-| 5:00–6:00 | Live metrics and dashboard; explain what request rate and p95 latency mean |
-
-Allow additional time to watch the actual CI and rollout; its duration is not a six-minute guarantee.
-
-## Commit → green pipeline → updated deployment
-
-Change the visible tagline in `frontend/index.html`, for example from `Made for curious minds.` to `Made for scientific curiosity.`. This is a real, reviewable change.
-
-```bash
-git add frontend/index.html
-git commit -m "Refine the calculator footer for the capstone presentation"
-git push origin main
-git rev-parse HEAD
-```
-
-Open that commit's Actions run. Watch PostgreSQL-backed tests, frontend build, source security, live browser test, both image builds/scans, GHCR publication and the optional delivery job. Verify all required jobs are green. A skipped deployment does not demonstrate automatic delivery.
-
-```bash
-kubectl rollout status deployment/orbit-backend -n orbit
-kubectl rollout status deployment/orbit-frontend -n orbit
-kubectl get deployment/orbit-frontend -n orbit \
-  -o jsonpath='{.spec.template.spec.containers[0].image}'
-```
-
-The image tag must match the commit shown by `git rev-parse HEAD`. Refresh the Ingress application and show the updated footer. `/api/health` reports the same backend SHA. Show that the database notebook survives the rollout and Grafana still receives requests.
-
-If using Argo CD instead, leave direct CI deployment disabled, publish the app commit first, update both tags in `gitops/values.yaml` to that successful app SHA, commit the desired-state update, and show Argo CD sync and the actual cluster images. Do not imply that pushing to GHCR alone updated the cluster.
-
-## Clean up and submit
-
-Capture real pods, Services, Helm list, Ingress, metrics, Prometheus and Grafana evidence. Save the Actions URL and recording link in `SUBMISSION.md`. Uninstall the demo releases, remove the application's retained PVC, verify load balancers/EBS are gone, run Terraform destroy, capture its completion and check the Console. Complete the actual scan explanation and checklist.
+AWS infrastructure has been removed. Local execution and deployment instructions are in [README.md](README.md).

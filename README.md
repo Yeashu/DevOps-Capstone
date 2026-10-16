@@ -4,31 +4,29 @@ A simple scientific calculator built in **Python with FastAPI**, with a responsi
 
 Repository: **https://github.com/Yeashu/DevOps-Capstone**
 
-Mandatory submission files: [demo/](demo/) contains the MP4 video and PPT/PDF slide deck.
+Presentation materials: [video and slides](demo/).
 
 Jump to the [recorded video and all 75 evidence images](#evidence-and-presentation).
 
-**[Green CI run](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38959438459):** all 69 backend tests, frontend checks, the three-service Compose/browser demo, Terraform/Helm validation, both strict Trivy image scans, SHA-tagged GHCR publishing, and real Helm/Ingress/Prometheus/Grafana verification on Kind passed. Screenshots and original logs are included. Real AWS provisioning also passed: VPC, two public subnets, active EKS, two Ready workers, Helm application deployment and live Prometheus/Grafana on EKS are verified. Cloud Console, application and dashboard captures are included. **AWS teardown is complete** and an independent audit confirms no remaining project cluster, VPC, worker instances, database/root volumes, network interfaces or load balancers. The local demo has been stopped and temporary build files removed; restart it with `docker compose up --build`. See [validation results](docs/VALIDATION.md), [evidence](screenshots.md), [recorded EKS rollout](docs/recordings/orbit-eks-rollout.mp4) and [the submission checklist](SUBMISSION.md).
+[Verified CI run](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38959438459) includes backend and frontend tests, Docker builds, Trivy scans, GHCR publication, and Kubernetes/monitoring verification on Kind. The application was also deployed to AWS EKS in `ap-south-1`, with two replicas per application tier and Prometheus/Grafana monitoring.
+
+AWS resources were destroyed after evidence collection. See the [validation record](docs/VALIDATION.md), [evidence index](screenshots.md), and [submission checklist](SUBMISSION.md).
 
 ## Evidence and presentation
 
-### Play the full capstone walkthrough
+### Presentation
 
-https://github.com/user-attachments/assets/7b1f9094-c3e5-47e2-8b87-f6ab246e94d6
+https://github.com/user-attachments/assets/51171305-fc60-4471-9806-02890b920615
 
-**[Play the 2:29 video](https://yeashu.github.io/DevOps-Capstone/recordings/?v=silent149r2)** · **[Jump to AWS Console evidence at 01:09](https://yeashu.github.io/DevOps-Capstone/recordings/?v=silent149r2&t=69.133)**
+**[Play the 2:29 video](https://yeashu.github.io/DevOps-Capstone/recordings/?v=presentation)** · **[Jump to AWS Console evidence at 01:09](https://yeashu.github.io/DevOps-Capstone/recordings/?v=presentation&t=69.133)**
 
-[Download submission MP4](demo/orbit-capstone-video.mp4) · [Short subtitles](docs/recordings/orbit-capstone-walkthrough.vtt) · [Original 92-second live rollout](docs/recordings/orbit-eks-rollout.mp4) · [Presentation runbook](DEMO.md)
+[Download presentation.mp4](demo/presentation.mp4) · [Short subtitles](docs/recordings/presentation.vtt) · [Original 92-second live rollout](docs/recordings/orbit-eks-rollout.mp4) · [Deployment demonstration](DEMO.md)
 
-[PowerPoint slides](demo/orbit-capstone-slides.pptx) · [PDF slides](demo/orbit-capstone-slides.pdf) · [Expanded DevOps narration](demo/voiceover-script.md) · [Slide-by-slide speaking notes](demo/presentation-notes.md)
+[PowerPoint slides](demo/orbit-capstone-slides.pptx) · [PDF slides](demo/orbit-capstone-slides.pdf)
 
-The linked MP4 is the existing silent reference cut. The final narrated video will follow the supplied audio, with about five minutes as the current working target.
+The presentation covers the application, tests, Docker, CI/CD, security scanning, Terraform, AWS EKS, Kubernetes, monitoring, and cleanup. It combines recorded application interactions with captured deployment evidence. [Open the browser player](https://yeashu.github.io/DevOps-Capstone/recordings/?v=presentation) for chapter navigation.
 
-The **2-minute 29-second silent walkthrough covers all ten modules**, including Terraform plan/apply, the actual AWS VPC and subnets, active EKS cluster and Ready workers, Kubernetes, Prometheus, Grafana, and completed teardown. It uses brief evidence views, roughly 3–7 seconds each, plus clips from the original live demo. Short on-screen labels replace narration; the video has no audio track. AWS resources were destroyed after evidence collection.
-
-If the inline attachment reports “Bad Gateway,” use the separate video player above or download the MP4. The player has clickable chapters and brief on-screen subtitles. For local playback, run `python3 -m http.server 8765 --bind 127.0.0.1` and open http://localhost:8765/docs/recordings/.
-
-Each module below has a main image followed by links to its other images. All **75 evidence images** are included. Browser screenshots are actual captures; command-output images are labelled renders of actual logs. The cloud resources were destroyed after capture. Git metadata uses the owner's assigned timestamp; actual run and capture timestamps are retained.
+Each module below includes a main image and links to additional evidence. All **75 evidence images** are linked. Browser images are actual captures; command-output images are labelled renders of the accompanying logs. See the validation record for deployment methods and capture details.
 
 ### M1 · Scientific calculator
 
@@ -250,7 +248,7 @@ flowchart LR
 
 ## Development and testing
 
-Containers and CI use Python 3.13 and Node 24. Plain HTML/JavaScript satisfies the rubric's HTML frontend option. Its Node production build validates JavaScript and produces Nginx assets without a browser framework.
+Containers and CI use Python 3.13 and Node 24. The frontend uses HTML, CSS and JavaScript. Its Node production build validates JavaScript and produces the static Nginx assets.
 
 ```bash
 python3.13 -m venv .venv
@@ -397,4 +395,4 @@ Check both `orbit-api` targets are UP at http://localhost:9090/targets. Grafana 
 
 The [ClinicDesk reference](https://github.com/Datman701/devops_capstone) was reviewed as a structural benchmark. Orbit's calculator domain, interpreter, notebook schema, tests, UI and deployment files were authored for this project. The reference application and its screenshots were not copied.
 
-Discuss test database isolation, readiness versus liveness, a single migration owner, scans before publishing, and why configuration files alone do not prove a deployment. Add your own observations after completing the live demonstration.
+The implementation uses isolated test databases, separate health and readiness checks, a migration job for each Helm release, and security scans before image publication.

@@ -2,7 +2,7 @@ from pathlib import Path
 import subprocess,json,textwrap,concurrent.futures,datetime
 from PIL import Image,ImageDraw,ImageFont
 root=Path(__file__).resolve().parents[1];build=root/'.local/walkthrough-silent-build';build.mkdir(exist_ok=True)
-scenes=json.loads((root/'docs/recordings/orbit-capstone-walkthrough.json').read_text())['chapters']
+scenes=json.loads((root/'docs/recordings/presentation.json').read_text())['chapters']
 font_root=Path('/System/Library/Fonts/Supplemental')
 font=ImageFont.truetype(str(font_root/'Arial.ttf'),28)
 bold=ImageFont.truetype(str(font_root/'Arial Bold.ttf'),38)
@@ -40,7 +40,7 @@ def encode(s):
  return output
 with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:outputs=list(pool.map(encode,scenes))
 listing=build/'concat.txt';listing.write_text(''.join("file '"+str(p)+"'\n" for p in outputs))
-final=root/'docs/recordings/orbit-capstone-walkthrough.mp4'
+final=root/'docs/recordings/presentation.mp4'
 # Normalize the joined segments into one stream so Firefox seeks to fresh frames.
 command(['ffmpeg','-hide_banner','-loglevel','error','-y','-f','concat','-safe','0','-i',str(listing),'-vf','fps=25,setpts=PTS-STARTPTS','-an','-c:v','libx264','-threads','2','-preset','veryfast','-crf','23','-profile:v','baseline','-level:v','4.0','-pix_fmt','yuv420p','-g','50','-keyint_min','50','-sc_threshold','0','-movflags','+faststart',str(final)])
 def stamp(seconds):
@@ -51,7 +51,7 @@ for s in scenes:
  vtt+=f'{s["index"]+1}\n{stamp(timeline)} --> {stamp(end)}\n'+s['subtitle']+'\n\n'
  chapters.append({**s,'startSeconds':round(timeline,3),'endSeconds':round(end,3)})
  timeline=end
-(root/'docs/recordings/orbit-capstone-walkthrough.vtt').write_text(vtt)
+(root/'docs/recordings/presentation.vtt').write_text(vtt)
 manifest={'assembledAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'durationSeconds':duration(final),'format':'H264 Baseline / MP4, fast start; no audio track','subtitles':'Brief on-screen labels; optional matching WebVTT track.','provenance':'Original captured evidence images and excerpts from the original live EKS recording. AWS resources were destroyed after capture.','chapters':chapters}
-(root/'docs/recordings/orbit-capstone-walkthrough.json').write_text(json.dumps(manifest,indent=2)+'\n')
+(root/'docs/recordings/presentation.json').write_text(json.dumps(manifest,indent=2)+'\n')
 print(json.dumps({'output':str(final),'durationSeconds':duration(final),'sizeMiB':round(final.stat().st_size/1024/1024,2),'scenes':len(scenes)}),flush=True)

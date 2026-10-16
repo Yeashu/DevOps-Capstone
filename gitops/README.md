@@ -1,6 +1,6 @@
 # Optional GitOps
 
-The homework also requests GitOps. The Argo CD Application reads the chart and `gitops/values.yaml`. Argo CD must already be installed. This session has not installed or synced it.
+This directory provides optional GitOps configuration. The Argo CD Application reads the chart and `gitops/values.yaml`. Argo CD must already be installed. Argo CD was not installed or synced in the recorded deployment.
 
 1. Let CI publish both images, then make them pullable by the cluster.
 2. Bootstrap the namespace, database Secret, storage class and Ingress controller.

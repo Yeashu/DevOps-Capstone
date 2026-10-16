@@ -16,7 +16,7 @@ Orbit was built and exercised locally, in GitHub Actions, on disposable Kind and
 | Monitoring | On Kind and EKS: both API targets UP, Grafana datasource returned positive actual metrics, populated dashboard captured |
 | Rollout | EKS upgraded to the exact successful pipeline SHA; health returned that SHA and the database notebook survived |
 | Cleanup | Terraform destroy completed; empty state and independent AWS residual-resource audit passed; temporary IAM bootstrap user/key/operator role removed |
-| Recording | Full 2-minute 29-second silent evidence guide, original 92-second live EKS rollout, captions and presentation runbook included |
+| Recording | Presentation MP4 and PowerPoint/PDF; original EKS rollout recording and subtitles retained |
 
 Verified green runs: [38946260879](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38946260879), [38947611595](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38947611595), and [38949107515](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38949107515). The latest verified [green run 38959438459](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38959438459) validates commit `31d74645ca1d77be9634ee276a3fbfbdf98e4826`; subsequent workspace cleanup documentation is separate evidence.
 
@@ -42,11 +42,9 @@ Browser PNGs are actual captures. Command-output PNGs are labelled renders of ac
 
 **Git metadata:** at the owner's request, commits after that instruction use the assigned author/committer timestamp `2026-10-16T23:54:00+05:30`. This is metadata, not the completion time of later AWS operations. Actual Actions and capture timestamps are unchanged; evidence collected after midnight is not represented as having completed before the deadline.
 
-## Expanded video and Firefox compatibility
+## Presentation playback
 
-The full 2-minute 29-second walkthrough covers all ten modules using genuine source evidence and original live-demo excerpts. The captured AWS Console scenes show the provisioned VPC, two public subnets, active EKS cluster and two Ready workers. Terraform plan/apply/destroy, security, container publishing, Kubernetes, monitoring and cleanup are also included. Captured evidence is explicitly labelled; the guide does not claim a new live AWS deployment. The original 92-second live recording is preserved separately. Both are provided as H.264 Baseline / MP4 with fast-start metadata. The full guide has no audio track; brief subtitles are embedded in the video and supplied as optional WebVTT.
-
-The concise cut is **148.68 seconds**, with evidence scenes lasting 3–7 seconds. A final single-stream H.264 encode with two-second keyframes fixes stale frames after Firefox chapter jumps. The [Firefox decoder check](evidence/firefox-video-playback.json) confirms no audio, a rendered frame at 4.0 seconds and the AWS VPC frame at 69.133 seconds; this checks displayed video frames, not only the playback clock. The separately hosted [player](https://yeashu.github.io/DevOps-Capstone/recordings/?v=silent149r2) also avoids the inline attachment route that reported Bad Gateway.
+The MP4 presentation uses H.264 with fast-start metadata and short on-screen subtitles. Firefox playback and chapter seeking were verified; the [playback record](evidence/firefox-video-playback.json) is retained. The [browser player](https://yeashu.github.io/DevOps-Capstone/recordings/?v=presentation) provides chapter navigation. The original EKS rollout recording is preserved separately.
 
 ## Final local workspace cleanup
 
