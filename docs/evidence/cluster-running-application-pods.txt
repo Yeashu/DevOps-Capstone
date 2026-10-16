@@ -1,6 +1,6 @@
-NAME                              READY   STATUS    RESTARTS   AGE    IP            NODE                  NOMINATED NODE   READINESS GATES
-orbit-backend-7b44bc8cc8-r7f84    1/1     Running   0          3m3s   10.244.0.6    orbit-control-plane   <none>           <none>
-orbit-backend-7b44bc8cc8-r8f2q    1/1     Running   0          3m3s   10.244.0.7    orbit-control-plane   <none>           <none>
-orbit-frontend-86c57dc45b-64dl9   1/1     Running   0          3m3s   10.244.0.10   orbit-control-plane   <none>           <none>
-orbit-frontend-86c57dc45b-s5vpt   1/1     Running   0          3m3s   10.244.0.9    orbit-control-plane   <none>           <none>
-orbit-postgres-0                  1/1     Running   0          3m3s   10.244.0.12   orbit-control-plane   <none>           <none>
+NAME                              READY   STATUS    RESTARTS   AGE     IP            NODE                  NOMINATED NODE   READINESS GATES
+orbit-backend-7bcbdb5bbf-gnvwd    1/1     Running   0          3m10s   10.244.0.6    orbit-control-plane   <none>           <none>
+orbit-backend-7bcbdb5bbf-jm8vz    1/1     Running   0          3m10s   10.244.0.7    orbit-control-plane   <none>           <none>
+orbit-frontend-586bf579f4-46cjk   1/1     Running   0          3m10s   10.244.0.9    orbit-control-plane   <none>           <none>
+orbit-frontend-586bf579f4-jtf5l   1/1     Running   0          3m10s   10.244.0.10   orbit-control-plane   <none>           <none>
+orbit-postgres-0                  1/1     Running   0          3m10s   10.244.0.12   orbit-control-plane   <none>           <none>

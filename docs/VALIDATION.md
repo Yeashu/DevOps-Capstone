@@ -14,7 +14,7 @@ This record contains executed results for Orbit. Earlier network and Docker rest
 | Image security | Both remediated images: **zero HIGH/CRITICAL findings**; unfixed findings are included in the gate |
 | Registry | Both exact scanned images published to GHCR with full commit SHA tags |
 | Kubernetes | Helm release deployed to disposable Kind; two backend + two frontend replicas and PostgreSQL Running; Services and Ingress verified |
-| Observability | Both application targets UP; Grafana datasource returned positive real metric values |
+| Observability | Both application targets UP; Grafana datasource returned positive real metric values; populated six-panel dashboard captured |
 | AWS | Terraform apply in progress; Console evidence and destroy remain pending |
 | Presentation | Runbook present; presentation/recording not yet completed |
 
@@ -23,3 +23,7 @@ This record contains executed results for Orbit. Earlier network and Docker rest
 The original backend security gate correctly blocked publication in [run 38943294699](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38943294699). The Alpine runtime update and removal of unused pip/ensurepip vendored libraries resolved its findings without weakening the policy. See [the security explanation](../security/README.md).
 
 Actual browser captures and source logs are in `docs/screenshots/` and `docs/evidence/`. Command-output PNGs are explicitly labelled rendered transcripts; they are not OS terminal screenshots. Kind evidence demonstrates Kubernetes/Helm/monitoring and is not represented as EKS evidence. Terraform account IDs and administrator CIDRs are explicitly redacted in the committed plan; state, credentials, real tfvars and binary plans are excluded from Git.
+
+Git metadata note: at the owner’s request, subsequent commits use the assigned author/committer timestamp `2026-10-16T23:54:00+05:30`. This is metadata, not the time the later AWS operations or captures completed. Actions run timestamps and captured-at evidence remain their actual times.
+
+Final hosted result: [run 38946260879](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38946260879) completed successfully. The Ingress browser and populated Grafana captures are now committed; optional persistent EKS delivery was skipped because its runner/OIDC bootstrap is not configured. The Kind deployment job did run and passed.

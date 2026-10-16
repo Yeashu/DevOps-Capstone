@@ -2,8 +2,11 @@
 
 Actual browser captures and labelled renders of real command output are committed under `docs/screenshots/`; source logs are retained under `docs/evidence/`. No screenshots or successful command results are fabricated. Transcript PNGs are not original terminal-window screenshots.
 
-Verified evidence includes the working local Compose UI, all 69 pytest cases, healthy services, non-root IDs, backend metrics, both clean Trivy reports, a deployed Helm release on Kind, pods/Services/Ingress and two Prometheus targets UP. The non-empty AWS Terraform plan is included as source text and numbered PNGs. AWS apply and the corrected final Grafana capture are in progress; see [SUBMISSION.md](SUBMISSION.md) for remaining items.
+Verified evidence includes the working local Compose UI, all 69 pytest cases, healthy services, non-root IDs, backend metrics, both clean Trivy reports, a deployed Helm release on Kind, pods/Services/Ingress and two Prometheus targets UP. The non-empty AWS Terraform plan is included as source text and numbered PNGs. The final Grafana capture and green run are included. AWS apply and cleanup are in progress; see [SUBMISSION.md](SUBMISSION.md) for remaining items.
 
+- [Green Actions run](docs/screenshots/github-actions-success.png)
+- [Populated Grafana dashboard](docs/screenshots/16-grafana-dashboard.png)
+- [Application through Ingress](docs/screenshots/ingress-application.png)
 - [Desktop calculator](docs/screenshots/01-application-desktop.png)
 - [Mobile calculator](docs/screenshots/02-application-mobile.png)
 - [Passing tests](docs/screenshots/pytest-03.png)

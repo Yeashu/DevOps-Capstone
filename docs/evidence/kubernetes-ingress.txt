@@ -1,2 +1,2 @@
 NAME    CLASS     HOSTS             ADDRESS   PORTS   AGE
-orbit   traefik   orbit.localhost             80      3m2s
+orbit   traefik   orbit.localhost             80      3m9s
