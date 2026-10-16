@@ -6,7 +6,7 @@ Repository: **https://github.com/Yeashu/DevOps-Capstone**
 
 Jump to the [recorded video and all 75 evidence images](#evidence-and-presentation).
 
-**[Green CI run](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38952441902):** all 69 backend tests, frontend checks, the three-service Compose/browser demo, Terraform/Helm validation, both strict Trivy image scans, SHA-tagged GHCR publishing, and real Helm/Ingress/Prometheus/Grafana verification on Kind passed. Screenshots and original logs are included. Real AWS provisioning also passed: VPC, two public subnets, active EKS, two Ready workers, Helm application deployment and live Prometheus/Grafana on EKS are verified. Cloud Console, application and dashboard captures are included. **AWS teardown is complete** and an independent audit confirms no remaining project cluster, VPC, worker instances, database/root volumes, network interfaces or load balancers. Local Compose remains available at http://localhost:3000. See [validation results](docs/VALIDATION.md), [evidence](screenshots.md), [recorded EKS rollout](docs/recordings/orbit-eks-rollout.mp4) and [the submission checklist](SUBMISSION.md).
+**[Green CI run](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38959438459):** all 69 backend tests, frontend checks, the three-service Compose/browser demo, Terraform/Helm validation, both strict Trivy image scans, SHA-tagged GHCR publishing, and real Helm/Ingress/Prometheus/Grafana verification on Kind passed. Screenshots and original logs are included. Real AWS provisioning also passed: VPC, two public subnets, active EKS, two Ready workers, Helm application deployment and live Prometheus/Grafana on EKS are verified. Cloud Console, application and dashboard captures are included. **AWS teardown is complete** and an independent audit confirms no remaining project cluster, VPC, worker instances, database/root volumes, network interfaces or load balancers. The local demo has been stopped and temporary build files removed; restart it with `docker compose up --build`. See [validation results](docs/VALIDATION.md), [evidence](screenshots.md), [recorded EKS rollout](docs/recordings/orbit-eks-rollout.mp4) and [the submission checklist](SUBMISSION.md).
 
 ## Evidence and presentation
 
@@ -118,7 +118,7 @@ Each module below has a main image followed by links to its other images. All **
 - [Trivy findings and remediation explanation](security/README.md)
 - [Troubleshooting exercises](docs/TROUBLESHOOTING.md)
 - [Optional GitOps setup](gitops/README.md)
-- [Verified green pipeline](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38952441902)
+- [Verified green pipeline](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38959438459)
 - [Recorded rollout's pipeline](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38947611595)
 
 <details>
@@ -150,6 +150,7 @@ These files include earlier failed or blocked attempts for provenance. Use the v
 - [eks-prometheus-targets.json](docs/evidence/eks-prometheus-targets.json)
 - [eks-pvc.txt](docs/evidence/eks-pvc.txt)
 - [eks-rollout.txt](docs/evidence/eks-rollout.txt)
+- [Final workspace cleanup](docs/evidence/final-workspace-cleanup.json)
 - [eks-services.txt](docs/evidence/eks-services.txt)
 - [frontend-build.txt](docs/evidence/frontend-build.txt)
 - [git-history-secret-check.json](docs/evidence/git-history-secret-check.json)

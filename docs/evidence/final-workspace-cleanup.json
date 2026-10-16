@@ -1,0 +1,64 @@
+{
+  "checkedAt": "2026-10-16T20:13:36.519725+00:00",
+  "local": {
+    "projectContainersAbsent": true,
+    "projectNetworkAbsent": true,
+    "demoPostgresVolumeRemoved": true,
+    "temporaryPreviewServerStopped": true,
+    "removedImages": [
+      "orbit-frontend:local",
+      "orbit-backend:local",
+      "mcr.microsoft.com/playwright:v1.64.1-noble"
+    ],
+    "removedIgnoredPaths": [
+      ".local",
+      ".venv",
+      "backend/.pytest_cache",
+      "backend/.ruff_cache",
+      "backend/alembic/__pycache__",
+      "backend/alembic/versions/__pycache__",
+      "backend/app/__pycache__",
+      "backend/tests/__pycache__",
+      "frontend/dist",
+      "scripts/__pycache__",
+      "scripts/node_modules",
+      "terraform/.terraform",
+      "terraform/orbit.tfplan",
+      "terraform/terraform.tfstate",
+      "terraform/terraform.tfstate.backup",
+      "terraform/terraform.tfvars"
+    ],
+    "remainingIgnoredPaths": []
+  },
+  "preserved": {
+    "evidenceImages": 75,
+    "recordings": [
+      "docs/recordings/orbit-capstone-walkthrough.mp4",
+      "docs/recordings/orbit-capstone-walkthrough.vtt",
+      "docs/recordings/orbit-capstone-walkthrough.json",
+      "docs/recordings/orbit-eks-rollout.mp4",
+      "docs/recordings/orbit-eks-rollout.webm",
+      "docs/recordings/orbit-eks-rollout.vtt"
+    ],
+    "sourceAndGitHistory": true,
+    "publishedGhcrPackagesAndGitHubPages": true
+  },
+  "aws": {
+    "previousIndependentAudit": "docs/evidence/aws-cleanup-audit.json",
+    "previousAuditAt": "2026-10-16T19:04:41.321195+00:00",
+    "previousAuditChecks": {
+      "eks_cluster_absent": true,
+      "vpc_absent": true,
+      "no_active_worker_instances": true,
+      "database_ebs_volume_absent": true,
+      "worker_root_volumes_absent": true,
+      "no_remaining_network_interfaces": true,
+      "no_application_load_balancer": true,
+      "no_classic_load_balancer": true,
+      "terraform_state_empty": true
+    },
+    "freshAuditCompleted": false,
+    "freshAuditReason": "Current default profile returns InvalidClientTokenId; no AWS resources were provisioned after the recorded successful teardown.",
+    "temporaryIamCleanup": "docs/evidence/aws-bootstrap-cleanup.json"
+  }
+}

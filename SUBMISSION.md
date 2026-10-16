@@ -2,7 +2,7 @@
 
 Repository: **https://github.com/Yeashu/DevOps-Capstone**
 
-Verified green pipeline: **https://github.com/Yeashu/DevOps-Capstone/actions/runs/38949107515**.
+Verified green pipeline: **https://github.com/Yeashu/DevOps-Capstone/actions/runs/38959438459**.
 The recorded EKS rollout uses [green run 38947611595](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38947611595) and its exact full-SHA images.
 
 | Module | Verified implementation and evidence | Status |
@@ -31,6 +31,7 @@ The recorded EKS rollout uses [green run 38947611595](https://github.com/Yeashu/
 - [x] Actual Terraform destroy completion and independent residual-resource audit
 - [x] Temporary project bootstrap access key/user/operator role removed
 - [x] Captioned technical walkthrough and presentation runbook included
+- [x] Final local services, demo volume and temporary workspace files cleaned; [cleanup record](docs/evidence/final-workspace-cleanup.json) retained
 
 **Submit:** the repository URL, the files indexed in [screenshots.md](screenshots.md), and the [full walkthrough](docs/recordings/orbit-capstone-walkthrough.mp4) with [captions](docs/recordings/orbit-capstone-walkthrough.vtt). The course submission form and the student's live explanation are external steps; this repository does not claim those have already occurred.
 

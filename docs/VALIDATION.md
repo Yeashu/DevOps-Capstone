@@ -18,7 +18,7 @@ Orbit was built and exercised locally, in GitHub Actions, on disposable Kind and
 | Cleanup | Terraform destroy completed; empty state and independent AWS residual-resource audit passed; temporary IAM bootstrap user/key/operator role removed |
 | Recording | Full 2-minute 29-second silent evidence guide, original 92-second live EKS rollout, captions and presentation runbook included |
 
-Verified green runs: [38946260879](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38946260879), [38947611595](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38947611595), and [38949107515](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38949107515). The final run linked here validates commit `903a3b1dadc588b93657852dd9ec0e605d56f159`; subsequent cleanup documentation is separate evidence.
+Verified green runs: [38946260879](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38946260879), [38947611595](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38947611595), and [38949107515](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38949107515). The latest verified [green run 38959438459](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38959438459) validates commit `31d74645ca1d77be9634ee276a3fbfbdf98e4826`; subsequent workspace cleanup documentation is separate evidence.
 
 ## Actual AWS deployment and rollout
 
@@ -32,7 +32,7 @@ The explicitly named `eks-*` and `aws-*` evidence shows the real AWS lifecycle. 
 
 The first destroy was interrupted while waiting for the worker group; AWS completed that deletion asynchronously. A resumed `terraform destroy` refreshed state and removed the **14 remaining resources**. Both actual logs are retained, with the final completion excerpt rendered as `terraform-destroy.png`.
 
-An independent audit confirms that the project cluster and VPC are absent, no active worker instances remain, the database and both recorded worker root volumes are absent, no project ENIs or load balancers remain, and Terraform state is empty. Temporary bootstrap credentials and the operator IAM role were then removed. The original default AWS profile was verified unchanged. Local Compose remains healthy at http://localhost:3000.
+An independent audit confirms that the project cluster and VPC are absent, no active worker instances remain, the database and both recorded worker root volumes are absent, no project ENIs or load balancers remain, and Terraform state is empty. Temporary bootstrap credentials and the operator IAM role were then removed. The original default AWS profile was verified unchanged. The local Compose demo was subsequently stopped and its demo database volume removed during final workspace cleanup.
 
 ## Security and evidence provenance
 
@@ -47,3 +47,9 @@ Browser PNGs are actual captures. Command-output PNGs are labelled renders of ac
 The full 2-minute 29-second walkthrough covers all ten modules using genuine source evidence and original live-demo excerpts. The captured AWS Console scenes show the provisioned VPC, two public subnets, active EKS cluster and two Ready workers. Terraform plan/apply/destroy, security, container publishing, Kubernetes, monitoring and cleanup are also included. Captured evidence is explicitly labelled; the guide does not claim a new live AWS deployment. The original 92-second live recording is preserved separately. Both are provided as H.264 Baseline / MP4 with fast-start metadata. The full guide has no audio track; brief subtitles are embedded in the video and supplied as optional WebVTT.
 
 The concise cut is **148.68 seconds**, with evidence scenes lasting 3–7 seconds. A final single-stream H.264 encode with two-second keyframes fixes stale frames after Firefox chapter jumps. The [Firefox decoder check](evidence/firefox-video-playback.json) confirms no audio, a rendered frame at 4.0 seconds and the AWS VPC frame at 69.133 seconds; this checks displayed video frames, not only the playback clock. The separately hosted [player](https://yeashu.github.io/DevOps-Capstone/recordings/?v=silent149r2) also avoids the inline attachment route that reported Bad Gateway.
+
+## Final local workspace cleanup
+
+The project Compose containers, network, demo PostgreSQL volume, application images and temporary Firefox test image have been removed. The temporary HTTP server is stopped. Ignored virtual environments, dependency directories, caches, raw temporary captures, local AWS/browser session files, Terraform provider cache, plan, variables and empty state/backup were removed. Source code, Git history, all 75 evidence images, the silent final video, original recording, source logs, published packages and Pages player are retained. See the [machine-readable cleanup record](evidence/final-workspace-cleanup.json).
+
+The saved independent AWS audit and Terraform destroy logs confirm completed cloud teardown. A fresh AWS read-only audit could not run because the current default credentials return `InvalidClientTokenId`; the retained audit is identified by its original timestamp rather than presented as a new check. No AWS resources were provisioned after that audit.
