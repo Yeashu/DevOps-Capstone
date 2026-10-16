@@ -1,0 +1,25 @@
+# Optional: install Argo CD first. Do not enable direct CI deployment and Argo
+# auto-sync for the same release at the same time.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: orbit
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Yeashu/DevOps-Capstone.git
+    targetRevision: main
+    path: helm/orbit
+    helm:
+      releaseName: orbit
+      valueFiles:
+        - values.yaml
+        - ../../gitops/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: orbit
+  # Manual sync until gitops/values.yaml contains published image SHAs.
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

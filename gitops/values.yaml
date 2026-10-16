@@ -1,0 +1,7 @@
+# Replace local tags with a successful pipeline's full commit SHA before syncing.
+backend:
+  repository: ghcr.io/yeashu/devops-capstone/backend
+  tag: local
+frontend:
+  repository: ghcr.io/yeashu/devops-capstone/frontend
+  tag: local
