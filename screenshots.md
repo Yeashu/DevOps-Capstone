@@ -2,8 +2,18 @@
 
 Actual browser captures and labelled renders of real command output are committed under `docs/screenshots/`; source logs are retained under `docs/evidence/`. No screenshots or successful command results are fabricated. Transcript PNGs are not original terminal-window screenshots.
 
-Verified evidence includes the working local Compose UI, all 69 pytest cases, healthy services, non-root IDs, backend metrics, both clean Trivy reports, a deployed Helm release on Kind, pods/Services/Ingress and two Prometheus targets UP. The non-empty AWS Terraform plan is included as source text and numbered PNGs. The final Grafana capture and green run are included. AWS apply and cleanup are in progress; see [SUBMISSION.md](SUBMISSION.md) for remaining items.
+Verified evidence includes the working local Compose UI, all 69 pytest cases, healthy services, non-root IDs, backend metrics, both clean Trivy reports, a deployed Helm release on Kind, pods/Services/Ingress and two Prometheus targets UP. The non-empty AWS Terraform plan is included as source text and numbered PNGs. The final Grafana capture and green run are included. AWS apply, EKS application/monitoring verification and Console captures are complete; cleanup is pending; see [SUBMISSION.md](SUBMISSION.md) for remaining items.
 
+- [Recorded EKS rollout](docs/recordings/orbit-eks-rollout.webm) · [captioned player](docs/recordings/index.html)
+- [Updated EKS SHA](docs/screenshots/eks-updated-version.png)
+- [Notebook after rollout](docs/screenshots/eks-after-rollout.png)
+- [AWS VPC Console](docs/screenshots/aws-vpc-console.png)
+- [Two public subnets](docs/screenshots/aws-subnets-console.png)
+- [Active EKS Console](docs/screenshots/aws-eks-console.png)
+- [Two Ready workers in AWS Console](docs/screenshots/aws-eks-workers-console.png)
+- [Application on EKS through Ingress](docs/screenshots/eks-application-desktop.png)
+- [EKS Prometheus targets](docs/screenshots/eks-prometheus-targets.png)
+- [EKS Grafana dashboard](docs/screenshots/eks-grafana-dashboard.png)
 - [Green Actions run](docs/screenshots/github-actions-success.png)
 - [Populated Grafana dashboard](docs/screenshots/16-grafana-dashboard.png)
 - [Application through Ingress](docs/screenshots/ingress-application.png)

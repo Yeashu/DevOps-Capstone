@@ -13,10 +13,10 @@ Previous run verified both clean images and GHCR publication; its final Grafana 
 | M4 | Both images built; three services healthy; non-root IDs; browser captures | Complete |
 | M5 | Tests/build/scans and both SHA-tagged GHCR pushes passed | Complete: green run and both package screenshots captured |
 | M6 | Both images scanned clean; strict HIGH/CRITICAL failure gate; explanation and scan PNGs | Complete |
-| M7 | Validated IaC and real 20-resource plan; AWS apply underway | Active VPC/EKS/workers, Console captures, destroy and completion capture |
-| M8 | Kind Helm deployment, two replicas per tier, pods/Services/Helm/Ingress outputs | Complete: actual Ingress browser capture included |
-| M9 | Metrics output and PNGs; two Prometheus targets UP; Grafana datasource verified | Complete: populated Grafana screenshot included |
-| M10 | README, architecture, demo runbook | Live/recorded commit → pipeline → deployment walkthrough |
+| M7 | Real plan/apply succeeded; active VPC, two subnets, EKS and two Ready workers; Console captures included | Destroy and completion capture |
+| M8 | Kind and EKS Helm deployments, two replicas per tier, pods/Services/Helm/Ingress outputs | Complete: actual Ingress browser capture included |
+| M9 | Kind and EKS metrics, both targets UP, live Grafana panels and screenshots verified | Complete: populated Grafana screenshot included |
+| M10 | README, architecture, runbook and captioned actual EKS rollout recording | Submit the recording; explain the project at the scheduled presentation |
 
 - [x] Public GitHub URL and meaningful commit history
 - [x] All 69 backend tests pass
@@ -30,8 +30,8 @@ Previous run verified both clean images and GHCR publication; its final Grafana 
 - [x] Metrics output and both Prometheus targets UP
 - [x] Final Grafana screenshot and green evidence run
 - [x] GHCR package page screenshots
-- [ ] AWS Console VPC/EKS/worker evidence
+- [x] AWS Console VPC/EKS/worker evidence
 - [ ] Terraform destroy completion and residual-resource audit
-- [ ] Presentation completed or recording linked
+- [x] Recorded technical walkthrough linked in DEMO.md (live presentation, if required by the instructor, remains the student’s session)
 
 See [evidence index](screenshots.md) for files and provenance. Authored configuration alone does not establish runtime completion.

@@ -1,0 +1,14 @@
+{
+  "capturedAt": "2026-10-16T18:36:03.158Z",
+  "base": "http://orbit.localhost:8080",
+  "checks": [
+    "live API",
+    "scientific result",
+    "degree mode",
+    "mobile width",
+    "domain error",
+    "label update",
+    "no JS errors"
+  ],
+  "screenshotsUseRealBackend": true
+}

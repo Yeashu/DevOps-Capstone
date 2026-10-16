@@ -1,0 +1,5 @@
+NAME      	NAMESPACE     	REVISION	UPDATED                             	STATUS  	CHART             	APP VERSION
+grafana   	monitoring    	1       	2026-10-17 00:04:30.177244 +0530 IST	deployed	grafana-10.5.15   	12.3.1     
+orbit     	orbit         	1       	2026-10-16 23:59:28.78277 +0530 IST 	deployed	orbit-1.0.0       	1.0.0      
+prometheus	monitoring    	1       	2026-10-17 00:02:26.867821 +0530 IST	deployed	prometheus-29.37.0	v3.15.0    
+traefik   	ingress-system	1       	2026-10-16 23:59:08.770064 +0530 IST	deployed	traefik-42.0.0    	v3.7.14    

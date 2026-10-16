@@ -1,0 +1,3 @@
+NAME                                 READY   STATUS    RESTARTS   AGE
+grafana-585f67fb5d-j5dqm             2/2     Running   0          119s
+prometheus-server-5468675fd5-fn9bs   2/2     Running   0          4m3s

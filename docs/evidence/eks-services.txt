@@ -1,0 +1,4 @@
+NAME             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+orbit-backend    ClusterIP   172.20.172.10   <none>        8000/TCP   6m52s
+orbit-frontend   ClusterIP   172.20.46.177   <none>        80/TCP     6m52s
+orbit-postgres   ClusterIP   None            <none>        5432/TCP   6m52s

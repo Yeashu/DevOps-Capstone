@@ -1,0 +1,2 @@
+NAME                    STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+data-orbit-postgres-0   Bound    pvc-b029c980-37f5-47ca-8f41-12152bde1c95   2Gi        RWO            gp3            <unset>                 7m3s

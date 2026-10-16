@@ -1,5 +1,7 @@
 # Presentation and live demonstration
 
+A real [92-second technical walkthrough](docs/recordings/orbit-eks-rollout.webm) and [captions](docs/recordings/orbit-eks-rollout.vtt) are included. To use the captioned player, run `python3 -m http.server 8765 --bind 127.0.0.1` from the root and open http://localhost:8765/docs/recordings/. It shows the EKS calculator, successful run 38947611595, a local Helm rollout to `7f36cafc34b923fa34b1a0e727b2d359a060c757`, the updated health version and the persistent notebook. The hosted optional EKS delivery job was skipped; the recording accurately identifies the local CLI rollout.
+
 The final rubric requires an actual commit → pipeline → deployment update. The default CI pipeline publishes images; automatic deployment is deliberately opt-in until AWS and the deployment role/runner are configured. Do this preparation before presenting.
 
 ## Prepare

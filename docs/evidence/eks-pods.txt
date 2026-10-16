@@ -1,0 +1,7 @@
+NAME                              READY   STATUS      RESTARTS        AGE     IP            NODE                                        NOMINATED NODE   READINESS GATES
+orbit-backend-8555f778b5-4bpq5    1/1     Running     0               6m49s   10.42.0.86    ip-10-42-0-93.ap-south-1.compute.internal   <none>           <none>
+orbit-backend-8555f778b5-n9gj5    1/1     Running     0               6m49s   10.42.1.109   ip-10-42-1-20.ap-south-1.compute.internal   <none>           <none>
+orbit-frontend-77fc56bcc6-2nj74   1/1     Running     0               6m49s   10.42.1.164   ip-10-42-1-20.ap-south-1.compute.internal   <none>           <none>
+orbit-frontend-77fc56bcc6-l2j4z   1/1     Running     0               6m49s   10.42.0.191   ip-10-42-0-93.ap-south-1.compute.internal   <none>           <none>
+orbit-migrate-1-m7ksf             0/1     Completed   2 (6m36s ago)   6m49s   10.42.0.68    ip-10-42-0-93.ap-south-1.compute.internal   <none>           <none>
+orbit-postgres-0                  1/1     Running     0               6m49s   10.42.1.254   ip-10-42-1-20.ap-south-1.compute.internal   <none>           <none>

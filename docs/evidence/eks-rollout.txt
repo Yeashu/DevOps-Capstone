@@ -1,0 +1,16 @@
+Actual local CLI rollout after successful run 38947611595
+helm upgrade --install orbit helm/orbit -n orbit --reuse-values --set backend.tag=7f36cafc34b923fa34b1a0e727b2d359a060c757 --set frontend.tag=7f36cafc34b923fa34b1a0e727b2d359a060c757 --wait --wait-for-jobs --timeout 8m
+Release "orbit" has been upgraded. Happy Helming!
+NAME: orbit
+LAST DEPLOYED: Sat Oct 17 00:07:40 2026
+NAMESPACE: orbit
+STATUS: deployed
+REVISION: 2
+DESCRIPTION: Upgrade complete
+TEST SUITE: None
+NOTES:
+Orbit is installed in orbit.
+kubectl get pods,svc,ingress -n orbit
+Ingress host: orbit.localhost
+Forward the ingress controller, then open http://orbit.localhost:8080.
+The migration Job normally reaches Completed; application pods should be Running.

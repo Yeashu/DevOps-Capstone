@@ -1,0 +1,41 @@
+{
+  "capturedAt": "2026-10-16T18:38:21.987Z",
+  "pipelineRun": "38947611595",
+  "targetSHA": "7f36cafc34b923fa34b1a0e727b2d359a060c757",
+  "events": [
+    {
+      "seconds": 0,
+      "text": "Live AWS EKS deployment before rollout: backend reports the original image commit."
+    },
+    {
+      "seconds": 8.158,
+      "text": "Scientific calculator on EKS: evaluate sqrt(144) + 2^3 and persist the result in PostgreSQL."
+    },
+    {
+      "seconds": 21.583,
+      "text": "Degree mode: sin(30) = 0.5. The shared notebook is stored outside application pods."
+    },
+    {
+      "seconds": 29.643,
+      "text": "The new Git commit triggered tests, image builds, strict Trivy scans, SHA-tag publishing and a real cluster demonstration."
+    },
+    {
+      "seconds": 34.361,
+      "text": "Pipeline passed. Both exact scanned images are published with full SHA tags. The optional hosted EKS job is disabled; the following Helm rollout is run from the authenticated local CLI."
+    },
+    {
+      "seconds": 44.368,
+      "text": "Roll both EKS application deployments to the successful commit SHA; wait for readiness and the migration Job."
+    },
+    {
+      "seconds": 65.549,
+      "text": "After rollout: /api/health reports the new commit SHA from the EKS deployment."
+    },
+    {
+      "seconds": 77.685,
+      "text": "The notebook still contains the scientific calculations after the pod replacement."
+    }
+  ],
+  "localHelmDelivery": true,
+  "description": "Actual technical walkthrough. Commit metadata uses the owner-assigned timestamp; capture and hosted run times are actual."
+}
