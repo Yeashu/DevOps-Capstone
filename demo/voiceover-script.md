@@ -1,50 +1,42 @@
-# Voice-over script for the 2:29 video
+# Project narration for the 2:29 walkthrough
 
-Use this script with [the silent MP4](orbit-capstone-video.mp4). Read the text in the right-hand column. The times are cue points, not spoken text. Aim for roughly 110–125 words per minute and leave short pauses between scenes.
+Read the narration below as a connected explanation of the project. The screenshots are supporting evidence; there is no need to name each image or match every screen change with a sentence.
 
-The AWS scenes are historical captures. The recorded deployment uses the local Helm CLI after a successful pipeline; the automatic EKS Actions job was skipped.
+This version is about 302 words. Aim for roughly 125–135 words per minute, allowing brief pauses. Use the [plain-text copy](voiceover-script.txt) if recording software needs a script without formatting.
 
-| Video time | Read aloud |
+## Read aloud
+
+I built Orbit, a scientific calculator with a saved notebook. FastAPI handles expression validation and API requests, while PostgreSQL keeps calculation history separate from the application. This lets saved results survive application restarts.
+
+To make changes safer, I added sixty-nine backend tests against isolated databases so tests cannot overwrite saved data. Docker Compose makes the complete stack reproducible with one command. I kept frontend build tools out of the runtime image and ran both application containers without root privileges to limit process permissions.
+
+GitHub Actions checks each push before publication. Tests and security scans must pass before the images reach the container registry. Commit-based tags let me trace a deployment back to its exact source. Trivy initially blocked the backend image, so I fixed its dependencies while keeping the strict security gate.
+
+On AWS, I used Terraform to make infrastructure changes reviewable and repeatable. It provisioned the VPC, two public subnets across separate availability zones, and EKS with a managed worker group in Mumbai. I verified both workers before deploying, and kept credentials outside the repository.
+
+Helm packages the components into one release so the same configuration can be redeployed. I used two replicas per application tier and readiness checks to support rollouts. Ingress routes browser and API traffic, while PostgreSQL stores data outside the application pods.
+
+I instrumented FastAPI so Prometheus could measure requests and latency. Grafana helped me check application behavior under traffic, alongside Kubernetes health checks.
+
+After green CI, I upgraded EKS through the local Helm CLI. I verified the deployed commit and confirmed the saved notebook survived.
+
+Finally, I used Terraform destroy and audited for leftover AWS resources, including worker and database volumes. I removed temporary credentials as well. That completed the deployment lifecycle, with the source and evidence preserved for review without leaving the AWS environment running.
+
+## Optional pacing guide
+
+These times are approximate topic cues, not text to read aloud.
+
+| Time | Topic |
 | --- | --- |
-| 00:00–00:06 | This is Orbit, my Python scientific calculator with a PostgreSQL notebook. |
-| 00:06–00:13 | Degree mode returns sine of thirty as zero point five. |
-| 00:13–00:18 | All sixty nine backend tests pass using an isolated test database. |
-| 00:18–00:22 | Git tracks meaningful commits and excludes secrets. |
-| 00:22–00:28 | Docker Compose runs three healthy services: frontend, backend, and PostgreSQL. |
-| 00:28–00:33 | Both application containers run as non-root users. |
-| 00:33–00:40 | Every push to main runs tests, builds, scans, and container publication. |
-| 00:40–00:45 | The backend image uses the exact Git commit identifier. |
-| 00:45–00:50 | The frontend image uses the same SHA tagging scheme. |
-| 00:50–00:54 | Trivy finds no high or critical backend vulnerabilities. |
-| 00:54–00:59 | The frontend scan also passes. Either scan can block publication. |
-| 00:59–01:04 | Terraform plans twenty real resources in Mumbai. |
-| 01:04–01:09 | Apply completes successfully, creating the VPC and EKS infrastructure. |
-| 01:09–01:14 | This AWS Console capture shows the project VPC. |
-| 01:14–01:17 | Two public subnets span separate availability zones. |
-| 01:17–01:20 | The EKS control plane is active. |
-| 01:20–01:25 | Both worker nodes are Ready. |
-| 01:25–01:30 | Helm manages the application, Ingress controller, and monitoring releases. |
-| 01:30–01:35 | Two backend and two frontend replicas run alongside PostgreSQL. |
-| 01:35–01:39 | ClusterIP Services provide access inside Kubernetes. |
-| 01:39–01:44 | Ingress routes the website and API to their respective services. |
-| 01:44–01:48 | FastAPI exposes Prometheus request and latency metrics. |
-| 01:48–01:52 | Both backend targets report UP in Prometheus. |
-| 01:52–01:57 | Grafana displays live request rate and latency panels. |
-| 01:57–02:02 | After green CI, a local Helm upgrade updates EKS. |
-| 02:02–02:08 | The health check reports the new commit. The notebook persists. |
-| 02:08–02:15 | Terraform destroy completes. These are historical AWS captures from before cleanup. |
-| 02:15–02:22 | An independent audit confirms no project cluster, VPC, workers, or volumes remain. |
-| 02:22–02:29 | Temporary access credentials are removed. All source and evidence remain in the repository. |
+| 00:00–00:13 | Application purpose and architecture |
+| 00:13–00:33 | Testing decisions and reproducible containers |
+| 00:33–00:59 | CI, traceable image tags and fixing the security gate |
+| 00:59–01:25 | Infrastructure as code and AWS provisioning |
+| 01:25–01:44 | Helm, replicas, readiness and persistent data |
+| 01:44–01:57 | Why metrics and dashboards matter |
+| 01:57–02:08 | Verifying the actual EKS update |
+| 02:08–02:29 | Teardown, residual-resource checks and evidence |
 
-## Short pronunciation guide
+The EKS upgrade used the authenticated local Helm CLI after a successful pipeline. The optional automatic EKS Actions job was skipped. The cloud screenshots show the completed deployment before teardown.
 
-- **FastAPI:** fast A P I
-- **PostgreSQL:** post-gress Q L
-- **CI:** C I
-- **SHA:** shah, or say “commit identifier”
-- **VPC:** V P C
-- **EKS:** E K S
-- **Grafana:** grah-fah-nah
-- **Prometheus:** pro-mee-thee-us
-
-For a live explanation of the slides, use [the slide-by-slide speaker notes](presentation-notes.md).
+[Silent MP4](orbit-capstone-video.mp4) · [Slide presentation notes](presentation-notes.md)

@@ -1,0 +1,15 @@
+I built Orbit, a scientific calculator with a saved notebook. FastAPI handles expression validation and API requests, while PostgreSQL keeps calculation history separate from the application. This lets saved results survive application restarts.
+
+To make changes safer, I added sixty-nine backend tests against isolated databases so tests cannot overwrite saved data. Docker Compose makes the complete stack reproducible with one command. I kept frontend build tools out of the runtime image and ran both application containers without root privileges to limit process permissions.
+
+GitHub Actions checks each push before publication. Tests and security scans must pass before the images reach the container registry. Commit-based tags let me trace a deployment back to its exact source. Trivy initially blocked the backend image, so I fixed its dependencies while keeping the strict security gate.
+
+On AWS, I used Terraform to make infrastructure changes reviewable and repeatable. It provisioned the VPC, two public subnets across separate availability zones, and EKS with a managed worker group in Mumbai. I verified both workers before deploying, and kept credentials outside the repository.
+
+Helm packages the components into one release so the same configuration can be redeployed. I used two replicas per application tier and readiness checks to support rollouts. Ingress routes browser and API traffic, while PostgreSQL stores data outside the application pods.
+
+I instrumented FastAPI so Prometheus could measure requests and latency. Grafana helped me check application behavior under traffic, alongside Kubernetes health checks.
+
+After green CI, I upgraded EKS through the local Helm CLI. I verified the deployed commit and confirmed the saved notebook survived.
+
+Finally, I used Terraform destroy and audited for leftover AWS resources, including worker and database volumes. I removed temporary credentials as well. That completed the deployment lifecycle, with the source and evidence preserved for review without leaving the AWS environment running.
