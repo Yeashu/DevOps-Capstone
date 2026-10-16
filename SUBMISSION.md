@@ -32,6 +32,6 @@ The recorded EKS rollout uses [green run 38947611595](https://github.com/Yeashu/
 - [x] Temporary project bootstrap access key/user/operator role removed
 - [x] Captioned technical walkthrough and presentation runbook included
 
-**Submit:** the repository URL, the files indexed in [screenshots.md](screenshots.md), and the [recording](docs/recordings/orbit-eks-rollout.webm) with [captions](docs/recordings/orbit-eks-rollout.vtt). The course submission form and the student's live explanation are external steps; this repository does not claim those have already occurred.
+**Submit:** the repository URL, the files indexed in [screenshots.md](screenshots.md), and the [recording](docs/recordings/orbit-eks-rollout.mp4) with [captions](docs/recordings/orbit-eks-rollout.vtt). The course submission form and the student's live explanation are external steps; this repository does not claim those have already occurred.
 
 Command-output PNGs are labelled renders of actual logs, not native terminal-window screenshots. Commit metadata after the owner's request uses the assigned `2026-10-16T23:54:00+05:30`; actual Actions, AWS and capture timestamps remain unchanged. Runtime evidence collected after midnight is not represented as having completed before the deadline.

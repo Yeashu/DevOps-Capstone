@@ -6,15 +6,15 @@ Repository: **https://github.com/Yeashu/DevOps-Capstone**
 
 Jump to the [recorded video and all 75 evidence images](#evidence-and-presentation).
 
-**[Green CI run](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38952441902):** all 69 backend tests, frontend checks, the three-service Compose/browser demo, Terraform/Helm validation, both strict Trivy image scans, SHA-tagged GHCR publishing, and real Helm/Ingress/Prometheus/Grafana verification on Kind passed. Screenshots and original logs are included. Real AWS provisioning also passed: VPC, two public subnets, active EKS, two Ready workers, Helm application deployment and live Prometheus/Grafana on EKS are verified. Cloud Console, application and dashboard captures are included. **AWS teardown is complete** and an independent audit confirms no remaining project cluster, VPC, worker instances, database/root volumes, network interfaces or load balancers. Local Compose remains available at http://localhost:3000. See [validation results](docs/VALIDATION.md), [evidence](screenshots.md), [recorded EKS rollout](docs/recordings/orbit-eks-rollout.webm) and [the submission checklist](SUBMISSION.md).
+**[Green CI run](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38952441902):** all 69 backend tests, frontend checks, the three-service Compose/browser demo, Terraform/Helm validation, both strict Trivy image scans, SHA-tagged GHCR publishing, and real Helm/Ingress/Prometheus/Grafana verification on Kind passed. Screenshots and original logs are included. Real AWS provisioning also passed: VPC, two public subnets, active EKS, two Ready workers, Helm application deployment and live Prometheus/Grafana on EKS are verified. Cloud Console, application and dashboard captures are included. **AWS teardown is complete** and an independent audit confirms no remaining project cluster, VPC, worker instances, database/root volumes, network interfaces or load balancers. Local Compose remains available at http://localhost:3000. See [validation results](docs/VALIDATION.md), [evidence](screenshots.md), [recorded EKS rollout](docs/recordings/orbit-eks-rollout.mp4) and [the submission checklist](SUBMISSION.md).
 
 ## Evidence and presentation
 
 ### Play the recorded demonstration
 
-https://github.com/user-attachments/assets/02f9cfdd-fbe3-470d-82ee-135ecb3c0d2a
+https://github.com/user-attachments/assets/2105bfa1-b62c-41f5-9bf8-d92f3fed5c77
 
-[Download the original video](docs/recordings/orbit-eks-rollout.webm) · [Captions](docs/recordings/orbit-eks-rollout.vtt) · [Captioned player](docs/recordings/index.html) · [Presentation runbook](DEMO.md)
+[Open/download MP4](docs/recordings/orbit-eks-rollout.mp4) · [Captions](docs/recordings/orbit-eks-rollout.vtt) · [Captioned player](docs/recordings/index.html) · [Presentation runbook](DEMO.md)
 
 The 92-second recording shows the calculator on real EKS, a successful pipeline, the local Helm rollout to that pipeline's SHA, the updated version, and the saved notebook afterward. The optional hosted EKS deployment job was disabled. For the captioned local player, run `python3 -m http.server 8765 --bind 127.0.0.1` and open http://localhost:8765/docs/recordings/.
 
