@@ -4,7 +4,9 @@ A simple scientific calculator built in **Python with FastAPI**, with a responsi
 
 Repository: **https://github.com/Yeashu/DevOps-Capstone**
 
-**[Green CI run](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38946260879):** all 69 backend tests, frontend checks, the three-service Compose/browser demo, Terraform/Helm validation, both strict Trivy image scans, SHA-tagged GHCR publishing, and real Helm/Ingress/Prometheus/Grafana verification on Kind passed. Screenshots and original logs are included. Real AWS provisioning also passed: VPC, two public subnets, active EKS, two Ready workers, Helm application deployment and live Prometheus/Grafana on EKS are verified. Cloud Console, application and dashboard captures are included. **AWS teardown is complete** and an independent audit confirms no remaining project cluster, VPC, worker instances, database/root volumes, network interfaces or load balancers. Local Compose remains available at http://localhost:3000. See [validation results](docs/VALIDATION.md), [evidence](screenshots.md), [recorded EKS rollout](docs/recordings/orbit-eks-rollout.webm) and [the submission checklist](SUBMISSION.md).
+Jump to the [recorded video and all 75 evidence images](#evidence-and-presentation).
+
+**[Green CI run](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38952441902):** all 69 backend tests, frontend checks, the three-service Compose/browser demo, Terraform/Helm validation, both strict Trivy image scans, SHA-tagged GHCR publishing, and real Helm/Ingress/Prometheus/Grafana verification on Kind passed. Screenshots and original logs are included. Real AWS provisioning also passed: VPC, two public subnets, active EKS, two Ready workers, Helm application deployment and live Prometheus/Grafana on EKS are verified. Cloud Console, application and dashboard captures are included. **AWS teardown is complete** and an independent audit confirms no remaining project cluster, VPC, worker instances, database/root volumes, network interfaces or load balancers. Local Compose remains available at http://localhost:3000. See [validation results](docs/VALIDATION.md), [evidence](screenshots.md), [recorded EKS rollout](docs/recordings/orbit-eks-rollout.webm) and [the submission checklist](SUBMISSION.md).
 
 ![Orbit calculator running through Docker Compose](docs/screenshots/01-application-desktop.png)
 
@@ -193,7 +195,7 @@ Verify the default Kubernetes 1.36 is available in your region with `aws eks des
 
 After updating kubeconfig, return to the repository root, set `ORBIT_EKS_CONTEXT` to the EKS context name, and run `./scripts/bootstrap-eks.sh`. It creates the namespace, storage class, Secret and a Traefik Ingress controller with a ClusterIP Service. Install Orbit using published repositories/SHA tags, `--set database.persistence.storageClass=gp3 --set ingress.className=traefik`. Forward `svc/traefik` in `ingress-system` to port 8080 and open your configured Ingress hostname at that port. This demonstrates real Ingress routing without an additional public AWS load balancer. The [official Traefik chart](https://github.com/traefik/traefik-helm-chart) supports the OCI installation used by the helper.
 
-After evaluation, uninstall application, monitoring and Ingress releases, delete application PVCs, and verify load balancers/volumes are removed while the cluster still exists. Then run `terraform destroy`, capture its real completion output, and check `terraform state list` and the AWS Console. Do not destroy another coursework stack. This session did not apply this configuration.
+After evaluation, uninstall application, monitoring and Ingress releases, delete application PVCs, and verify load balancers/volumes are removed while the cluster still exists. Then run `terraform destroy`, capture its real completion output, and check `terraform state list` and the AWS Console. Do not destroy another coursework stack. The recorded lifecycle applied this configuration and subsequently destroyed its resources; see the cleanup evidence below.
 
 ## Prometheus and Grafana
 
@@ -210,12 +212,114 @@ Check both `orbit-api` targets are UP at http://localhost:9090/targets. Grafana 
 
 ## Evidence and presentation
 
-- [Screenshot index](screenshots.md) and [rubric checklist](SUBMISSION.md)
-- [Presentation and commit → pipeline → deployment demo](DEMO.md)
-- [Validation record](docs/VALIDATION.md) and [troubleshooting exercises](docs/TROUBLESHOOTING.md)
-- [Optional GitOps setup](gitops/README.md)
+### Recorded demonstration
 
-After installing backend dependencies and Pillow, run `./scripts/capture-evidence.sh` for the local stack and `./scripts/capture-cluster.sh` for live Kubernetes state. The browser script refuses application evidence if the API is unavailable and deletes only the example records it created. Command images are explicitly labelled **rendered transcripts**, with original logs retained; they are not desktop screenshots.
+**[Watch the 92-second EKS rollout video](docs/recordings/orbit-eks-rollout.webm)** · [Captions](docs/recordings/orbit-eks-rollout.vtt) · [Captioned video player](docs/recordings/index.html) · [Presentation runbook](DEMO.md)
+
+The recording shows the calculator on real EKS, a successful pipeline, an authenticated local Helm rollout to that pipeline's SHA, the updated health version, and the notebook afterward. The optional hosted EKS deployment job was disabled. To open the captioned player locally, run `python3 -m http.server 8765 --bind 127.0.0.1` from the repository root and visit http://localhost:8765/docs/recordings/.
+
+### All screenshots and command-output images
+
+All **75 PNG evidence images** are linked below. Browser images are actual captures. Command-output images are labelled renders of actual source logs, rather than native terminal-window screenshots. The AWS resources were destroyed after capture; the cleanup evidence is included. Git metadata uses the owner's assigned timestamp; actual run and capture timestamps are retained in the evidence.
+
+| Module / demonstration | Open evidence images |
+| --- | --- |
+| M1 · Application | [Desktop calculator](docs/screenshots/01-application-desktop.png), [Mobile calculator](docs/screenshots/02-application-mobile.png), [Degree mode](docs/screenshots/03-degrees.png), [Domain error](docs/screenshots/04-domain-error.png) |
+| M2 · All 69 tests | [pytest 01](docs/screenshots/pytest-01.png), [pytest 02](docs/screenshots/pytest-02.png), [pytest 03](docs/screenshots/pytest-03.png) |
+| M2 · Hosted PostgreSQL tests | [hosted pytest 01](docs/screenshots/hosted-pytest-01.png), [hosted pytest 02](docs/screenshots/hosted-pytest-02.png), [hosted pytest 03](docs/screenshots/hosted-pytest-03.png) |
+| M2 · Calculator engine tests | [calculator unit tests 01](docs/screenshots/calculator-unit-tests-01.png), [calculator unit tests 02](docs/screenshots/calculator-unit-tests-02.png) |
+| M3 · Commit history | [github commit history](docs/screenshots/github-commit-history.png), [git history](docs/screenshots/git-history.png) |
+| M4 · Containers and frontend | [docker compose status](docs/screenshots/docker-compose-status.png), [non root users](docs/screenshots/non-root-users.png), [frontend build](docs/screenshots/frontend-build.png), [hosted browser summary](docs/screenshots/hosted-browser-summary.png) |
+| M5 · Pipeline and published SHA tags | [Green Actions run](docs/screenshots/github-actions-success.png), [Backend SHA tags](docs/screenshots/ghcr-backend.png), [Frontend SHA tags](docs/screenshots/ghcr-frontend.png), [hosted configuration](docs/screenshots/hosted-configuration.png) |
+| M6 · Clean Trivy scans | [trivy backend 01](docs/screenshots/trivy-backend-01.png), [trivy backend 02](docs/screenshots/trivy-backend-02.png), [trivy frontend](docs/screenshots/trivy-frontend.png) |
+| M7 · Terraform initialization and validation | [terraform init](docs/screenshots/terraform-init.png), [terraform validate](docs/screenshots/terraform-validate.png) |
+| M7 · Actual Terraform plan | [terraform plan 01](docs/screenshots/terraform-plan-01.png), [terraform plan 02](docs/screenshots/terraform-plan-02.png), [terraform plan 03](docs/screenshots/terraform-plan-03.png), [terraform plan 04](docs/screenshots/terraform-plan-04.png), [terraform plan 05](docs/screenshots/terraform-plan-05.png), [terraform plan 06](docs/screenshots/terraform-plan-06.png), [terraform plan 07](docs/screenshots/terraform-plan-07.png), [terraform plan 08](docs/screenshots/terraform-plan-08.png), [terraform plan 09](docs/screenshots/terraform-plan-09.png), [terraform plan 10](docs/screenshots/terraform-plan-10.png), [terraform plan 11](docs/screenshots/terraform-plan-11.png) |
+| M7 · Actual Terraform apply | [terraform apply 01](docs/screenshots/terraform-apply-01.png), [terraform apply 02](docs/screenshots/terraform-apply-02.png), [terraform apply 03](docs/screenshots/terraform-apply-03.png) |
+| M7 · AWS Console | [VPC](docs/screenshots/aws-vpc-console.png), [Two public subnets](docs/screenshots/aws-subnets-console.png), [Active EKS](docs/screenshots/aws-eks-console.png), [Two Ready workers](docs/screenshots/aws-eks-workers-console.png) |
+| M7 · Completed cloud and credential cleanup | [Destroy completion](docs/screenshots/terraform-destroy.png), [Resource cleanup audit](docs/screenshots/aws-cleanup-audit.png), [Credential cleanup audit](docs/screenshots/aws-bootstrap-cleanup.png) |
+| M8 · EKS cluster and Helm | [eks nodes](docs/screenshots/eks-nodes.png), [eks pods](docs/screenshots/eks-pods.png), [eks services](docs/screenshots/eks-services.png), [eks ingress](docs/screenshots/eks-ingress.png), [eks helm list](docs/screenshots/eks-helm-list.png), [eks pvc](docs/screenshots/eks-pvc.png) |
+| M8 · Application through EKS Ingress | [eks application desktop](docs/screenshots/eks-application-desktop.png), [eks application mobile](docs/screenshots/eks-application-mobile.png) |
+| M8 · Separate Kind demonstration | [kubernetes pods](docs/screenshots/kubernetes-pods.png), [cluster running application pods](docs/screenshots/cluster-running-application-pods.png), [kubernetes services](docs/screenshots/kubernetes-services.png), [kubernetes ingress](docs/screenshots/kubernetes-ingress.png), [helm list](docs/screenshots/helm-list.png), [ingress application](docs/screenshots/ingress-application.png) |
+| M9 · Local backend metrics | [metrics 01](docs/screenshots/metrics-01.png), [metrics 02](docs/screenshots/metrics-02.png), [metrics 03](docs/screenshots/metrics-03.png) |
+| M9 · EKS backend metrics | [eks metrics 01](docs/screenshots/eks-metrics-01.png), [eks metrics 02](docs/screenshots/eks-metrics-02.png), [eks metrics 03](docs/screenshots/eks-metrics-03.png) |
+| M9 · EKS monitoring | [eks monitoring pods](docs/screenshots/eks-monitoring-pods.png), [eks prometheus targets](docs/screenshots/eks-prometheus-targets.png), [eks grafana dashboard](docs/screenshots/eks-grafana-dashboard.png) |
+| M9 · Separate Kind monitoring | [15 prometheus targets](docs/screenshots/15-prometheus-targets.png), [16 grafana dashboard](docs/screenshots/16-grafana-dashboard.png) |
+| M10 · Verified EKS rollout | [Updated commit SHA](docs/screenshots/eks-updated-version.png), [Notebook after rollout](docs/screenshots/eks-after-rollout.png) |
+
+### Reports, logs and submission documents
+
+- [Completed rubric checklist](SUBMISSION.md)
+- [Evidence provenance and submission index](screenshots.md)
+- [Executed validation results](docs/VALIDATION.md)
+- [Trivy findings and remediation explanation](security/README.md)
+- [Troubleshooting exercises](docs/TROUBLESHOOTING.md)
+- [Optional GitOps setup](gitops/README.md)
+- [Verified green pipeline](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38952441902)
+- [Recorded rollout's pipeline](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38947611595)
+
+<details>
+<summary>All original command logs and machine-readable evidence</summary>
+
+These files include earlier failed or blocked attempts for provenance. Use the validation record and completed checklist above for the final results.
+
+- [actions-run.json](docs/evidence/actions-run.json)
+- [aws-bootstrap-cleanup.json](docs/evidence/aws-bootstrap-cleanup.json)
+- [aws-cleanup-audit.json](docs/evidence/aws-cleanup-audit.json)
+- [browser-local.txt](docs/evidence/browser-local.txt)
+- [browser-smoke-eks.json](docs/evidence/browser-smoke-eks.json)
+- [browser-smoke-first-hosted.json](docs/evidence/browser-smoke-first-hosted.json)
+- [browser-smoke-kind.json](docs/evidence/browser-smoke-kind.json)
+- [browser-smoke.json](docs/evidence/browser-smoke.json)
+- [calculator-unit-tests.txt](docs/evidence/calculator-unit-tests.txt)
+- [cluster-helm-releases.txt](docs/evidence/cluster-helm-releases.txt)
+- [cluster-running-application-pods.txt](docs/evidence/cluster-running-application-pods.txt)
+- [cluster-traffic.txt](docs/evidence/cluster-traffic.txt)
+- [dependency-install.txt](docs/evidence/dependency-install.txt)
+- [docker-compose-status.txt](docs/evidence/docker-compose-status.txt)
+- [docker-compose.txt](docs/evidence/docker-compose.txt)
+- [eks-helm-list.txt](docs/evidence/eks-helm-list.txt)
+- [eks-ingress.txt](docs/evidence/eks-ingress.txt)
+- [eks-metrics.txt](docs/evidence/eks-metrics.txt)
+- [eks-monitoring-pods.txt](docs/evidence/eks-monitoring-pods.txt)
+- [eks-nodes.txt](docs/evidence/eks-nodes.txt)
+- [eks-pods.txt](docs/evidence/eks-pods.txt)
+- [eks-prometheus-targets.json](docs/evidence/eks-prometheus-targets.json)
+- [eks-pvc.txt](docs/evidence/eks-pvc.txt)
+- [eks-rollout.txt](docs/evidence/eks-rollout.txt)
+- [eks-services.txt](docs/evidence/eks-services.txt)
+- [frontend-build.txt](docs/evidence/frontend-build.txt)
+- [git-history-secret-check.json](docs/evidence/git-history-secret-check.json)
+- [git-history.txt](docs/evidence/git-history.txt)
+- [helm-list.txt](docs/evidence/helm-list.txt)
+- [hosted-browser-summary.txt](docs/evidence/hosted-browser-summary.txt)
+- [hosted-configuration.txt](docs/evidence/hosted-configuration.txt)
+- [hosted-pytest.txt](docs/evidence/hosted-pytest.txt)
+- [hosted-trivy-backend-before.txt](docs/evidence/hosted-trivy-backend-before.txt)
+- [hosted-trivy-frontend.txt](docs/evidence/hosted-trivy-frontend.txt)
+- [kubernetes-ingress.txt](docs/evidence/kubernetes-ingress.txt)
+- [kubernetes-pods.txt](docs/evidence/kubernetes-pods.txt)
+- [kubernetes-services.txt](docs/evidence/kubernetes-services.txt)
+- [metrics.txt](docs/evidence/metrics.txt)
+- [non-root-users.txt](docs/evidence/non-root-users.txt)
+- [prometheus-targets.json](docs/evidence/prometheus-targets.json)
+- [pytest.txt](docs/evidence/pytest.txt)
+- [rollout-demo.json](docs/evidence/rollout-demo.json)
+- [static-validation.txt](docs/evidence/static-validation.txt)
+- [terraform-apply.txt](docs/evidence/terraform-apply.txt)
+- [terraform-destroy-first-attempt.txt](docs/evidence/terraform-destroy-first-attempt.txt)
+- [terraform-destroy-summary.txt](docs/evidence/terraform-destroy-summary.txt)
+- [terraform-destroy.txt](docs/evidence/terraform-destroy.txt)
+- [terraform-init.txt](docs/evidence/terraform-init.txt)
+- [terraform-plan.txt](docs/evidence/terraform-plan.txt)
+- [terraform-validate-live.txt](docs/evidence/terraform-validate-live.txt)
+- [terraform-validate.txt](docs/evidence/terraform-validate.txt)
+- [test-collection.txt](docs/evidence/test-collection.txt)
+- [trivy-backend.txt](docs/evidence/trivy-backend.txt)
+- [trivy-frontend.txt](docs/evidence/trivy-frontend.txt)
+
+</details>
+
+To reproduce the evidence, run `./scripts/capture-evidence.sh` for Compose and `./scripts/capture-cluster.sh` for your selected live cluster. The browser capture checks actual API responses, both Prometheus targets and positive Grafana query results before saving its images.
 
 ## Reference and lessons
 
