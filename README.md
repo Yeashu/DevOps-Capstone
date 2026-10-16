@@ -4,7 +4,9 @@ A simple scientific calculator built in **Python with FastAPI**, with a responsi
 
 Repository: **https://github.com/Yeashu/DevOps-Capstone**
 
-**The first hosted run passed all 69 tests, frontend checks, the live Compose/browser demo, Terraform validation and Helm lint.** Its backend image security scan failed, blocking publication and deployment; a remediation is prepared and needs a new hosted scan. All ten rubric modules have implementation files, with AWS/cluster/monitoring demonstrations still outstanding. See [validation results](docs/VALIDATION.md) and [the submission checklist](SUBMISSION.md).
+**Verified:** all 69 backend tests, frontend checks, the three-service Compose/browser demo, Terraform validation, Helm deployment to Kind, two replicas per application tier, Ingress and both Prometheus targets. Both replacement images passed the unchanged Trivy HIGH/CRITICAL gate and were published to GHCR with full SHA tags in [run 38944998841](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38944998841). That run's final Grafana screenshot step failed because of an ambiguous browser selector; the selector is corrected in [run 38946260879](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38946260879), which is in progress. Actual AWS provisioning is underway after a successful non-empty Terraform plan. See [validation results](docs/VALIDATION.md), [evidence](screenshots.md) and [the submission checklist](SUBMISSION.md).
+
+![Orbit calculator running through Docker Compose](docs/screenshots/01-application-desktop.png)
 
 ## Run the application
 

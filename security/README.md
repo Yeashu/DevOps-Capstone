@@ -14,10 +14,10 @@ Trivy scanned both container images, including operating-system packages and Pyt
 
 The other Python findings were GHSA-6v7p-g79w-8964 (vendored msgpack) and CVE-2026-97687 / CVE-2026-97689 (vendored urllib3). The actual installed pip `vendor.txt` and SBOM list msgpack 1.1.2, setuptools 70.3.0 and urllib3 2.7.0. Installing newer standalone versions would not replace these bundled copies.
 
-## Prepared remediation — awaiting the next hosted scan
+## Verified remediation
 
 `backend/Dockerfile` now uses the published `python:3.13-alpine3.24` base for both stages, upgrades Alpine runtime packages, removes pip from the built application virtual environment and the base interpreter, and removes the bundled ensurepip installer wheel. The running API and Alembic require their installed libraries and executables, not a package installer. This removes build-only vulnerable code from the runtime image rather than hiding scan findings.
 
-The HIGH/CRITICAL gate, unfixed-vulnerability policy and application requirements are unchanged. **A clean replacement-image scan is not yet verified.** Rebuild and rerun the workflow; if additional runtime CVEs remain, address those exact reports before publishing. The [original backend report](../docs/evidence/hosted-trivy-backend-before.txt) and [frontend report](../docs/evidence/hosted-trivy-frontend.txt) are retained.
+The HIGH/CRITICAL gate, unfixed-vulnerability policy and application requirements are unchanged. **Both replacement-image scans passed with zero HIGH/CRITICAL findings in [run 38944998841](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38944998841); both scanned images were then published to GHCR.** The passing reports and labelled transcript images are included in `docs/evidence/` and `docs/screenshots/`. A clean result means no vulnerabilities at the configured severity were reported by that scan/database at that time; it is not a promise against future CVEs. The [original backend report](../docs/evidence/hosted-trivy-backend-before.txt) and [frontend report](../docs/evidence/hosted-trivy-frontend.txt) are retained.
 
 Actual `.env`, state, plans and credential variable files are ignored. Compose's checked-in password is explicitly a local demo value. Kubernetes secrets are created interactively; base64 is encoding, not encryption. The notebook is a shared classroom demo without user authentication.

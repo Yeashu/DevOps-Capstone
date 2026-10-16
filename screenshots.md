@@ -1,19 +1,26 @@
 # Evidence index
 
-The first hosted run has now captured the **real running application**. Download [browser-and-compose-evidence](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38943294699/artifacts/12064316433) for desktop, mobile, degree-mode and invalid-domain screenshots plus Compose evidence. The full passing test result is in [pytest-evidence](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38943294699/artifacts/12063643878). The run as a whole failed only at the backend image security gate; these successful earlier-job artifacts remain valid for the original image.
+Actual browser captures and labelled renders of real command output are committed under `docs/screenshots/`; source logs are retained under `docs/evidence/`. No screenshots or successful command results are fabricated. Transcript PNGs are not original terminal-window screenshots.
 
-New labelled local transcript images `hosted-pytest-*.png`, `hosted-configuration.png` and `hosted-browser-summary.png` are generated from the corresponding actual Actions logs retained in `docs/evidence/`. They supplement the browser captures, which still need downloading into the repository for a self-contained submission.
+Verified evidence includes the working local Compose UI, all 69 pytest cases, healthy services, non-root IDs, backend metrics, both clean Trivy reports, a deployed Helm release on Kind, pods/Services/Ingress and two Prometheus targets UP. The non-empty AWS Terraform plan is included as source text and numbered PNGs. AWS apply and the corrected final Grafana capture are in progress; see [SUBMISSION.md](SUBMISSION.md) for remaining items.
 
-Existing PNGs are **labelled renders of real command output**. They are not application screenshots and do not prove a cloud deployment. The original text logs are in `docs/evidence/`.
+- [Desktop calculator](docs/screenshots/01-application-desktop.png)
+- [Mobile calculator](docs/screenshots/02-application-mobile.png)
+- [Passing tests](docs/screenshots/pytest-03.png)
+- [Healthy Compose services](docs/screenshots/docker-compose-status.png)
+- [Non-root users](docs/screenshots/non-root-users.png)
+- [Running Kubernetes pods](docs/screenshots/kubernetes-pods.png)
+- [ClusterIP Services](docs/screenshots/kubernetes-services.png)
+- [Helm release](docs/screenshots/helm-list.png)
+- [Prometheus targets](docs/screenshots/15-prometheus-targets.png)
+- [Backend clean scan](docs/screenshots/trivy-backend-02.png)
+- [Frontend clean scan](docs/screenshots/trivy-frontend.png)
+- [Backend GHCR SHA tags](docs/screenshots/ghcr-backend.png)
+- [Frontend GHCR SHA tags](docs/screenshots/ghcr-frontend.png)
+- [GitHub commit history](docs/screenshots/github-commit-history.png)
+- [Terraform plan source](docs/evidence/terraform-plan.txt)
 
-| Existing evidence | What it proves |
-| --- | --- |
-| `docs/screenshots/calculator-unit-tests-*.png` | 52 scientific engine tests pass; API cases are not included |
-| `docs/screenshots/frontend-build.png` | Four frontend tests and production build pass |
-| `docs/screenshots/git-history.png` | At least ten meaningful local commits |
-| `docs/screenshots/terraform-init.png` | Actual offline initialization with cached provider; initial cache origin was unauthenticated |
-| `docs/evidence/terraform-validate.txt` | Actual blocked validation, not a successful validation claim |
-| `docs/evidence/dependency-install.txt` | Backend dependency installation unavailable in this session |
+The Kind cluster was created by [run 38944998841](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38944998841). Its final Grafana screenshot failed after the live datasource query passed. [Run 38946260879](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38946260879) corrects that selector. Kind evidence is not described as AWS EKS evidence.
 
 ## Required live captures
 
@@ -33,11 +40,11 @@ The first command builds and starts Compose, executes the full tests, captures n
 | M1 | Degree calculation and invalid-domain handling | `03-degrees.png`, `04-domain-error.png` |
 | M2 | **Full** passing `pytest -v`, including API cases | `pytest-*.png` plus terminal capture |
 | M3 | Public repository and ≥10 commits | `git-history.png` plus GitHub commits page |
-| M4 | Three healthy Compose services / non-root IDs | `docker-compose.png`, `non-root-users.png` |
-| M5 | Green Actions workflow | Manual GitHub browser capture + actual run URL in `SUBMISSION.md` |
+| M4 | Three healthy Compose services / non-root IDs | `docker-compose-status.png`, `non-root-users.png` |
+| M5 | Green Actions workflow | GitHub browser capture + actual run URL in `SUBMISSION.md` |
 | M5 | Both GHCR image package pages with full SHA tags | Manual package page captures |
 | M6 | Both real Trivy image scan steps | Actions browser captures + downloaded report artifacts |
-| M7 | Terraform non-empty plan | `terraform-plan.png` + full original plan text |
+| M7 | Terraform non-empty plan | `terraform-plan-*.png` + redacted source plan text |
 | M7 | AWS Console region, VPC, two subnets, EKS/worker group | Manual authenticated AWS Console captures |
 | M7 | Actual destroy completion | `terraform-destroy.png` + completion log |
 | M8 | Pods, Services, Helm release | `kubernetes-pods.png`, `kubernetes-services.png`, `helm-list.png` |
