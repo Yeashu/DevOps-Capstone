@@ -1,0 +1,204 @@
+name: Orbit CI and delivery
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: orbit-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  backend-test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: orbit
+          POSTGRES_PASSWORD: ci-disposable-only
+          POSTGRES_DB: orbit_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U orbit -d orbit_test"
+          --health-interval 5s --health-timeout 3s --health-retries 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: backend/requirements*.txt
+      - run: pip install -r backend/requirements-dev.txt
+      - name: Pytest against migrated disposable PostgreSQL
+        working-directory: backend
+        env:
+          DATABASE_URL: postgresql+psycopg://orbit:ci-disposable-only@localhost:5432/orbit_test
+          TEST_DATABASE_URL: postgresql+psycopg://orbit:ci-disposable-only@localhost:5432/orbit_test
+        run: |
+          set -o pipefail
+          pytest -v --junitxml=pytest.xml | tee pytest.txt
+          ruff check app tests alembic
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pytest-evidence
+          path: |
+            backend/pytest.txt
+            backend/pytest.xml
+  frontend-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - working-directory: frontend
+        run: npm ci --ignore-scripts && npm test && npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: frontend-production
+          path: frontend/dist
+  source-security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install -r backend/requirements-dev.txt
+      - name: SAST and dependency audit
+        run: |
+          bandit -r backend/app -ll
+          pip-audit -r backend/requirements.txt
+      - name: Detect committed secrets
+        uses: aquasecurity/trivy-action@0.36.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          scanners: secret
+          exit-code: '1'
+          severity: HIGH,CRITICAL
+  configuration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - uses: azure/setup-helm@v4.3.0
+      - run: |
+          terraform -chdir=terraform fmt -check
+          terraform -chdir=terraform init -backend=false
+          terraform -chdir=terraform validate
+          helm lint helm/orbit
+          helm template orbit helm/orbit > /tmp/orbit.yaml
+          docker compose config --quiet
+  build-scan:
+    needs: [backend-test, frontend-build, source-security, configuration]
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        component: [backend, frontend]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build the tested image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./${{ matrix.component }}
+          load: true
+          push: false
+          tags: orbit-${{ matrix.component }}:${{ github.sha }}
+          cache-from: type=gha,scope=${{ matrix.component }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.component }}
+      - name: Trivy HIGH and CRITICAL gate
+        uses: aquasecurity/trivy-action@0.36.0
+        with:
+          image-ref: orbit-${{ matrix.component }}:${{ github.sha }}
+          scanners: vuln
+          severity: HIGH,CRITICAL
+          exit-code: '1'
+          ignore-unfixed: false
+          format: table
+          output: trivy-${{ matrix.component }}.txt
+      - name: Show Trivy report
+        if: always()
+        run: cat trivy-${{ matrix.component }}.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trivy-${{ matrix.component }}
+          path: trivy-${{ matrix.component }}.txt
+      - name: Save the exact scanned image
+        run: docker save orbit-${{ matrix.component }}:${{ github.sha }} | gzip > image.tar.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: image-${{ matrix.component }}
+          path: image.tar.gz
+          retention-days: 2
+  publish:
+    needs: build-scan
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      matrix:
+        component: [backend, frontend]
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: image-${{ matrix.component }}
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish only after BOTH image scans pass
+        env:
+          REPOSITORY: ${{ github.repository }}
+          COMPONENT: ${{ matrix.component }}
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          gunzip -c image.tar.gz | docker load
+          target="ghcr.io/${REPOSITORY,,}/${COMPONENT}:${COMMIT_SHA}"
+          docker tag "orbit-${COMPONENT}:${COMMIT_SHA}" "$target"
+          docker push "$target"
+  deploy:
+    needs: publish
+    if: github.ref == 'refs/heads/main' && vars.DEPLOY_TO_EKS == 'true'
+    runs-on: ubuntu-latest
+    environment: capstone
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+      - uses: azure/setup-helm@v4.3.0
+      - name: Deploy the SHA built by this run
+        env:
+          EKS_CLUSTER: ${{ vars.EKS_CLUSTER }}
+          AWS_REGION: ${{ vars.AWS_REGION }}
+          REPOSITORY: ${{ github.repository }}
+          COMMIT_SHA: ${{ github.sha }}
+          INGRESS_HOST: ${{ vars.INGRESS_HOST }}
+        run: |
+          aws eks update-kubeconfig --name "$EKS_CLUSTER" --region "$AWS_REGION"
+          helm upgrade --install orbit ./helm/orbit -n orbit \
+            --set backend.repository="ghcr.io/${REPOSITORY,,}/backend" \
+            --set frontend.repository="ghcr.io/${REPOSITORY,,}/frontend" \
+            --set backend.tag="$COMMIT_SHA" --set frontend.tag="$COMMIT_SHA" \
+            --set database.persistence.storageClass=gp3 \
+            --set ingress.host="$INGRESS_HOST" \
+            --wait --wait-for-jobs --timeout 10m
+          kubectl rollout status deployment/orbit-backend -n orbit --timeout=180s
+          kubectl rollout status deployment/orbit-frontend -n orbit --timeout=180s
