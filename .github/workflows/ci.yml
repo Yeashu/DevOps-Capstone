@@ -76,7 +76,7 @@ jobs:
           bandit -r backend/app -ll
           pip-audit -r backend/requirements.txt
       - name: Detect committed secrets
-        uses: aquasecurity/trivy-action@0.36.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: fs
           scan-ref: .
@@ -116,7 +116,7 @@ jobs:
           cache-from: type=gha,scope=${{ matrix.component }}
           cache-to: type=gha,mode=max,scope=${{ matrix.component }}
       - name: Trivy HIGH and CRITICAL gate
-        uses: aquasecurity/trivy-action@0.36.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: orbit-${{ matrix.component }}:${{ github.sha }}
           scanners: vuln
@@ -172,7 +172,8 @@ jobs:
   deploy:
     needs: publish
     if: github.ref == 'refs/heads/main' && vars.DEPLOY_TO_EKS == 'true'
-    runs-on: ubuntu-latest
+    # Register this runner in the VPC or allow its fixed egress /32 in admin_cidrs.
+    runs-on: [self-hosted, linux, capstone]
     environment: capstone
     permissions:
       contents: read
