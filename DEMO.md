@@ -7,7 +7,7 @@ The final rubric requires an actual commit → pipeline → deployment update. T
 1. Run all backend/frontend tests, build Compose and capture browser evidence.
 2. Push the local commits to the GitHub repository; confirm access and GHCR package visibility.
 3. Provision the AWS infrastructure with Terraform, update kubeconfig, and capture the plan, AWS VPC/EKS/worker group pages.
-4. Apply the namespace and EKS storage class, create the database secret, and install an Ingress controller. For a simple demo, install the Nginx controller and port-forward its service; a public controller LoadBalancer needs the appropriate AWS load-balancer integration in your cluster.
+4. Set `ORBIT_EKS_CONTEXT` and run `./scripts/bootstrap-eks.sh` for the namespace, EKS storage class, database secret and Traefik controller. Deploy with `ingress.className=traefik` and port-forward its Service for the demo. A public LoadBalancer instead requires appropriate AWS integration and a DNS record.
 5. Configure the environment, OIDC role, runner and variables described in README. Bootstrap the chart with a previously successful SHA.
 6. Install monitoring, open the app through Ingress, and start the traffic generator. Check both Prometheus endpoints UP and a populated Grafana panel.
 7. Keep pipeline, app, cluster terminal, metrics and dashboard visible in separate tabs.

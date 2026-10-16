@@ -7,7 +7,7 @@ Existing PNGs are **labelled renders of real command output**. They are not appl
 | `docs/screenshots/calculator-unit-tests-*.png` | 52 scientific engine tests pass; API cases are not included |
 | `docs/screenshots/frontend-build.png` | Four frontend tests and production build pass |
 | `docs/screenshots/git-history.png` | At least ten meaningful local commits |
-| `docs/screenshots/terraform-init.png` | Actual offline initialization with cached provider; note unauthenticated warning |
+| `docs/screenshots/terraform-init.png` | Actual offline initialization with cached provider; initial cache origin was unauthenticated |
 | `docs/evidence/terraform-validate.txt` | Actual blocked validation, not a successful validation claim |
 | `docs/evidence/dependency-install.txt` | Backend dependency installation unavailable in this session |
 

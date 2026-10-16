@@ -227,6 +227,7 @@ jobs:
           REPOSITORY: ${{ github.repository }}
           COMMIT_SHA: ${{ github.sha }}
           INGRESS_HOST: ${{ vars.INGRESS_HOST }}
+          INGRESS_CLASS: ${{ vars.INGRESS_CLASS || 'traefik' }}
         run: |
           aws eks update-kubeconfig --name "$EKS_CLUSTER" --region "$AWS_REGION"
           helm upgrade --install orbit ./helm/orbit -n orbit \
@@ -234,6 +235,7 @@ jobs:
             --set frontend.repository="ghcr.io/${REPOSITORY,,}/frontend" \
             --set backend.tag="$COMMIT_SHA" --set frontend.tag="$COMMIT_SHA" \
             --set database.persistence.storageClass=gp3 \
+            --set ingress.className="$INGRESS_CLASS" \
             --set ingress.host="$INGRESS_HOST" \
             --wait --wait-for-jobs --timeout 10m
           kubectl rollout status deployment/orbit-backend -n orbit --timeout=180s

@@ -141,7 +141,7 @@ Image names are `ghcr.io/yeashu/devops-capstone/backend:<full-sha>` and `ghcr.io
 
 Delivery is disabled until bootstrap is complete. Configure a GitHub Environment named `capstone`, an AWS OIDC role restricted to `repo:Yeashu/DevOps-Capstone:environment:capstone`, and a Linux self-hosted runner labelled `capstone` with AWS CLI, kubectl and access to EKS. Helm is installed by its setup action. An in-VPC runner reaches the private endpoint; an external runner needs a fixed egress `/32` in `admin_cidrs`. Grant the role `eks:DescribeCluster` on this cluster and pass its ARN as Terraform's `deploy_principal_arn` for namespace access.
 
-Set variables `DEPLOY_TO_EKS=true`, `AWS_ROLE_ARN`, `AWS_REGION`, `EKS_CLUSTER`, `INGRESS_HOST`. An administrator must first create the namespace, database Secret, storage class and Ingress controller. Make GHCR packages public, or set chart `imagePullSecrets`. Keep direct delivery disabled when using the optional Argo CD workflow, so both systems do not manage the same release.
+Set variables `DEPLOY_TO_EKS=true`, `AWS_ROLE_ARN`, `AWS_REGION`, `EKS_CLUSTER`, `INGRESS_HOST`, and optionally `INGRESS_CLASS` (delivery defaults to `traefik`). An administrator must first create the namespace, database Secret, storage class and Ingress controller. Make GHCR packages public, or set chart `imagePullSecrets`. Keep direct delivery disabled when using the optional Argo CD workflow, so both systems do not manage the same release.
 
 ## Kubernetes and Helm
 
@@ -188,6 +188,8 @@ terraform output kubeconfig_command
 ```
 
 Verify the default Kubernetes 1.36 is available in your region with `aws eks describe-cluster-versions`; see the [AWS EKS lifecycle](https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html). Credentials use the AWS chain, never committed files. Plans, state and real `.tfvars` are gitignored. The matching cached AWS provider supplied the lock checksums; offline initialization reported its installation as unauthenticated. With network access, refresh official checksums: `terraform providers lock -platform=darwin_arm64 -platform=linux_amd64`.
+
+After updating kubeconfig, return to the repository root, set `ORBIT_EKS_CONTEXT` to the EKS context name, and run `./scripts/bootstrap-eks.sh`. It creates the namespace, storage class, Secret and a Traefik Ingress controller with a ClusterIP Service. Install Orbit using published repositories/SHA tags, `--set database.persistence.storageClass=gp3 --set ingress.className=traefik`. Forward `svc/traefik` in `ingress-system` to port 8080 and open your configured Ingress hostname at that port. This demonstrates real Ingress routing without an additional public AWS load balancer. The [official Traefik chart](https://github.com/traefik/traefik-helm-chart) supports the OCI installation used by the helper.
 
 After evaluation, uninstall application, monitoring and Ingress releases, delete application PVCs, and verify load balancers/volumes are removed while the cluster still exists. Then run `terraform destroy`, capture its real completion output, and check `terraform state list` and the AWS Console. Do not destroy another coursework stack. This session did not apply this configuration.
 
