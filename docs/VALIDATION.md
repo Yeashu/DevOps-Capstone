@@ -2,6 +2,29 @@
 
 This record distinguishes executed checks from authored configuration. No evidence from a different project is used.
 
+## Hosted validation after the first push
+
+[Run 38943294699](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38943294699) tested commit `2719d20fcd29336c4413f35a75a70cc77f2e9c62` on 16 October 2026. These runtime results supersede the earlier local limitations below:
+
+| Hosted check | Actual result |
+| --- | --- |
+| Backend tests and lint | **69 tests passed** against migrated disposable PostgreSQL; Ruff passed |
+| Frontend tests/build | Passed |
+| Source security | Bandit, pip-audit and Trivy secret detection passed |
+| Infrastructure configuration | Terraform init with signed provider and validate passed; Helm lint/template and Compose config passed |
+| Compose runtime | All three services became healthy |
+| Live browser demo | Scientific calculation, degree mode, domain error, responsive layout and label update passed; screenshots uploaded |
+| Frontend image | Build and HIGH/CRITICAL scan passed; zero findings at that severity |
+| Backend image | Build passed; scan failed with 63 OS findings plus four Python findings |
+| GHCR publication | Skipped because both image scans must pass |
+| Deployment | Skipped; AWS/bootstrap/runner configuration is also still required |
+
+Source logs are saved as `docs/evidence/hosted-*.txt`. Real UI captures are available in the [browser-and-compose-evidence artifact](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38943294699/artifacts/12064316433). They have not been downloaded to this workspace because local CLI network access is still restricted. The next browser job also captures actual non-root IDs and metrics output.
+
+The backend Dockerfile remediation replaces the Bookworm runtime with Python on Alpine 3.24 and physically removes pip/ensurepip and their vendored libraries after dependency installation. It has been reviewed and its Compose configuration checked locally; **the replacement image has not been built or rescanned here**. No security threshold was relaxed.
+
+## Original local-only checks
+
 | Check | Actual result |
 | --- | --- |
 | Calculator engine `pytest -v tests/test_calculator.py` | **52 passed**, Python 3.14.7 / pytest 9.1.1 |

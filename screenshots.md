@@ -1,5 +1,9 @@
 # Evidence index
 
+The first hosted run has now captured the **real running application**. Download [browser-and-compose-evidence](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38943294699/artifacts/12064316433) for desktop, mobile, degree-mode and invalid-domain screenshots plus Compose evidence. The full passing test result is in [pytest-evidence](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38943294699/artifacts/12063643878). The run as a whole failed only at the backend image security gate; these successful earlier-job artifacts remain valid for the original image.
+
+New labelled local transcript images `hosted-pytest-*.png`, `hosted-configuration.png` and `hosted-browser-summary.png` are generated from the corresponding actual Actions logs retained in `docs/evidence/`. They supplement the browser captures, which still need downloading into the repository for a self-contained submission.
+
 Existing PNGs are **labelled renders of real command output**. They are not application screenshots and do not prove a cloud deployment. The original text logs are in `docs/evidence/`.
 
 | Existing evidence | What it proves |
@@ -43,7 +47,7 @@ The first command builds and starts Compose, executes the full tests, captures n
 | M9 | Populated live dashboard | `16-grafana-dashboard.png` |
 | M10 | Recorded end-to-end change/deploy or live demo | Recording URL / presentation session |
 
-The workflow's `browser-and-compose-evidence` artifact produces the first four UI captures on a successful network-enabled run. `pytest-evidence` contains the full backend test result. Download these after the first green workflow; their existence in configuration is not a completed capture.
+The workflow's `browser-and-compose-evidence` artifact contains the first four UI captures from the successful browser job in the initial run. `pytest-evidence` contains all 69 passing backend tests. Both are already available even though a later security job failed. A subsequent run must verify the replacement backend image before claiming that image is tested and clean.
 
 ## Cluster browser and monitoring captures
 

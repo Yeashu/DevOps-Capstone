@@ -1,0 +1,13 @@
+Source: GitHub Actions run 38943294699
+Commit: 2719d20fcd29336c4413f35a75a70cc77f2e9c62
+
+ Container orbit-postgres-1  Started
+ Container orbit-postgres-1  Healthy
+ Container orbit-backend-1  Started
+ Container orbit-backend-1  Healthy
+ Container orbit-frontend-1  Started
+ Container orbit-backend-1  Healthy
+ Container orbit-postgres-1  Healthy
+ Container orbit-frontend-1  Healthy
+Browser smoke tests passed; screenshots captured from the live application.
+Artifact download URL: https://github.com/Yeashu/DevOps-Capstone/actions/runs/38943294699/artifacts/12064316433

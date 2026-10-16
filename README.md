@@ -4,7 +4,7 @@ A simple scientific calculator built in **Python with FastAPI**, with a responsi
 
 Repository: **https://github.com/Yeashu/DevOps-Capstone**
 
-**All ten rubric modules have implementation files. Live deployment and submission evidence remain outstanding.** See [validation results](docs/VALIDATION.md) and [the submission checklist](SUBMISSION.md). This session created no AWS resources and published no images; it does not claim a successful hosted pipeline or deployment.
+**The first hosted run passed all 69 tests, frontend checks, the live Compose/browser demo, Terraform validation and Helm lint.** Its backend image security scan failed, blocking publication and deployment; a remediation is prepared and needs a new hosted scan. All ten rubric modules have implementation files, with AWS/cluster/monitoring demonstrations still outstanding. See [validation results](docs/VALIDATION.md) and [the submission checklist](SUBMISSION.md).
 
 ## Run the application
 
@@ -187,7 +187,7 @@ terraform apply orbit.tfplan
 terraform output kubeconfig_command
 ```
 
-Verify the default Kubernetes 1.36 is available in your region with `aws eks describe-cluster-versions`; see the [AWS EKS lifecycle](https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html). Credentials use the AWS chain, never committed files. Plans, state and real `.tfvars` are gitignored. The matching cached AWS provider supplied the lock checksums; offline initialization reported its installation as unauthenticated. With network access, refresh official checksums: `terraform providers lock -platform=darwin_arm64 -platform=linux_amd64`.
+Verify the default Kubernetes 1.36 is available in your region with `aws eks describe-cluster-versions`; see the [AWS EKS lifecycle](https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html). Credentials use the AWS chain, never committed files. Plans, state and real `.tfvars` are gitignored. The first hosted configuration job installed the locked AWS provider with HashiCorp signature verification and successfully ran Terraform validation and Helm lint. The original offline initialization record is retained separately.
 
 After updating kubeconfig, return to the repository root, set `ORBIT_EKS_CONTEXT` to the EKS context name, and run `./scripts/bootstrap-eks.sh`. It creates the namespace, storage class, Secret and a Traefik Ingress controller with a ClusterIP Service. Install Orbit using published repositories/SHA tags, `--set database.persistence.storageClass=gp3 --set ingress.className=traefik`. Forward `svc/traefik` in `ingress-system` to port 8080 and open your configured Ingress hostname at that port. This demonstrates real Ingress routing without an additional public AWS load balancer. The [official Traefik chart](https://github.com/traefik/traefik-helm-chart) supports the OCI installation used by the helper.
 

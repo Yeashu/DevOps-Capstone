@@ -111,12 +111,18 @@ jobs:
           npm --prefix scripts install --ignore-scripts
           ./scripts/node_modules/.bin/playwright install --with-deps chromium
           node scripts/capture-browser.mjs
-      - name: Capture service state
+      - name: Capture service state, non-root users and metrics
         if: always()
         run: |
           mkdir -p docs/evidence
           docker compose ps > docs/evidence/docker-compose.txt
           docker compose logs --no-color > docs/evidence/docker-logs.txt
+          for component in backend frontend; do
+            printf '%s: ' "$component" >> docs/evidence/non-root-users.txt
+            docker compose exec -T "$component" id >> docs/evidence/non-root-users.txt
+            test "$(docker compose exec -T "$component" id -u)" -ne 0
+          done
+          curl --fail --silent http://localhost:8000/metrics > docs/evidence/metrics.txt
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -126,6 +132,8 @@ jobs:
             docs/evidence/browser-smoke.json
             docs/evidence/docker-compose.txt
             docs/evidence/docker-logs.txt
+            docs/evidence/non-root-users.txt
+            docs/evidence/metrics.txt
       - if: always()
         run: docker compose down -v
   build-scan:
@@ -175,6 +183,53 @@ jobs:
           name: image-${{ matrix.component }}
           path: image.tar.gz
           retention-days: 2
+  cluster-evidence:
+    needs: build-scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: azure/setup-helm@v4.3.0
+      - uses: helm/kind-action@v1
+        with:
+          cluster_name: orbit
+      - uses: actions/download-artifact@v4
+        with:
+          name: image-backend
+          path: /tmp/orbit-backend-image
+      - uses: actions/download-artifact@v4
+        with:
+          name: image-frontend
+          path: /tmp/orbit-frontend-image
+      - name: Deploy scanned images and capture live cluster evidence
+        env:
+          COMMIT_SHA: ${{ github.sha }}
+        run: bash scripts/capture-ci-cluster.sh
+      - name: Collect diagnostics
+        if: always()
+        run: |
+          mkdir -p docs/evidence
+          kubectl get pods -A -o wide > docs/evidence/cluster-all-pods.txt || true
+          kubectl get events -A --sort-by=.metadata.creationTimestamp > docs/evidence/cluster-events.txt || true
+          helm list -A > docs/evidence/cluster-helm-releases.txt || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kubernetes-monitoring-evidence
+          path: |
+            docs/screenshots/*.png
+            docs/evidence/cluster-*.txt
+            docs/evidence/kubernetes-*.txt
+            docs/evidence/helm-list.txt
+            docs/evidence/metrics.txt
+            docs/evidence/prometheus-targets.json
+            docs/evidence/browser-smoke.json
   publish:
     needs: build-scan
     if: github.event_name != 'pull_request'

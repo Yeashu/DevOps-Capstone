@@ -2,28 +2,29 @@
 
 Repository URL: https://github.com/Yeashu/DevOps-Capstone
 
-The code is prepared locally. Confirm remote visibility and push the commits before submitting the URL. Items remain unchecked until supported by this project's actual runtime evidence. A code file alone does not establish full module credit.
+The repository is public and the initial implementation commits are pushed. [The first hosted run](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38943294699) passed application/tests/browser/configuration checks and failed at the backend image's security gate. A Dockerfile fix is prepared locally; a new successful scan is still required. A code file alone does not establish full module credit.
 
 | Module | Present implementation / local checks | Still required for final submission |
 | --- | --- | --- |
-| M1 · 10 | FastAPI CRUD, scientific evaluator, Alembic schema, responsive HTML UI | Run PostgreSQL stack; capture browser and health |
-| M2 · 10 | 69 collected tests; **52 engine tests passed**; isolated migrated test DB fixture | Install dependencies; pass all 17 API cases; capture full `pytest -v` |
-| M3 · 5 | Meaningful local commits; secret/build exclusions | Push; verify public/instructor access; capture ≥10 commits |
-| M4 · 10 | Backend Dockerfile, Node → unprivileged Nginx Dockerfile, Compose | Build/run; capture three healthy services, non-root IDs, localhost:3000 |
+| M1 · 10 | PostgreSQL Compose stack and real browser smoke test passed | Download the existing desktop/mobile screenshots into the submission |
+| M2 · 10 | **All 69 tests passed on hosted PostgreSQL**, including all 17 API cases; Ruff passed | Submit hosted pytest output/terminal image and XML artifact |
+| M3 · 5 | Public GitHub repository; ≥10 meaningful commits; exclusions present | Attach the repository URL and existing commit-history image |
+| M4 · 10 | Both images built; all three Compose services healthy; real browser demo passed | Verify revised backend build; submit Compose/UI/non-root evidence |
 | M5 · 15 | Main-triggered test/build/scan/publish workflow; full SHA tags; optional delivery | Successful Actions URL and actual GHCR package screenshots |
-| M6 · 5 | Both image scans block HIGH/CRITICAL; reports retained | Actual Trivy output and completed 2–3 sentence explanation |
-| M7 · 15 | VPC/EKS/node-group/EBS code; fmt passed; offline init completed | Full validate/plan, real apply, AWS Console VPC/EKS, real destroy |
+| M6 · 5 | Both scans ran; frontend clean; backend findings documented; explanation completed | Verify the remediated backend scan and capture both actual scan steps |
+| M7 · 15 | VPC/EKS/node-group/EBS code; hosted init and validate passed | Real non-empty AWS plan/apply, Console VPC/EKS/worker evidence and destroy |
 | M8 · 15 | Namespace, complete chart, two API/UI replicas, Services, Ingress, PVC/probes | Successful install; pods, Services, Helm list, Ingress browser evidence |
 | M9 · 10 | Metrics route, endpoint discovery, Grafana values and six panels | Real metrics, both Prometheus targets UP, populated Grafana panel |
 | M10 · 5 | README, architecture and presentation runbook | Live/recorded commit → pipeline → deployment demonstration |
 
-- [ ] GitHub repository public or instructor access confirmed
-- [ ] All 69 backend tests pass against the chosen test database
-- [ ] Frontend tests/build pass
-- [ ] Compose stack and browser verified
+- [x] GitHub repository public or instructor access confirmed
+- [x] All 69 backend tests pass against the chosen test database
+- [x] Frontend tests/build pass
+- [x] Initial Compose stack and browser verified
 - [ ] Green Actions run URL: **pending**
 - [ ] GHCR backend and frontend SHA tags visible
-- [ ] Both Trivy reports inspected; `security/README.md` explanation updated
+- [x] Both initial Trivy reports inspected; `security/README.md` explanation updated
+- [ ] Remediated backend image passes the unchanged security gate
 - [ ] Terraform validate and non-empty plan captured
 - [ ] Real AWS VPC, two subnets, EKS and worker group shown
 - [ ] Helm install, two replicas per tier, Services and Ingress verified
