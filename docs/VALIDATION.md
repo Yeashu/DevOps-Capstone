@@ -41,3 +41,7 @@ The initial backend image security gate correctly blocked publication. Updating 
 Browser PNGs are actual captures. Command-output PNGs are labelled renders of actual source logs, not native terminal-window screenshots. Account IDs and administrator CIDRs are explicitly redacted in committed Terraform logs. Real state, tfvars, binary plans, session cookies and credentials are excluded from Git.
 
 **Git metadata:** at the owner's request, commits after that instruction use the assigned author/committer timestamp `2026-10-16T23:54:00+05:30`. This is metadata, not the completion time of later AWS operations. Actual Actions and capture timestamps are unchanged; evidence collected after midnight is not represented as having completed before the deadline.
+
+## Expanded video and Firefox compatibility
+
+The full 7-minute 39-second walkthrough covers all ten modules using genuine source evidence and original live-demo excerpts. The captured AWS Console scenes show the provisioned VPC, two public subnets, active EKS cluster and two Ready workers. Terraform plan/apply/destroy, security, container publishing, Kubernetes, monitoring and cleanup are also included. Synthetic narration and captured evidence are explicitly labelled; the guide does not claim a new live AWS deployment. The original 92-second live recording is preserved separately. Both are provided as H.264 Baseline / MP4 with fast-start metadata. The full guide adds AAC narration and captions.

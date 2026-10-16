@@ -1,0 +1,337 @@
+{
+  "assembledAt": "2026-10-16T19:44:34.645305+00:00",
+  "durationSeconds": 459.401406,
+  "format": "H264 Baseline / AAC / MP4, fast start",
+  "narration": "Synthetic narration using the system Samantha voice; this is an evidence guide, not a claim of a new live AWS deployment.",
+  "provenance": "Original captured evidence images and excerpts from the original live EKS recording. AWS resources were destroyed after capture.",
+  "chapters": [
+    {
+      "title": "Orbit \u00b7 DevOps capstone",
+      "module": "Overview",
+      "image": "01-application-desktop.png",
+      "narration": "This is Orbit, a Python scientific calculator with a PostgreSQL notebook. This narrated walkthrough covers all ten capstone modules. It combines genuine live demonstration excerpts with captured evidence from the completed AWS lifecycle. The cloud resources have already been destroyed.",
+      "duration": 18.703946,
+      "index": 0,
+      "startSeconds": 0,
+      "endSeconds": 18.733
+    },
+    {
+      "title": "Scientific calculator and saved notebook",
+      "module": "M1 \u00b7 Application",
+      "clip": [
+        8.157,
+        21.486
+      ],
+      "narration": "The calculator runs through the real EKS Ingress. FastAPI evaluates scientific expressions and saves results in PostgreSQL through an Alembic managed table. Here, square root of one hundred forty four plus two cubed returns twenty. Degree mode evaluates sine of thirty as zero point five. The API supports create, read, update, and delete operations.",
+      "duration": 23.333878,
+      "index": 1,
+      "startSeconds": 18.733,
+      "endSeconds": 42.067
+    },
+    {
+      "title": "69 passing backend tests",
+      "module": "M2 \u00b7 Testing",
+      "image": "pytest-03.png",
+      "narration": "All sixty nine backend tests pass. They cover scientific calculations and API behavior. Tests use isolated SQLite locally and a disposable PostgreSQL database in GitHub Actions. The production notebook is not used as the test database. Ruff also passes.",
+      "duration": 17.844082,
+      "index": 2,
+      "startSeconds": 42.067,
+      "endSeconds": 59.934
+    },
+    {
+      "title": "Meaningful version history",
+      "module": "M3 \u00b7 Git and GitHub",
+      "image": "git-history.png",
+      "narration": "The public repository contains more than ten meaningful commits. Git ignore excludes environment files, virtual environments, node modules, Python caches, and real Terraform state and variables. The README links the source, original logs, and all evidence images.",
+      "duration": 18.230113,
+      "index": 3,
+      "startSeconds": 59.934,
+      "endSeconds": 78.164
+    },
+    {
+      "title": "Three healthy Compose services",
+      "module": "M4 \u00b7 Docker",
+      "image": "docker-compose-status.png",
+      "narration": "Docker Compose starts the frontend, FastAPI backend, and PostgreSQL database together. All three services are healthy. The frontend uses a Node build stage and an unprivileged Nginx runtime.",
+      "duration": 13.220952,
+      "index": 4,
+      "startSeconds": 78.164,
+      "endSeconds": 91.385
+    },
+    {
+      "title": "Non-root container users",
+      "module": "M4 \u00b7 Docker",
+      "image": "non-root-users.png",
+      "narration": "The backend runs as user ten thousand and one, and the frontend runs as user one hundred and one. These are actual container user checks, rather than assumptions based only on Dockerfile text.",
+      "duration": 12.447891,
+      "index": 5,
+      "startSeconds": 91.385,
+      "endSeconds": 103.852
+    },
+    {
+      "title": "Successful GitHub Actions pipeline",
+      "module": "M5 \u00b7 CI/CD",
+      "image": "github-actions-success.png",
+      "narration": "Pushes to main run backend tests, frontend checks, source security, infrastructure validation, and the real Compose browser test. Both images are then built and scanned. Publication happens only after both security gates pass. The optional hosted EKS delivery job is disabled; the later EKS upgrade is issued from the local authenticated command line.",
+      "duration": 22.857098,
+      "index": 6,
+      "startSeconds": 103.852,
+      "endSeconds": 126.718
+    },
+    {
+      "title": "Backend published with commit SHA",
+      "module": "M5 \u00b7 GHCR",
+      "image": "ghcr-backend.png",
+      "crop": [
+        0,
+        0,
+        1500,
+        950
+      ],
+      "narration": "The backend package is public in GitHub Container Registry. Its tag is the full forty character Git commit identifier. The exact scanned image is published, so the deployed version can be traced back to its successful pipeline.",
+      "duration": 14.479637,
+      "index": 7,
+      "startSeconds": 126.718,
+      "endSeconds": 141.198
+    },
+    {
+      "title": "Frontend published with commit SHA",
+      "module": "M5 \u00b7 GHCR",
+      "image": "ghcr-frontend.png",
+      "crop": [
+        0,
+        0,
+        1500,
+        950
+      ],
+      "narration": "The frontend is published separately with the same full commit identifier. Deployment values select these immutable commit tags. The deployment does not rely on a latest tag.",
+      "duration": 11.031474,
+      "index": 8,
+      "startSeconds": 141.198,
+      "endSeconds": 152.229
+    },
+    {
+      "title": "Backend image security result",
+      "module": "M6 \u00b7 Trivy",
+      "image": "trivy-backend-02.png",
+      "narration": "Trivy scans operating system packages and application dependencies. The remediated backend image reports zero high or critical findings. The initial scan correctly blocked publication. Updating the runtime and removing unused vulnerable packaging tools resolved the findings without weakening the gate.",
+      "duration": 18.618776,
+      "index": 9,
+      "startSeconds": 152.229,
+      "endSeconds": 170.848
+    },
+    {
+      "title": "Frontend image security result",
+      "module": "M6 \u00b7 Trivy",
+      "image": "trivy-frontend.png",
+      "narration": "The frontend image also passes the high and critical severity gate. Unfixed findings are included in the failure policy. A clean scan describes the vulnerability database and image at scan time, rather than a guarantee against future vulnerabilities.",
+      "duration": 15.594195,
+      "index": 10,
+      "startSeconds": 170.848,
+      "endSeconds": 186.448
+    },
+    {
+      "title": "Real non-empty Terraform plan",
+      "module": "M7 \u00b7 Terraform",
+      "image": "terraform-plan-11.png",
+      "narration": "This is the actual Terraform plan for the AWS project. It proposed twenty additions, no changes, and no deletions of existing resources. Account identifiers and the administrator address are explicitly redacted in the committed logs. Real credentials and state are excluded from Git.",
+      "duration": 18.431565,
+      "index": 11,
+      "startSeconds": 186.448,
+      "endSeconds": 204.88
+    },
+    {
+      "title": "Terraform apply completed",
+      "module": "M7 \u00b7 Terraform",
+      "image": "terraform-apply-03.png",
+      "narration": "Terraform apply completed with twenty resources added. The deployment region is Mumbai, ap south one. The outputs include the project VPC, two public subnet identifiers, and the Orbit EKS cluster. The following screens are captured AWS Console evidence from that real deployment.",
+      "duration": 18.926168,
+      "index": 12,
+      "startSeconds": 204.88,
+      "endSeconds": 223.813
+    },
+    {
+      "title": "AWS Console \u00b7 project VPC",
+      "module": "M7 \u00b7 AWS",
+      "image": "aws-vpc-console.png",
+      "crop": [
+        0,
+        0,
+        1600,
+        760
+      ],
+      "narration": "In the Mumbai AWS Console, the Orbit capstone VPC is available with the ten point forty two network range. The other VPC shown is the existing default VPC. The Terraform plan did not modify that existing network.",
+      "duration": 15.091519,
+      "index": 13,
+      "startSeconds": 223.813,
+      "endSeconds": 238.905
+    },
+    {
+      "title": "AWS Console \u00b7 two public subnets",
+      "module": "M7 \u00b7 AWS",
+      "image": "aws-subnets-console.png",
+      "crop": [
+        0,
+        0,
+        1600,
+        760
+      ],
+      "narration": "The project has two public subnets named Orbit capstone public one and public two. They belong to the project VPC and use different availability zones. These are real provisioned subnets, not a simulated diagram.",
+      "duration": 13.933968,
+      "index": 14,
+      "startSeconds": 238.905,
+      "endSeconds": 252.839
+    },
+    {
+      "title": "AWS Console \u00b7 active EKS cluster",
+      "module": "M7 \u00b7 AWS",
+      "image": "aws-eks-console.png",
+      "crop": [
+        0,
+        0,
+        1600,
+        1100
+      ],
+      "narration": "The EKS Console shows the Orbit capstone cluster as active, running Kubernetes version one point thirty seven. The cluster summary shows two nodes and one managed node group. This is historical captured evidence; the cluster has since been removed during cleanup.",
+      "duration": 16.101088,
+      "index": 15,
+      "startSeconds": 252.839,
+      "endSeconds": 268.972
+    },
+    {
+      "title": "AWS Console \u00b7 two Ready workers",
+      "module": "M7 \u00b7 AWS",
+      "image": "aws-eks-workers-console.png",
+      "crop": [
+        0,
+        0,
+        1600,
+        760
+      ],
+      "narration": "The compute page shows two Ready worker nodes in the managed Orbit capstone workers group. Both are t three medium instances. There are no node health issues in this capture.",
+      "duration": 10.683175,
+      "index": 16,
+      "startSeconds": 268.972,
+      "endSeconds": 279.655
+    },
+    {
+      "title": "Helm releases on real EKS",
+      "module": "M8 \u00b7 Helm",
+      "image": "eks-helm-list.png",
+      "narration": "Helm deployed the Orbit application, Traefik Ingress controller, Prometheus, and Grafana on the real EKS cluster. This release listing is actual command output captured before cleanup.",
+      "duration": 12.281088,
+      "index": 17,
+      "startSeconds": 279.655,
+      "endSeconds": 291.936
+    },
+    {
+      "title": "Application pods are Running",
+      "module": "M8 \u00b7 Kubernetes",
+      "image": "eks-pods.png",
+      "narration": "Two backend pods and two frontend pods are Running and Ready. PostgreSQL is also Running and Ready. The Alembic migration job is Completed, which is the expected successful state for a one time migration.",
+      "duration": 13.167166,
+      "index": 18,
+      "startSeconds": 291.936,
+      "endSeconds": 305.136
+    },
+    {
+      "title": "ClusterIP Services",
+      "module": "M8 \u00b7 Kubernetes",
+      "image": "eks-services.png",
+      "narration": "The backend and frontend are exposed through Cluster I P Services. PostgreSQL has its database service. The application is reached through Ingress rather than through directly exposed application pods.",
+      "duration": 12.8078,
+      "index": 19,
+      "startSeconds": 305.136,
+      "endSeconds": 317.944
+    },
+    {
+      "title": "Ingress routing",
+      "module": "M8 \u00b7 Kubernetes",
+      "image": "eks-ingress.png",
+      "narration": "The Orbit Ingress routes the root path to the frontend and the API path to the backend. A port forward to the Traefik controller provides the recorded browser route to the actual AWS pods without adding a public AWS load balancer.",
+      "duration": 14.199093,
+      "index": 20,
+      "startSeconds": 317.944,
+      "endSeconds": 332.144
+    },
+    {
+      "title": "Backend Prometheus metrics",
+      "module": "M9 \u00b7 Metrics",
+      "image": "eks-metrics-03.png",
+      "narration": "The backend exposes Prometheus formatted metrics. Request counters and duration histograms are generated by real API traffic. These are actual metrics from the EKS deployment.",
+      "duration": 11.774512,
+      "index": 21,
+      "startSeconds": 332.144,
+      "endSeconds": 343.944
+    },
+    {
+      "title": "Both application targets are UP",
+      "module": "M9 \u00b7 Prometheus",
+      "image": "eks-prometheus-targets.png",
+      "crop": [
+        0,
+        2760,
+        1440,
+        624
+      ],
+      "narration": "The Orbit API scrape pool contains two targets, one for each backend replica. Both targets are up. This confirms that Prometheus is scraping the running application rather than merely being installed in the cluster.",
+      "duration": 13.258503,
+      "index": 22,
+      "startSeconds": 343.944,
+      "endSeconds": 357.211
+    },
+    {
+      "title": "Populated Grafana dashboard",
+      "module": "M9 \u00b7 Grafana",
+      "image": "eks-grafana-dashboard.png",
+      "narration": "Grafana displays live request rate, ninety fifth percentile latency, requests by route, healthy API replicas, and total observed requests. The dashboard uses the real Prometheus data source. The error panel has no series because no server error labels were observed during this demonstration.",
+      "duration": 19.41941,
+      "index": 23,
+      "startSeconds": 357.211,
+      "endSeconds": 376.63
+    },
+    {
+      "title": "Actual rollout and persistent notebook",
+      "module": "M10 \u00b7 Recorded live demo",
+      "clip": [
+        65.549,
+        24.451
+      ],
+      "narration": "After the successful pipeline, an authenticated local Helm command upgraded both EKS deployments to that pipeline's exact image tag. The health endpoint now reports the new commit identifier. Refreshing the calculator shows that the saved notebook survived the replacement of application pods. This is the original live browser recording, not a recreated AWS environment.",
+      "duration": 24.451,
+      "index": 24,
+      "startSeconds": 376.63,
+      "endSeconds": 401.097
+    },
+    {
+      "title": "Terraform destroy completed",
+      "module": "M7 \u00b7 Cost cleanup",
+      "image": "terraform-destroy.png",
+      "narration": "After evidence collection, the application, monitoring releases, and database volume were removed. The first destroy was interrupted while AWS deleted the worker group. A resumed Terraform destroy reconciled state and successfully removed the fourteen remaining resources. The original twenty resource lifecycle is documented in both logs.",
+      "duration": 21.601088,
+      "index": 25,
+      "startSeconds": 401.097,
+      "endSeconds": 422.698
+    },
+    {
+      "title": "Independent AWS cleanup audit",
+      "module": "M7 \u00b7 Cleanup verification",
+      "image": "aws-cleanup-audit.png",
+      "narration": "The independent AWS audit confirms that the cluster and VPC are absent, no active worker instances remain, and the database and both worker root volumes are gone. There are no project network interfaces or load balancers, and Terraform state is empty.",
+      "duration": 16.333605,
+      "index": 26,
+      "startSeconds": 422.698,
+      "endSeconds": 439.031
+    },
+    {
+      "title": "Temporary credentials removed",
+      "module": "Security \u00b7 Cleanup verification",
+      "image": "aws-bootstrap-cleanup.png",
+      "narration": "The temporary bootstrap access key, IAM user, and operator role were removed. The original default AWS profile was preserved. The README contains the complete source, all seventy five evidence images, supporting logs, and the presentation runbook. Use the local Compose stack to run the calculator again.",
+      "duration": 20.346803,
+      "index": 27,
+      "startSeconds": 439.031,
+      "endSeconds": 459.378
+    }
+  ]
+}

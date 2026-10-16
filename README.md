@@ -10,13 +10,17 @@ Jump to the [recorded video and all 75 evidence images](#evidence-and-presentati
 
 ## Evidence and presentation
 
-### Play the recorded demonstration
+### Play the full capstone walkthrough
 
-https://github.com/user-attachments/assets/2105bfa1-b62c-41f5-9bf8-d92f3fed5c77
+https://github.com/user-attachments/assets/fa16ef7b-dcfc-4e35-996e-7c60e232d0e9
 
-[Open/download MP4](docs/recordings/orbit-eks-rollout.mp4) · [Captions](docs/recordings/orbit-eks-rollout.vtt) · [Captioned player](docs/recordings/index.html) · [Presentation runbook](DEMO.md)
+**[Open the full video player](https://yeashu.github.io/DevOps-Capstone/recordings/)** · **[Jump to AWS Console evidence at 03:43](https://yeashu.github.io/DevOps-Capstone/recordings/?t=223.813)**
 
-The 92-second recording shows the calculator on real EKS, a successful pipeline, the local Helm rollout to that pipeline's SHA, the updated version, and the saved notebook afterward. The optional hosted EKS deployment job was disabled. For the captioned local player, run `python3 -m http.server 8765 --bind 127.0.0.1` and open http://localhost:8765/docs/recordings/.
+[Download full MP4](docs/recordings/orbit-capstone-walkthrough.mp4) · [Full captions](docs/recordings/orbit-capstone-walkthrough.vtt) · [Original 92-second live rollout](docs/recordings/orbit-eks-rollout.mp4) · [Presentation runbook](DEMO.md)
+
+The **7-minute 39-second narrated walkthrough covers all ten modules**, including Terraform plan/apply, the actual AWS VPC and subnets, active EKS cluster and Ready workers, Kubernetes, Prometheus, Grafana, and completed teardown. It combines real captured evidence with excerpts from the original live demo. Captured scenes and live-recording excerpts are labelled; narration is synthetic. AWS resources were destroyed after evidence collection.
+
+If the inline attachment reports “Bad Gateway,” use the separate video player above or download the MP4. The player has clickable chapters and English captions. For local playback, run `python3 -m http.server 8765 --bind 127.0.0.1` and open http://localhost:8765/docs/recordings/.
 
 Each module below has a main image followed by links to its other images. All **75 evidence images** are included. Browser screenshots are actual captures; command-output images are labelled renders of actual logs. The cloud resources were destroyed after capture. Git metadata uses the owner's assigned timestamp; actual run and capture timestamps are retained.
 
