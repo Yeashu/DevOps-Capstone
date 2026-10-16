@@ -1,17 +1,21 @@
-For my capstone, I used a simple scientific calculator to demonstrate a complete DevOps workflow. My main focus was building, testing, deploying, and monitoring the application.
+For my capstone, I built a complete DevOps workflow around Orbit, a simple scientific calculator. My focus was on how the application moves from source code to a working deployment, including testing, containers, security checks, cloud infrastructure, and monitoring.
 
-I used Git and GitHub to manage the code and track changes. I added automated tests to check that the application worked before building its Docker images.
+The application has a browser frontend, a FastAPI backend, and a PostgreSQL database. The backend provides the calculation and notebook APIs. Keeping saved calculations in the database means they remain available when application containers are replaced. This gave me a small, working application to use throughout the DevOps process.
 
-With Docker, I packaged the frontend, backend, and database into a stack that starts with one command. This made the application easier to run in a consistent environment.
+Before building images, I added automated tests to check the application. The backend has sixty-nine passing tests, and the frontend has its own tests and build check. I used isolated test databases so testing would not affect saved application data. These checks run in the pipeline, so a failed test prevents later build and publication steps.
 
-I created a GitHub Actions pipeline that runs on every push to main. It runs tests, builds the images, and scans them with Trivy. Images are published to GitHub Container Registry only after these checks pass. Each image uses a commit ID so I can identify the exact version.
+I containerized the application and used Docker Compose to start the frontend, backend, and database together. This made the setup consistent and easy to reproduce. The frontend uses a multi-stage Docker build, keeping build tools out of the final runtime image. Both application containers run without root privileges, and health checks help confirm the services are ready.
 
-For AWS, I used Terraform to create the network and EKS cluster, including two public subnets and a worker group. Keeping this setup in code made it repeatable and easier to manage.
+I used Git and GitHub to track the implementation through meaningful commits. The repository excludes credentials, local environment files, and generated dependencies. I then created a GitHub Actions pipeline that starts on pushes to main. It runs the tests and frontend build, checks the running application, builds both images, and scans them before publishing. The exact scanned images go to GitHub Container Registry with commit-based tags, so I can trace a deployed image back to its source version.
 
-I used Kubernetes and Helm to deploy the application. The frontend and backend each had two replicas, and Ingress provided access to the application.
+For security, the pipeline includes source checks, dependency checks, secret scanning, and Trivy image scans. The image scans fail on high or critical vulnerabilities. The backend initially failed this gate. I updated the runtime and removed unused packaged libraries to resolve the findings. Both final image scans passed, and I kept the original security rule in place.
 
-For monitoring, I connected Prometheus and Grafana. This let me check application traffic and response times after deployment.
+For the cloud environment, I used Terraform to define the infrastructure in code. The plan and apply created twenty resources in the Mumbai region, including a VPC, two public subnets in different availability zones, an EKS cluster, and its worker group. I verified that both workers were Ready. Terraform made the setup reviewable, repeatable, and easier to remove after the demonstration.
 
-After the pipeline passed, I updated the EKS deployment using Helm from my local terminal. I checked the deployed version and confirmed that the saved data was still available.
+I used Helm to deploy and manage the application on Kubernetes. The backend and frontend each had two replicas. ClusterIP Services provided internal access, and Ingress routed browser and API requests. Readiness checks helped control when pods received traffic. PostgreSQL used persistent storage, so replacing application pods did not remove the notebook. The chart also managed the database migration job during upgrades.
 
-Finally, I destroyed the AWS resources to avoid ongoing costs and checked for anything left behind. The repository contains the code, configuration, screenshots, and documentation for the complete workflow.
+I added Prometheus and Grafana to monitor the application. Prometheus collected request and latency metrics from the backend, and both application targets reported UP. Grafana showed populated request and response-time panels. These measurements helped verify that the application was handling traffic after deployment.
+
+After a successful pipeline, I updated the real EKS deployment using Helm from my local terminal. I verified the new commit through the health endpoint and checked that saved calculations survived the rollout. The separate automatic EKS Actions job was skipped, so this cloud update used the authenticated CLI. The pipeline also tested deployment in a temporary Kind cluster.
+
+Finally, I ran Terraform destroy and checked for remaining AWS resources, including the cluster, workers, network resources, and recorded volumes. I also removed temporary access credentials. The cloud screenshots show the deployment before this cleanup. The repository preserves the source, configuration, original logs, screenshots, and presentation materials so the full workflow can be reviewed.

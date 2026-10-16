@@ -20,7 +20,9 @@ https://github.com/user-attachments/assets/7b1f9094-c3e5-47e2-8b87-f6ab246e94d6
 
 [Download submission MP4](demo/orbit-capstone-video.mp4) · [Short subtitles](docs/recordings/orbit-capstone-walkthrough.vtt) · [Original 92-second live rollout](docs/recordings/orbit-eks-rollout.mp4) · [Presentation runbook](DEMO.md)
 
-[PowerPoint slides](demo/orbit-capstone-slides.pptx) · [PDF slides](demo/orbit-capstone-slides.pdf) · [Timed voice-over script](demo/voiceover-script.md) · [Slide-by-slide speaking notes](demo/presentation-notes.md)
+[PowerPoint slides](demo/orbit-capstone-slides.pptx) · [PDF slides](demo/orbit-capstone-slides.pdf) · [Expanded DevOps narration](demo/voiceover-script.md) · [Slide-by-slide speaking notes](demo/presentation-notes.md)
+
+The linked MP4 is the existing silent reference cut. The final narrated video will follow the supplied audio, with about five minutes as the current working target.
 
 The **2-minute 29-second silent walkthrough covers all ten modules**, including Terraform plan/apply, the actual AWS VPC and subnets, active EKS cluster and Ready workers, Kubernetes, Prometheus, Grafana, and completed teardown. It uses brief evidence views, roughly 3–7 seconds each, plus clips from the original live demo. Short on-screen labels replace narration; the video has no audio track. AWS resources were destroyed after evidence collection.
 

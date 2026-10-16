@@ -1,6 +1,6 @@
 # Read-aloud presentation notes
 
-Use these notes with [the PowerPoint](orbit-capstone-slides.pptx) or [the PDF](orbit-capstone-slides.pdf). These are the same notes embedded in the PowerPoint. For the 2:29 video, use the shorter [timed voice-over script](voiceover-script.md).
+Use these notes with [the PowerPoint](orbit-capstone-slides.pptx) or [the PDF](orbit-capstone-slides.pdf). These are the same notes embedded in the PowerPoint. For recording, use the fuller [DevOps narration script](voiceover-script.md). The final video will be edited to the supplied audio; it does not need to fit the existing 2:29 reference cut.
 
 ## Slide 1: Orbit scientific calculator
 

@@ -1,6 +1,6 @@
 # Presentation and live demonstration
 
-Submission files are in [demo/](demo/): [MP4 video](demo/orbit-capstone-video.mp4), [PowerPoint](demo/orbit-capstone-slides.pptx), [PDF](demo/orbit-capstone-slides.pdf), [timed voice-over script](demo/voiceover-script.md), and [slide speaking notes](demo/presentation-notes.md). The video remains silent for a personal voice-over.
+Submission files are in [demo/](demo/): [MP4 video](demo/orbit-capstone-video.mp4), [PowerPoint](demo/orbit-capstone-slides.pptx), [PDF](demo/orbit-capstone-slides.pdf), [expanded DevOps narration](demo/voiceover-script.md), and [slide speaking notes](demo/presentation-notes.md). The video remains silent for a personal voice-over. The current recording plan is about five minutes; the final video will be edited to the supplied audio, using the existing 2:29 cut as reference material.
 
 
 The [full silent walkthrough](https://yeashu.github.io/DevOps-Capstone/recordings/?v=silent149r2) is **2 minutes 29 seconds** and covers every rubric module, including real captured AWS Console and Terraform lifecycle evidence. [Jump directly to AWS](https://yeashu.github.io/DevOps-Capstone/recordings/?v=silent149r2&t=69.133) or [download the MP4](docs/recordings/orbit-capstone-walkthrough.mp4). English [captions](docs/recordings/orbit-capstone-walkthrough.vtt) and a [chapter/provenance manifest](docs/recordings/orbit-capstone-walkthrough.json) are included. Captured scenes use short on-screen labels; the video has no audio track. The original 92-second live recording remains separately available below.
