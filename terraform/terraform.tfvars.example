@@ -1,0 +1,9 @@
+# Copy to terraform.tfvars. Authentication comes from AWS_PROFILE/SSO, never this file.
+aws_region         = "ap-south-1"
+project_name       = "orbit-capstone"
+kubernetes_version = "1.36"
+node_instance_type = "t3.medium"
+node_count         = 2
+# Replace this documentation-only address with your actual public IPv4 /32.
+admin_cidrs = ["203.0.113.10/32"]
+# deploy_principal_arn = "arn:aws:iam::<ACCOUNT_ID>:role/orbit-github-deploy"
