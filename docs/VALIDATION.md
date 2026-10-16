@@ -16,7 +16,7 @@ Orbit was built and exercised locally, in GitHub Actions, on disposable Kind and
 | Monitoring | On Kind and EKS: both API targets UP, Grafana datasource returned positive actual metrics, populated dashboard captured |
 | Rollout | EKS upgraded to the exact successful pipeline SHA; health returned that SHA and the database notebook survived |
 | Cleanup | Terraform destroy completed; empty state and independent AWS residual-resource audit passed; temporary IAM bootstrap user/key/operator role removed |
-| Recording | Actual 92-second technical walkthrough, captions and presentation runbook included |
+| Recording | Full 2-minute 29-second narrated evidence guide, original 92-second live EKS rollout, captions and presentation runbook included |
 
 Verified green runs: [38946260879](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38946260879), [38947611595](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38947611595), and [38949107515](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38949107515). The final run linked here validates commit `903a3b1dadc588b93657852dd9ec0e605d56f159`; subsequent cleanup documentation is separate evidence.
 
@@ -44,4 +44,4 @@ Browser PNGs are actual captures. Command-output PNGs are labelled renders of ac
 
 ## Expanded video and Firefox compatibility
 
-The full 7-minute 39-second walkthrough covers all ten modules using genuine source evidence and original live-demo excerpts. The captured AWS Console scenes show the provisioned VPC, two public subnets, active EKS cluster and two Ready workers. Terraform plan/apply/destroy, security, container publishing, Kubernetes, monitoring and cleanup are also included. Synthetic narration and captured evidence are explicitly labelled; the guide does not claim a new live AWS deployment. The original 92-second live recording is preserved separately. Both are provided as H.264 Baseline / MP4 with fast-start metadata. The full guide adds AAC narration and captions.
+The full 2-minute 29-second walkthrough covers all ten modules using genuine source evidence and original live-demo excerpts. The captured AWS Console scenes show the provisioned VPC, two public subnets, active EKS cluster and two Ready workers. Terraform plan/apply/destroy, security, container publishing, Kubernetes, monitoring and cleanup are also included. Synthetic narration and captured evidence are explicitly labelled; the guide does not claim a new live AWS deployment. The original 92-second live recording is preserved separately. Both are provided as H.264 Baseline / MP4 with fast-start metadata. The full guide adds AAC narration and captions.

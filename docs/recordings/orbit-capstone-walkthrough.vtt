@@ -1,114 +1,118 @@
 WEBVTT
 
 1
-00:00:00.000 --> 00:00:18.733
-This is Orbit, a Python scientific calculator with a PostgreSQL notebook. This narrated walkthrough covers all ten capstone modules. It combines genuine live demonstration excerpts with captured evidence from the completed AWS lifecycle. The cloud resources have already been destroyed.
+00:00:00.000 --> 00:00:06.333
+Orbit is a Python scientific calculator. Here it calculates and saves results to PostgreSQL.
 
 2
-00:00:18.733 --> 00:00:42.067
-The calculator runs through the real EKS Ingress. FastAPI evaluates scientific expressions and saves results in PostgreSQL through an Alembic managed table. Here, square root of one hundred forty four plus two cubed returns twenty. Degree mode evaluates sine of thirty as zero point five. The API supports create, read, update, and delete operations.
+00:00:06.333 --> 00:00:12.667
+Degree mode returns sine of thirty as zero point five. The shared notebook persists calculations.
 
 3
-00:00:42.067 --> 00:00:59.934
-All sixty nine backend tests pass. They cover scientific calculations and API behavior. Tests use isolated SQLite locally and a disposable PostgreSQL database in GitHub Actions. The production notebook is not used as the test database. Ruff also passes.
+00:00:12.667 --> 00:00:17.893
+Sixty nine backend tests pass using isolated databases. Ruff also passes.
 
 4
-00:00:59.934 --> 00:01:18.164
-The public repository contains more than ten meaningful commits. Git ignore excludes environment files, virtual environments, node modules, Python caches, and real Terraform state and variables. The README links the source, original logs, and all evidence images.
+00:00:17.893 --> 00:00:22.360
+More than ten meaningful commits, with secrets and generated files excluded.
 
 5
-00:01:18.164 --> 00:01:31.385
-Docker Compose starts the frontend, FastAPI backend, and PostgreSQL database together. All three services are healthy. The frontend uses a Node build stage and an unprivileged Nginx runtime.
+00:00:22.360 --> 00:00:27.713
+Compose runs three healthy services: frontend, backend, and PostgreSQL.
 
 6
-00:01:31.385 --> 00:01:43.852
-The backend runs as user ten thousand and one, and the frontend runs as user one hundred and one. These are actual container user checks, rather than assumptions based only on Dockerfile text.
+00:00:27.713 --> 00:00:33.179
+Both application containers run as non-root users. The frontend uses a multi-stage build.
 
 7
-00:01:43.852 --> 00:02:06.718
-Pushes to main run backend tests, frontend checks, source security, infrastructure validation, and the real Compose browser test. Both images are then built and scanned. Publication happens only after both security gates pass. The optional hosted EKS delivery job is disabled; the later EKS upgrade is issued from the local authenticated command line.
+00:00:33.179 --> 00:00:40.265
+GitHub Actions passes tests, builds, security scans, container publication, and a real cluster check.
 
 8
-00:02:06.718 --> 00:02:21.198
-The backend package is public in GitHub Container Registry. Its tag is the full forty character Git commit identifier. The exact scanned image is published, so the deployed version can be traced back to its successful pipeline.
+00:00:40.265 --> 00:00:45.465
+Backend images are published to GitHub Container Registry with exact commit SHA tags.
 
 9
-00:02:21.198 --> 00:02:32.229
-The frontend is published separately with the same full commit identifier. Deployment values select these immutable commit tags. The deployment does not rely on a latest tag.
+00:00:45.465 --> 00:00:50.398
+The frontend has matching immutable SHA tags, rather than a moving latest tag.
 
 10
-00:02:32.229 --> 00:02:50.848
-Trivy scans operating system packages and application dependencies. The remediated backend image reports zero high or critical findings. The initial scan correctly blocked publication. Updating the runtime and removing unused vulnerable packaging tools resolved the findings without weakening the gate.
+00:00:50.398 --> 00:00:54.335
+Trivy finds no high or critical vulnerabilities in the backend image.
 
 11
-00:02:50.848 --> 00:03:06.448
-The frontend image also passes the high and critical severity gate. Unfixed findings are included in the failure policy. A clean scan describes the vulnerability database and image at scan time, rather than a guarantee against future vulnerabilities.
+00:00:54.335 --> 00:00:58.668
+The frontend scan also passes. Either scan can block publication.
 
 12
-00:03:06.448 --> 00:03:24.880
-This is the actual Terraform plan for the AWS project. It proposed twenty additions, no changes, and no deletions of existing resources. Account identifiers and the administrator address are explicitly redacted in the committed logs. Real credentials and state are excluded from Git.
+00:00:58.668 --> 00:01:03.603
+Terraform plans twenty real resources in Mumbai, including the VPC and EKS.
 
 13
-00:03:24.880 --> 00:03:43.813
-Terraform apply completed with twenty resources added. The deployment region is Mumbai, ap south one. The outputs include the project VPC, two public subnet identifiers, and the Orbit EKS cluster. The following screens are captured AWS Console evidence from that real deployment.
+00:01:03.603 --> 00:01:09.203
+Apply completes successfully: twenty resources added. These are original captured results.
 
 14
-00:03:43.813 --> 00:03:58.905
-In the Mumbai AWS Console, the Orbit capstone VPC is available with the ten point forty two network range. The other VPC shown is the existing default VPC. The Terraform plan did not modify that existing network.
+00:01:09.203 --> 00:01:14.003
+The AWS Console shows the provisioned project VPC in ap-south-one.
 
 15
-00:03:58.905 --> 00:04:12.839
-The project has two public subnets named Orbit capstone public one and public two. They belong to the project VPC and use different availability zones. These are real provisioned subnets, not a simulated diagram.
+00:01:14.003 --> 00:01:17.403
+Two public subnets span separate availability zones.
 
 16
-00:04:12.839 --> 00:04:28.972
-The EKS Console shows the Orbit capstone cluster as active, running Kubernetes version one point thirty seven. The cluster summary shows two nodes and one managed node group. This is historical captured evidence; the cluster has since been removed during cleanup.
+00:01:17.403 --> 00:01:20.403
+The EKS control plane is active in the same region.
 
 17
-00:04:28.972 --> 00:04:39.655
-The compute page shows two Ready worker nodes in the managed Orbit capstone workers group. Both are t three medium instances. There are no node health issues in this capture.
+00:01:20.403 --> 00:01:24.603
+Two worker nodes are Ready. This is the actual captured EKS Console.
 
 18
-00:04:39.655 --> 00:04:51.936
-Helm deployed the Orbit application, Traefik Ingress controller, Prometheus, and Grafana on the real EKS cluster. This release listing is actual command output captured before cleanup.
+00:01:24.603 --> 00:01:29.803
+Helm manages the application, Ingress controller, and monitoring releases on EKS.
 
 19
-00:04:51.936 --> 00:05:05.136
-Two backend pods and two frontend pods are Running and Ready. PostgreSQL is also Running and Ready. The Alembic migration job is Completed, which is the expected successful state for a one time migration.
+00:01:29.803 --> 00:01:34.634
+Two backend and two frontend replicas are Running, alongside PostgreSQL.
 
 20
-00:05:05.136 --> 00:05:17.944
-The backend and frontend are exposed through Cluster I P Services. PostgreSQL has its database service. The application is reached through Ingress rather than through directly exposed application pods.
+00:01:34.634 --> 00:01:39.195
+ClusterIP Services expose both application tiers inside Kubernetes.
 
 21
-00:05:17.944 --> 00:05:32.144
-The Orbit Ingress routes the root path to the frontend and the API path to the backend. A port forward to the Traefik controller provides the recorded browser route to the actual AWS pods without adding a public AWS load balancer.
+00:01:39.195 --> 00:01:43.754
+Ingress routes the root to the frontend, and API requests to FastAPI.
 
 22
-00:05:32.144 --> 00:05:43.944
-The backend exposes Prometheus formatted metrics. Request counters and duration histograms are generated by real API traffic. These are actual metrics from the EKS deployment.
+00:01:43.754 --> 00:01:48.420
+The metrics endpoint exposes real Prometheus request and latency measurements.
 
 23
-00:05:43.944 --> 00:05:57.211
-The Orbit API scrape pool contains two targets, one for each backend replica. Both targets are up. This confirms that Prometheus is scraping the running application rather than merely being installed in the cluster.
+00:01:48.420 --> 00:01:52.366
+Prometheus scrapes both backend replicas. Both targets are UP.
 
 24
-00:05:57.211 --> 00:06:16.630
-Grafana displays live request rate, ninety fifth percentile latency, requests by route, healthy API replicas, and total observed requests. The dashboard uses the real Prometheus data source. The error panel has no series because no server error labels were observed during this demonstration.
+00:01:52.366 --> 00:01:57.233
+Grafana displays populated live request, latency, and error panels.
 
 25
-00:06:16.630 --> 00:06:41.097
-After the successful pipeline, an authenticated local Helm command upgraded both EKS deployments to that pipeline's exact image tag. The health endpoint now reports the new commit identifier. Refreshing the calculator shows that the saved notebook survived the replacement of application pods. This is the original live browser recording, not a recreated AWS environment.
+00:01:57.233 --> 00:02:02.523
+After the successful pipeline, a local Helm upgrade deploys the exact published commit.
 
 26
-00:06:41.097 --> 00:07:02.698
-After evidence collection, the application, monitoring releases, and database volume were removed. The first destroy was interrupted while AWS deleted the worker group. A resumed Terraform destroy reconciled state and successfully removed the fourteen remaining resources. The original twenty resource lifecycle is documented in both logs.
+00:02:02.523 --> 00:02:08.323
+The health endpoint reports that commit, and the saved notebook survives pod replacement.
 
 27
-00:07:02.698 --> 00:07:19.031
-The independent AWS audit confirms that the cluster and VPC are absent, no active worker instances remain, and the database and both worker root volumes are gone. There are no project network interfaces or load balancers, and Terraform state is empty.
+00:02:08.323 --> 00:02:15.463
+Terraform destroy removes the remaining resources. AWS evidence is historical; the infrastructure is now deleted.
 
 28
-00:07:19.031 --> 00:07:39.378
-The temporary bootstrap access key, IAM user, and operator role were removed. The original default AWS profile was preserved. The README contains the complete source, all seventy five evidence images, supporting logs, and the presentation runbook. Use the local Compose stack to run the calculator again.
+00:02:15.463 --> 00:02:22.063
+An independent audit confirms no project cluster, VPC, volumes, or active workers remain.
+
+29
+00:02:22.063 --> 00:02:28.937
+Temporary credentials are removed. README links all screenshots, source logs, and the original live recording.
 

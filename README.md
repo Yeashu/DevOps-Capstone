@@ -12,13 +12,13 @@ Jump to the [recorded video and all 75 evidence images](#evidence-and-presentati
 
 ### Play the full capstone walkthrough
 
-https://github.com/user-attachments/assets/fa16ef7b-dcfc-4e35-996e-7c60e232d0e9
+https://github.com/user-attachments/assets/2d3aef91-7b75-4d46-bdcf-57bc39a37afa
 
-**[Open the full video player](https://yeashu.github.io/DevOps-Capstone/recordings/)** · **[Jump to AWS Console evidence at 03:43](https://yeashu.github.io/DevOps-Capstone/recordings/?t=223.813)**
+**[Play the 2:29 video](https://yeashu.github.io/DevOps-Capstone/recordings/?v=short149)** · **[Jump to AWS Console evidence at 01:09](https://yeashu.github.io/DevOps-Capstone/recordings/?v=short149&t=69.203)**
 
 [Download full MP4](docs/recordings/orbit-capstone-walkthrough.mp4) · [Full captions](docs/recordings/orbit-capstone-walkthrough.vtt) · [Original 92-second live rollout](docs/recordings/orbit-eks-rollout.mp4) · [Presentation runbook](DEMO.md)
 
-The **7-minute 39-second narrated walkthrough covers all ten modules**, including Terraform plan/apply, the actual AWS VPC and subnets, active EKS cluster and Ready workers, Kubernetes, Prometheus, Grafana, and completed teardown. It combines real captured evidence with excerpts from the original live demo. Captured scenes and live-recording excerpts are labelled; narration is synthetic. AWS resources were destroyed after evidence collection.
+The **2-minute 29-second narrated walkthrough covers all ten modules**, including Terraform plan/apply, the actual AWS VPC and subnets, active EKS cluster and Ready workers, Kubernetes, Prometheus, Grafana, and completed teardown. It uses brief evidence views, roughly 3–7 seconds each, plus clips from the original live demo. Captured scenes and live-recording excerpts are labelled; narration is synthetic. AWS resources were destroyed after evidence collection.
 
 If the inline attachment reports “Bad Gateway,” use the separate video player above or download the MP4. The player has clickable chapters and English captions. For local playback, run `python3 -m http.server 8765 --bind 127.0.0.1` and open http://localhost:8765/docs/recordings/.
 

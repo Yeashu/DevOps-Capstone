@@ -1,7 +1,7 @@
 from pathlib import Path
 import subprocess,json,textwrap,concurrent.futures,datetime
 from PIL import Image,ImageDraw,ImageFont
-root=Path(__file__).resolve().parents[1];build=root/'.local/walkthrough-build';build.mkdir(exist_ok=True)
+root=Path(__file__).resolve().parents[1];build=root/'.local/walkthrough-short-build';build.mkdir(exist_ok=True)
 scenes=json.loads((root/'docs/recordings/orbit-capstone-walkthrough.json').read_text())['chapters']
 font_root=Path('/System/Library/Fonts/Supplemental')
 font=ImageFont.truetype(str(font_root/'Arial.ttf'),28)
@@ -12,8 +12,8 @@ def command(args):subprocess.run(args,check=True,stdout=subprocess.DEVNULL,stder
 def duration(path):return float(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration','-of','default=noprint_wrappers=1:nokey=1',str(path)],text=True))
 for i,s in enumerate(scenes):
  base=build/f'{i:02}';audio=base.with_suffix('.aiff');banner=base.with_suffix('.png')
- if not audio.exists():command(['say','-v','Samantha','-r','170','-o',str(audio),s['narration']])
- s['duration']=max(duration(audio)+1,s.get('clip',[0,0])[1]);s['index']=i
+ if not audio.exists():command(['say','-v','Samantha','-r','190','-o',str(audio),s['narration']])
+ s['duration']=max(duration(audio)+0.3,s.get('clip',[0,0])[1]);s['index']=i
  canvas=Image.new('RGBA',(1920,1080),(0,0,0,0));draw=ImageDraw.Draw(canvas)
  draw.rectangle((0,0,1920,115),fill='#14241f');draw.rectangle((0,1000,1920,1080),fill='#14241f')
  draw.text((44,14),s['module'].upper(),font=font,fill='#b6db98');draw.text((44,52),s['title'],font=bold,fill='#eef3e9')
