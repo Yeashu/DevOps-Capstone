@@ -1,0 +1,11 @@
+c751e02 (HEAD -> main) Document rubric coverage, live demo, security results, and honest evidence status
+dbbf4f4 Automate real browser evidence, traffic generation, and labelled command transcripts
+ea19255 Provision Prometheus discovery, Grafana dashboards, local deployment helpers, and optional GitOps
+0a0f5a7 Define two-AZ AWS VPC, EKS workers, EBS pod identity, and scoped deployment access
+56dc02e Gate builds on tests and security, scan both images before SHA-tagged GHCR publication
+275884e Add Helm deployments, migration job, PostgreSQL storage, ingress, and optional HPA
+c0bb046 Containerize the three-service stack with non-root runtimes and health checks
+be7506f Build responsive scientific calculator and persistent notebook interface
+3e4a08c Cover scientific domains, API CRUD, migrations, and metrics with isolated tests
+23132f3 Implement bounded scientific calculator API and Alembic history schema
+fdd7dfc (origin/main, origin/HEAD) Initial commit

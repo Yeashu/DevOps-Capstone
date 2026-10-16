@@ -77,7 +77,9 @@ try {
     });
     assert.equal(metrics.status(), 200, 'Grafana datasource query failed');
     const frames = (await metrics.json()).results?.A?.frames || [];
-    assert.ok(frames.some((frame) => frame.data?.values?.some((values) => values.some((value) => typeof value === 'number' && value > 0))), 'Grafana must have real metric values before capture');
+    assert.ok(frames.some((frame) => frame.schema?.fields?.some((field, index) =>
+      field.type === 'number' && frame.data?.values?.[index]?.some((value) =>
+        typeof value === 'number' && value > 0))), 'Grafana must have real metric values before capture');
     await page.goto(`${url}/login`);
     await page.getByRole('textbox', { name: /email or username/i }).fill('admin');
     await page.locator('input[type="password"]').fill(process.env.GRAFANA_PASSWORD);

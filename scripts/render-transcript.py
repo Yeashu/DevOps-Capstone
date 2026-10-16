@@ -27,7 +27,7 @@ for start in range(0, max(1, len(lines)), 44):
     draw.text((24, 44), "Rendered transcript of actual output | source: " + args.input.name, font=font, fill="#8fa58d")
     for index, line in enumerate(chunk):
         color = "#b6db98" if "PASSED" in line or "passed" in line else "#d2ddd0"
-        draw.text((24, 84 + index * 21), line, font=font, fill=color)
+        draw.text((24, 84 + index * 21), line.replace("ℹ", "i"), font=font, fill=color)
     suffix = f"-{start // 44 + 1:02}" if len(lines) > 44 else ""
     target = args.output.with_name(args.output.stem + suffix + args.output.suffix)
     target.parent.mkdir(parents=True, exist_ok=True)
