@@ -86,7 +86,7 @@ try {
     await page.getByRole('button', { name: /log in/i }).click();
     await page.waitForURL((address) => !address.pathname.includes('/login'));
     await page.goto(`${url}/d/orbit-api?from=now-15m&to=now&kiosk`);
-    await page.getByText('HTTP requests / second', { exact: true }).waitFor();
+    await page.getByRole('heading', { name: 'HTTP requests / second', exact: true }).waitFor();
     await page.waitForTimeout(12000);
     await page.screenshot({ path: 'docs/screenshots/16-grafana-dashboard.png', fullPage: true });
   }

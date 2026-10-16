@@ -1,0 +1,4 @@
+NAME               IMAGE                  COMMAND                  SERVICE    CREATED              STATUS                        PORTS
+orbit-backend-1    orbit-backend:local    "sh -c 'alembic upgr…"   backend    About a minute ago   Up About a minute (healthy)   127.0.0.1:8000->8000/tcp
+orbit-frontend-1   orbit-frontend:local   "/docker-entrypoint.…"   frontend   About a minute ago   Up About a minute (healthy)   127.0.0.1:3000->8080/tcp
+orbit-postgres-1   postgres:17-alpine     "docker-entrypoint.s…"   postgres   About a minute ago   Up About a minute (healthy)   5432/tcp

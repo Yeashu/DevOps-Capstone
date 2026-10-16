@@ -1,0 +1,792 @@
+ Image postgres:17-alpine Pulling 
+ 0c4d12928c8b Pulling fs layer 0B
+ 334e16b2a68c Pulling fs layer 0B
+ b266f5de3807 Pulling fs layer 0B
+ 2561c1a92c32 Pulling fs layer 0B
+ 17bc19c5b6b3 Pulling fs layer 0B
+ 87e7bc91b13b Pulling fs layer 0B
+ 571d921d3454 Pulling fs layer 0B
+ ba4c01c41a64 Pulling fs layer 0B
+ 363a00f0fb05 Pulling fs layer 0B
+ e0461b3d34b8 Download complete 0B
+ 0c4d12928c8b Download complete 0B
+ 17bc19c5b6b3 Download complete 0B
+ 0c4d12928c8b Pull complete 0B
+ b266f5de3807 Download complete 0B
+ 87e7bc91b13b Download complete 0B
+ fa9ddeef3087 Download complete 0B
+ 363a00f0fb05 Download complete 0B
+ 571d921d3454 Downloading 168B
+ 571d921d3454 Download complete 0B
+ ba4c01c41a64 Download complete 0B
+ 334e16b2a68c Download complete 0B
+ 87e7bc91b13b Pull complete 0B
+ 334e16b2a68c Pull complete 0B
+ 2561c1a92c32 Downloading 1.049MB
+ 2561c1a92c32 Downloading 1.049MB
+ 2561c1a92c32 Downloading 1.049MB
+ 2561c1a92c32 Downloading 1.049MB
+ 2561c1a92c32 Downloading 1.049MB
+ 2561c1a92c32 Downloading 1.049MB
+ 2561c1a92c32 Downloading 1.049MB
+ 2561c1a92c32 Downloading 1.049MB
+ 2561c1a92c32 Downloading 1.049MB
+ 2561c1a92c32 Downloading 2.097MB
+ 2561c1a92c32 Downloading 2.097MB
+ 2561c1a92c32 Downloading 2.097MB
+ 2561c1a92c32 Downloading 2.097MB
+ 2561c1a92c32 Downloading 2.097MB
+ 2561c1a92c32 Downloading 2.097MB
+ 2561c1a92c32 Downloading 2.097MB
+ 2561c1a92c32 Downloading 2.097MB
+ 2561c1a92c32 Downloading 3.146MB
+ 2561c1a92c32 Downloading 3.146MB
+ 2561c1a92c32 Downloading 3.146MB
+ 2561c1a92c32 Downloading 3.146MB
+ 2561c1a92c32 Downloading 3.146MB
+ 2561c1a92c32 Downloading 3.146MB
+ 2561c1a92c32 Downloading 4.194MB
+ 2561c1a92c32 Downloading 4.194MB
+ 2561c1a92c32 Downloading 4.194MB
+ 2561c1a92c32 Downloading 4.194MB
+ 2561c1a92c32 Downloading 4.194MB
+ 2561c1a92c32 Downloading 5.243MB
+ 2561c1a92c32 Downloading 5.243MB
+ 2561c1a92c32 Downloading 5.243MB
+ 2561c1a92c32 Downloading 5.243MB
+ 2561c1a92c32 Downloading 5.243MB
+ 2561c1a92c32 Downloading 6.291MB
+ 2561c1a92c32 Downloading 6.291MB
+ 2561c1a92c32 Downloading 6.291MB
+ 2561c1a92c32 Downloading 6.291MB
+ 2561c1a92c32 Downloading 6.291MB
+ 2561c1a92c32 Downloading 7.34MB
+ 2561c1a92c32 Downloading 7.34MB
+ 2561c1a92c32 Downloading 7.34MB
+ 2561c1a92c32 Downloading 7.34MB
+ 2561c1a92c32 Downloading 7.34MB
+ 2561c1a92c32 Downloading 8.389MB
+ 2561c1a92c32 Downloading 8.389MB
+ 2561c1a92c32 Downloading 8.389MB
+ 2561c1a92c32 Downloading 8.389MB
+ 2561c1a92c32 Downloading 8.389MB
+ 2561c1a92c32 Downloading 8.389MB
+ 2561c1a92c32 Downloading 9.437MB
+ 2561c1a92c32 Downloading 9.437MB
+ 2561c1a92c32 Downloading 9.437MB
+ 2561c1a92c32 Downloading 9.437MB
+ 2561c1a92c32 Downloading 10.49MB
+ 2561c1a92c32 Downloading 10.49MB
+ 2561c1a92c32 Downloading 10.49MB
+ 2561c1a92c32 Downloading 10.49MB
+ 2561c1a92c32 Downloading 10.49MB
+ 2561c1a92c32 Downloading 11.53MB
+ 2561c1a92c32 Downloading 11.53MB
+ 2561c1a92c32 Downloading 11.53MB
+ 2561c1a92c32 Downloading 11.53MB
+ 2561c1a92c32 Downloading 12.58MB
+ 2561c1a92c32 Downloading 12.58MB
+ 2561c1a92c32 Downloading 12.58MB
+ 2561c1a92c32 Downloading 12.58MB
+ 2561c1a92c32 Downloading 13.63MB
+ 2561c1a92c32 Downloading 13.63MB
+ 2561c1a92c32 Downloading 13.63MB
+ 2561c1a92c32 Downloading 13.63MB
+ 2561c1a92c32 Downloading 14.68MB
+ 2561c1a92c32 Downloading 14.68MB
+ 2561c1a92c32 Downloading 15.73MB
+ 2561c1a92c32 Downloading 15.73MB
+ 2561c1a92c32 Downloading 16.78MB
+ 2561c1a92c32 Downloading 16.78MB
+ 2561c1a92c32 Downloading 17.83MB
+ 2561c1a92c32 Downloading 17.83MB
+ 2561c1a92c32 Downloading 18.87MB
+ 2561c1a92c32 Downloading 18.87MB
+ 2561c1a92c32 Downloading 19.92MB
+ 2561c1a92c32 Downloading 19.92MB
+ 2561c1a92c32 Downloading 20.97MB
+ 2561c1a92c32 Downloading 20.97MB
+ 2561c1a92c32 Downloading 20.97MB
+ 2561c1a92c32 Downloading 20.97MB
+ 2561c1a92c32 Downloading 22.02MB
+ 2561c1a92c32 Downloading 22.02MB
+ 2561c1a92c32 Downloading 23.07MB
+ 2561c1a92c32 Downloading 24.12MB
+ 2561c1a92c32 Downloading 24.12MB
+ 2561c1a92c32 Downloading 25.17MB
+ 2561c1a92c32 Downloading 26.21MB
+ 2561c1a92c32 Downloading 26.21MB
+ 2561c1a92c32 Downloading 26.21MB
+ 2561c1a92c32 Downloading 26.21MB
+ 2561c1a92c32 Downloading 27.26MB
+ 2561c1a92c32 Downloading 27.26MB
+ 2561c1a92c32 Downloading 27.26MB
+ 2561c1a92c32 Downloading 27.26MB
+ 2561c1a92c32 Downloading 27.26MB
+ 2561c1a92c32 Downloading 28.31MB
+ 2561c1a92c32 Downloading 30.12MB
+ 2561c1a92c32 Downloading 30.41MB
+ 2561c1a92c32 Downloading 31.46MB
+ 2561c1a92c32 Downloading 32.51MB
+ 2561c1a92c32 Downloading 33.55MB
+ 2561c1a92c32 Downloading 33.55MB
+ 2561c1a92c32 Downloading 34.6MB
+ 2561c1a92c32 Downloading 34.6MB
+ 2561c1a92c32 Downloading 36.7MB
+ 2561c1a92c32 Downloading 36.7MB
+ 2561c1a92c32 Downloading 37.75MB
+ 2561c1a92c32 Downloading 38.8MB
+ 2561c1a92c32 Downloading 38.8MB
+ 2561c1a92c32 Downloading 38.8MB
+ 2561c1a92c32 Downloading 38.8MB
+ 2561c1a92c32 Downloading 38.8MB
+ 2561c1a92c32 Downloading 38.8MB
+ 2561c1a92c32 Downloading 38.8MB
+ 2561c1a92c32 Downloading 38.8MB
+ 2561c1a92c32 Downloading 38.8MB
+ 2561c1a92c32 Downloading 38.8MB
+ 2561c1a92c32 Downloading 38.8MB
+ 2561c1a92c32 Downloading 38.8MB
+ 2561c1a92c32 Downloading 38.8MB
+ 2561c1a92c32 Downloading 38.8MB
+ 2561c1a92c32 Downloading 39.85MB
+ 2561c1a92c32 Downloading 40.89MB
+ 2561c1a92c32 Downloading 41.94MB
+ 2561c1a92c32 Downloading 42.99MB
+ 2561c1a92c32 Downloading 42.99MB
+ 2561c1a92c32 Downloading 44.04MB
+ 2561c1a92c32 Downloading 45.09MB
+ 2561c1a92c32 Downloading 45.09MB
+ 2561c1a92c32 Downloading 46.14MB
+ 2561c1a92c32 Downloading 47.19MB
+ 2561c1a92c32 Downloading 48.23MB
+ 2561c1a92c32 Downloading 49.28MB
+ 2561c1a92c32 Downloading 50.33MB
+ 2561c1a92c32 Downloading 50.52MB
+ 2561c1a92c32 Downloading 52.43MB
+ 2561c1a92c32 Downloading 53.48MB
+ 2561c1a92c32 Downloading 53.48MB
+ 2561c1a92c32 Downloading 54.53MB
+ 2561c1a92c32 Downloading 55.57MB
+ 2561c1a92c32 Downloading 56.62MB
+ 2561c1a92c32 Downloading 57.67MB
+ 2561c1a92c32 Downloading 57.67MB
+ 2561c1a92c32 Downloading 58.72MB
+ 2561c1a92c32 Downloading 59.77MB
+ 2561c1a92c32 Downloading 60.82MB
+ 2561c1a92c32 Downloading 60.82MB
+ 2561c1a92c32 Downloading 61.87MB
+ 2561c1a92c32 Downloading 62.91MB
+ 2561c1a92c32 Downloading 62.91MB
+ 2561c1a92c32 Downloading 65.01MB
+ 2561c1a92c32 Downloading 66.06MB
+ 2561c1a92c32 Downloading 67.11MB
+ 2561c1a92c32 Downloading 67.11MB
+ 2561c1a92c32 Downloading 68.16MB
+ 2561c1a92c32 Downloading 69.21MB
+ 2561c1a92c32 Downloading 70.25MB
+ 2561c1a92c32 Downloading 71.3MB
+ 2561c1a92c32 Downloading 72.35MB
+ 2561c1a92c32 Downloading 72.35MB
+ 2561c1a92c32 Downloading 73.4MB
+ 2561c1a92c32 Downloading 74.45MB
+ 2561c1a92c32 Downloading 75.5MB
+ 2561c1a92c32 Downloading 75.98MB
+ 2561c1a92c32 Downloading 76.55MB
+ 2561c1a92c32 Downloading 77.59MB
+ 2561c1a92c32 Downloading 78.64MB
+ 2561c1a92c32 Downloading 78.64MB
+ 2561c1a92c32 Downloading 79.69MB
+ 2561c1a92c32 Downloading 79.69MB
+ 2561c1a92c32 Downloading 79.69MB
+ 2561c1a92c32 Downloading 80.74MB
+ 2561c1a92c32 Downloading 82.84MB
+ 2561c1a92c32 Downloading 83.89MB
+ 2561c1a92c32 Downloading 84.93MB
+ 2561c1a92c32 Downloading 85.98MB
+ 2561c1a92c32 Downloading 85.98MB
+ 2561c1a92c32 Downloading 87.03MB
+ 2561c1a92c32 Downloading 88.08MB
+ 2561c1a92c32 Downloading 88.08MB
+ 2561c1a92c32 Downloading 89.13MB
+ 2561c1a92c32 Downloading 90.18MB
+ 2561c1a92c32 Downloading 91.23MB
+ 2561c1a92c32 Downloading 93.32MB
+ 2561c1a92c32 Downloading 94.37MB
+ 2561c1a92c32 Downloading 95.42MB
+ 2561c1a92c32 Downloading 96.47MB
+ 2561c1a92c32 Downloading 96.47MB
+ 2561c1a92c32 Downloading 96.47MB
+ 2561c1a92c32 Downloading 98.57MB
+ 2561c1a92c32 Downloading 98.57MB
+ 2561c1a92c32 Downloading 100.7MB
+ 2561c1a92c32 Downloading 100.7MB
+ 2561c1a92c32 Downloading 102.5MB
+ 2561c1a92c32 Downloading 102.8MB
+ 2561c1a92c32 Downloading 103.8MB
+ 2561c1a92c32 Downloading 104.9MB
+ 2561c1a92c32 Downloading 105.9MB
+ 2561c1a92c32 Downloading 107MB
+ 2561c1a92c32 Downloading 108MB
+ 2561c1a92c32 Downloading 109.1MB
+ 2561c1a92c32 Downloading 110MB
+ 2561c1a92c32 Download complete 0B
+ 2561c1a92c32 Extracting 1B
+ 2561c1a92c32 Extracting 1B
+ 2561c1a92c32 Extracting 1B
+ 2561c1a92c32 Extracting 1B
+ 2561c1a92c32 Extracting 1B
+ 2561c1a92c32 Extracting 1B
+ 2561c1a92c32 Extracting 1B
+ 2561c1a92c32 Extracting 1B
+ 2561c1a92c32 Extracting 1B
+ 2561c1a92c32 Extracting 1B
+ 2561c1a92c32 Extracting 2B
+ 2561c1a92c32 Extracting 2B
+ 2561c1a92c32 Extracting 2B
+ 2561c1a92c32 Extracting 2B
+ 2561c1a92c32 Extracting 2B
+ 2561c1a92c32 Extracting 2B
+ 2561c1a92c32 Extracting 2B
+ 2561c1a92c32 Extracting 2B
+ 2561c1a92c32 Extracting 2B
+ 2561c1a92c32 Extracting 2B
+ 2561c1a92c32 Extracting 2B
+ 2561c1a92c32 Extracting 3B
+ 17bc19c5b6b3 Extracting 1B
+ b266f5de3807 Pull complete 0B
+ 2561c1a92c32 Pull complete 0B
+ 17bc19c5b6b3 Pull complete 0B
+ 363a00f0fb05 Pull complete 0B
+ 571d921d3454 Pull complete 0B
+ ba4c01c41a64 Pull complete 0B
+ Image postgres:17-alpine Pulled 
+time="2026-10-16T23:39:30+05:30" level=warning msg="buildx Docker CLI plugin not found: falling back to the classic builder. BuildKit-only build features (multi-arch, secrets, ssh, additional contexts, ...) will not be available"
+ Image orbit-backend:local Building 
+ Image orbit-backend:local Building 
+Sending build context to Docker daemon  17.46kB
+
+Step 1/18 : ARG PYTHON_IMAGE=python:3.13-alpine3.24
+Step 2/18 : FROM ${PYTHON_IMAGE} AS builder
+3.13-alpine3.24: Pulling from library/python
+
+
+
+
+
+
+
+6db16a24faac: Download complete 
+
+02bd2e91174a: Download complete 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+02bd2e91174a: Pull complete 
+
+
+
+a14bc3f84281: Download complete 
+
+
+
+8c4fb4b05462: Download complete 
+
+
+
+
+
+
+
+
+4617d3b35936: Download complete 
+
+
+
+
+
+
+
+6db16a24faac: Pull complete 
+
+4617d3b35936: Pull complete 
+Digest: sha256:2d9aefe2fef018a7eb2c13064c89c71929800fd2e5dccdbf52ea5da5bb8d929a
+Status: Downloaded newer image for python:3.13-alpine3.24
+ ---> 2d9aefe2fef0
+Step 3/18 : WORKDIR /build
+ ---> Running in 4c5df37ad407
+ ---> Removed intermediate container 4c5df37ad407
+ ---> 6cb315bcd90d
+Step 4/18 : COPY requirements.txt .
+ ---> d3cda11f25c9
+Step 5/18 : RUN python -m venv /opt/venv     && /opt/venv/bin/pip install --no-cache-dir -r requirements.txt     && /opt/venv/bin/python -m pip uninstall --yes pip
+ ---> Running in ff8821855859
+Collecting fastapi<1,>=0.135 (from -r requirements.txt (line 1))
+  Downloading fastapi-0.143.3-py3-none-any.whl.metadata (26 kB)
+Collecting uvicorn<1,>=0.34 (from -r requirements.txt (line 2))
+  Downloading uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
+Collecting sqlalchemy<2.1,>=2.0.40 (from -r requirements.txt (line 3))
+  Downloading sqlalchemy-2.0.54-cp313-cp313-musllinux_1_2_aarch64.whl.metadata (9.7 kB)
+Collecting psycopg<4,>=3.2.9 (from psycopg[binary]<4,>=3.2.9->-r requirements.txt (line 4))
+  Downloading psycopg-3.3.6-py3-none-any.whl.metadata (4.4 kB)
+Collecting alembic<2,>=1.15 (from -r requirements.txt (line 5))
+  Downloading alembic-1.20.0-py3-none-any.whl.metadata (7.3 kB)
+Collecting prometheus-client<1,>=0.22 (from -r requirements.txt (line 6))
+  Downloading prometheus_client-0.26.0-py3-none-any.whl.metadata (2.1 kB)
+Collecting starlette>=0.46.0 (from fastapi<1,>=0.135->-r requirements.txt (line 1))
+  Downloading starlette-1.8.0-py3-none-any.whl.metadata (6.6 kB)
+Collecting pydantic>=2.9.0 (from fastapi<1,>=0.135->-r requirements.txt (line 1))
+  Downloading pydantic-2.14.1-py3-none-any.whl.metadata (133 kB)
+Collecting typing-extensions>=4.8.0 (from fastapi<1,>=0.135->-r requirements.txt (line 1))
+  Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting typing-inspection>=0.4.2 (from fastapi<1,>=0.135->-r requirements.txt (line 1))
+  Downloading typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+Collecting annotated-doc>=0.0.2 (from fastapi<1,>=0.135->-r requirements.txt (line 1))
+  Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+Collecting opentelemetry-api>=1.44.0 (from fastapi<1,>=0.135->-r requirements.txt (line 1))
+  Downloading opentelemetry_api-1.45.1-py3-none-any.whl.metadata (1.4 kB)
+Collecting click>=7.0 (from uvicorn<1,>=0.34->-r requirements.txt (line 2))
+  Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+Collecting h11>=0.8 (from uvicorn<1,>=0.34->-r requirements.txt (line 2))
+  Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+Collecting greenlet>=1 (from sqlalchemy<2.1,>=2.0.40->-r requirements.txt (line 3))
+  Downloading greenlet-3.5.6-cp313-cp313-musllinux_1_2_aarch64.whl.metadata (3.8 kB)
+Collecting Mako (from alembic<2,>=1.15->-r requirements.txt (line 5))
+  Downloading mako-1.4.3-py3-none-any.whl.metadata (2.9 kB)
+Collecting psycopg-binary==3.3.6 (from psycopg[binary]<4,>=3.2.9->-r requirements.txt (line 4))
+  Downloading psycopg_binary-3.3.6-cp313-cp313-musllinux_1_2_aarch64.whl.metadata (2.7 kB)
+Collecting annotated-types>=0.6.0 (from pydantic>=2.9.0->fastapi<1,>=0.135->-r requirements.txt (line 1))
+  Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+Collecting pydantic-core==2.50.1 (from pydantic>=2.9.0->fastapi<1,>=0.135->-r requirements.txt (line 1))
+  Downloading pydantic_core-2.50.1-cp313-cp313-musllinux_1_1_aarch64.whl.metadata (6.5 kB)
+Collecting anyio<5,>=4.0.0 (from starlette>=0.46.0->fastapi<1,>=0.135->-r requirements.txt (line 1))
+  Downloading anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+Collecting idna>=2.8 (from anyio<5,>=4.0.0->starlette>=0.46.0->fastapi<1,>=0.135->-r requirements.txt (line 1))
+  Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Collecting MarkupSafe>=2.0 (from Mako->alembic<2,>=1.15->-r requirements.txt (line 5))
+  Downloading markupsafe-3.0.4-cp313-cp313-musllinux_1_2_aarch64.whl.metadata (2.7 kB)
+Downloading fastapi-0.143.3-py3-none-any.whl (144 kB)
+Downloading uvicorn-0.54.0-py3-none-any.whl (87 kB)
+Downloading sqlalchemy-2.0.54-cp313-cp313-musllinux_1_2_aarch64.whl (3.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 4.6 MB/s  0:00:00
+Downloading psycopg-3.3.6-py3-none-any.whl (215 kB)
+Downloading alembic-1.20.0-py3-none-any.whl (268 kB)
+Downloading prometheus_client-0.26.0-py3-none-any.whl (64 kB)
+Downloading psycopg_binary-3.3.6-cp313-cp313-musllinux_1_2_aarch64.whl (4.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.6/4.6 MB 3.3 MB/s  0:00:01
+Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+Downloading click-8.5.0-py3-none-any.whl (125 kB)
+Downloading greenlet-3.5.6-cp313-cp313-musllinux_1_2_aarch64.whl (1.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.6/1.6 MB 4.9 MB/s  0:00:00
+Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+Downloading opentelemetry_api-1.45.1-py3-none-any.whl (60 kB)
+Downloading pydantic-2.14.1-py3-none-any.whl (488 kB)
+Downloading pydantic_core-2.50.1-cp313-cp313-musllinux_1_1_aarch64.whl (2.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.3/2.3 MB 3.9 MB/s  0:00:00
+Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+Downloading starlette-1.8.0-py3-none-any.whl (79 kB)
+Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
+Downloading idna-3.20-py3-none-any.whl (69 kB)
+Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+Downloading mako-1.4.3-py3-none-any.whl (80 kB)
+Downloading markupsafe-3.0.4-cp313-cp313-musllinux_1_2_aarch64.whl (23 kB)
+Installing collected packages: typing-extensions, psycopg-binary, psycopg, prometheus-client, MarkupSafe, idna, h11, greenlet, click, annotated-types, annotated-doc, uvicorn, typing-inspection, sqlalchemy, pydantic-core, opentelemetry-api, Mako, anyio, starlette, pydantic, alembic, fastapi
+
+Successfully installed Mako-1.4.3 MarkupSafe-3.0.4 alembic-1.20.0 annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 click-8.5.0 fastapi-0.143.3 greenlet-3.5.6 h11-0.16.0 idna-3.20 opentelemetry-api-1.45.1 prometheus-client-0.26.0 psycopg-3.3.6 psycopg-binary-3.3.6 pydantic-2.14.1 pydantic-core-2.50.1 sqlalchemy-2.0.54 starlette-1.8.0 typing-extensions-4.16.0 typing-inspection-0.4.4 uvicorn-0.54.0
+Found existing installation: pip 26.2.1
+Uninstalling pip-26.2.1:
+  Successfully uninstalled pip-26.2.1
+ ---> Removed intermediate container ff8821855859
+ ---> c4f607d37c62
+Step 6/18 : FROM ${PYTHON_IMAGE} AS runtime
+ ---> 2d9aefe2fef0
+Step 7/18 : RUN apk upgrade --no-cache     && /usr/local/bin/python -m pip uninstall --yes pip     && rm -rf /usr/local/lib/python3.13/ensurepip     && addgroup -S -g 10001 orbit     && adduser -S -D -u 10001 -G orbit orbit
+ ---> Running in 96aaf09a70ee
+(1/2) Upgrading zlib (1.3.2-r0 -> 1.3.2-r1)
+(2/2) Upgrading tzdata (2026d-r0 -> 2026e-r0)
+OK: 11.9 MiB in 29 packages
+Found existing installation: pip 26.2.1
+Uninstalling pip-26.2.1:
+  Successfully uninstalled pip-26.2.1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+ ---> Removed intermediate container 96aaf09a70ee
+ ---> 0d35b262de82
+Step 8/18 : ENV PATH="/opt/venv/bin:$PATH" PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1
+ ---> Running in b26bfa8d82e5
+ ---> Removed intermediate container b26bfa8d82e5
+ ---> 19485f5e8fbb
+Step 9/18 : WORKDIR /app
+ ---> Running in d787db8de307
+ ---> Removed intermediate container d787db8de307
+ ---> 4f0cbe480468
+Step 10/18 : COPY --from=builder /opt/venv /opt/venv
+ ---> ef60ed52cc34
+Step 11/18 : COPY --chown=10001:10001 app ./app
+ ---> e105c8dd1369
+Step 12/18 : COPY --chown=10001:10001 alembic ./alembic
+ ---> 03c6ed0253bd
+Step 13/18 : COPY --chown=10001:10001 alembic.ini .
+ ---> 6be847ce291d
+Step 14/18 : USER 10001:10001
+ ---> Running in 8f9671a7efc5
+ ---> Removed intermediate container 8f9671a7efc5
+ ---> b806243d6057
+Step 15/18 : EXPOSE 8000
+ ---> Running in 994d28f56aff
+ ---> Removed intermediate container 994d28f56aff
+ ---> 6d3086e61e9e
+Step 16/18 : HEALTHCHECK --interval=15s --timeout=3s --start-period=20s --retries=5     CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=2)"
+ ---> Running in a86b9dc7d405
+ ---> Removed intermediate container a86b9dc7d405
+ ---> 643a881312a1
+Step 17/18 : CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]
+ ---> Running in 628e3b1fbb15
+ ---> Removed intermediate container 628e3b1fbb15
+ ---> ec2fd167974d
+Step 18/18 : LABEL com.docker.compose.image.builder=classic
+ ---> Running in b2daaa8e497b
+ ---> Removed intermediate container b2daaa8e497b
+ ---> d59bf293b0f7
+Successfully built d59bf293b0f7
+Successfully tagged orbit-backend:local
+ Image orbit-backend:local Built 
+ Image orbit-backend:local Built 
+ Image orbit-frontend:local Building 
+ Image orbit-frontend:local Building 
+Sending build context to Docker daemon  9.357kB
+
+Step 1/16 : FROM node:24-alpine AS build
+24-alpine: Pulling from library/node
+
+
+e934dbd96dd2: Download complete 
+
+
+
+
+
+
+
+
+90a40d650eea: Download complete 
+
+633ba0417cc7: Download complete 
+
+
+9980a296d082: Download complete 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+96c9e2018765: Download complete 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+633ba0417cc7: Pull complete 
+
+9980a296d082: Pull complete 
+
+96c9e2018765: Pull complete 
+Digest: sha256:44fce696f38ba8c987c4db89954051000bbd05ffd8d8659ba15ed4a8602e937f
+Status: Downloaded newer image for node:24-alpine
+ ---> 44fce696f38b
+Step 2/16 : WORKDIR /build
+ ---> Running in f1a17f822417
+ ---> Removed intermediate container f1a17f822417
+ ---> 81b5e94383aa
+Step 3/16 : COPY package.json package-lock.json ./
+ ---> c119b41b302a
+Step 4/16 : RUN npm ci --ignore-scripts
+ ---> Running in de304aabbb03
+
+up to date, audited 1 package in 356ms
+
+found 0 vulnerabilities
+ ---> Removed intermediate container de304aabbb03
+ ---> 4136bc80d7cf
+Step 5/16 : COPY build.mjs index.html ./
+ ---> 8ac7a1c036cc
+Step 6/16 : COPY src ./src
+ ---> 96b0682f0167
+Step 7/16 : RUN npm run build
+ ---> Running in de640a696e84
+
+> orbit-calculator-ui@1.0.0 build
+> node build.mjs
+
+Orbit production build complete · 329407daff26 · no external browser dependencies
+ ---> Removed intermediate container de640a696e84
+ ---> 48c7b2c3926c
+Step 8/16 : FROM nginxinc/nginx-unprivileged:stable-alpine
+stable-alpine: Pulling from nginxinc/nginx-unprivileged
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+44136fa355b3: Already exists 
+
+7245e7e962cd: Download complete 
+
+
+cbeb9eac48c3: Download complete 
+
+8739bb3679b0: Download complete 
+
+9f96def75a72: Download complete 
+
+a65dae11c66a: Download complete 
+
+69af5d337909: Download complete 
+
+
+
+6cf2b2ffe5b2: Download complete 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0f2528a9c35a: Download complete 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+064033388387: Download complete 
+
+
+
+7245e7e962cd: Pull complete 
+
+8739bb3679b0: Pull complete 
+
+9f96def75a72: Pull complete 
+
+a65dae11c66a: Pull complete 
+
+69af5d337909: Pull complete 
+
+6cf2b2ffe5b2: Pull complete 
+
+
+064033388387: Pull complete 
+
+
+
+
+0f2528a9c35a: Pull complete 
+Digest: sha256:782bb89768cc87b7f95c18b95baa1af250e5d451f26794f59363540161147c01
+Status: Downloaded newer image for nginxinc/nginx-unprivileged:stable-alpine
+ ---> 782bb89768cc
+Step 9/16 : USER root
+ ---> Running in b5c0fd1f8597
+ ---> Removed intermediate container b5c0fd1f8597
+ ---> 95717c676483
+Step 10/16 : RUN apk upgrade --no-cache
+ ---> Running in 2551124f8b5e
+(1/1) Upgrading zlib (1.3.2-r0 -> 1.3.2-r1)
+OK: 51.3 MiB in 70 packages
+ ---> Removed intermediate container 2551124f8b5e
+ ---> 9bd6b922873e
+Step 11/16 : COPY nginx.conf /etc/nginx/conf.d/default.conf
+ ---> 1bec361fe016
+Step 12/16 : COPY --from=build --chown=101:101 /build/dist /usr/share/nginx/html
+ ---> aac19912a588
+Step 13/16 : USER 101:101
+ ---> Running in 13b46d587d75
+ ---> Removed intermediate container 13b46d587d75
+ ---> 18c13a99b30d
+Step 14/16 : EXPOSE 8080
+ ---> Running in 948bdbef2447
+ ---> Removed intermediate container 948bdbef2447
+ ---> 744479832256
+Step 15/16 : HEALTHCHECK --interval=15s --timeout=3s --retries=5     CMD wget -q -O /dev/null http://127.0.0.1:8080/nginx-health || exit 1
+ ---> Running in 7a86c0717db3
+ ---> Removed intermediate container 7a86c0717db3
+ ---> d4607155a347
+Step 16/16 : LABEL com.docker.compose.image.builder=classic
+ ---> Running in f92356214e93
+ ---> Removed intermediate container f92356214e93
+ ---> 813606b373e3
+Successfully built 813606b373e3
+Successfully tagged orbit-frontend:local
+ Image orbit-frontend:local Built 
+ Image orbit-frontend:local Built 
+ Volume orbit_postgres-data Creating 
+ Network orbit_default Creating 
+ Volume orbit_postgres-data Creating 
+ Network orbit_default Creating 
+ Volume orbit_postgres-data Created 
+ Volume orbit_postgres-data Created 
+ Network orbit_default Created 
+ Network orbit_default Created 
+ Container orbit-postgres-1 Creating 
+ Container orbit-postgres-1 Created 
+ Container orbit-backend-1 Creating 
+ Container orbit-backend-1 Created 
+ Container orbit-frontend-1 Creating 
+ Container orbit-frontend-1 Created 
+ Container orbit-postgres-1 Starting 
+ Container orbit-postgres-1 Started 
+ Container orbit-postgres-1 Waiting 
+ Container orbit-postgres-1 Healthy 
+ Container orbit-backend-1 Starting 
+ Container orbit-backend-1 Started 
+ Container orbit-backend-1 Waiting 
+ Container orbit-backend-1 Healthy 
+ Container orbit-frontend-1 Starting 
+ Container orbit-frontend-1 Started 
+ Container orbit-frontend-1 Waiting 
+ Container orbit-postgres-1 Waiting 
+ Container orbit-backend-1 Waiting 
+ Container orbit-postgres-1 Healthy 
+ Container orbit-backend-1 Healthy 
+ Container orbit-frontend-1 Healthy 

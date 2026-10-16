@@ -1,0 +1,14 @@
+{
+  "capturedAt": "2026-10-16T18:12:35.427Z",
+  "base": "http://localhost:3000",
+  "checks": [
+    "live API",
+    "scientific result",
+    "degree mode",
+    "mobile width",
+    "domain error",
+    "label update",
+    "no JS errors"
+  ],
+  "screenshotsUseRealBackend": true
+}
