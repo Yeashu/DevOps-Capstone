@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f5f0">
+  <meta name="description" content="Orbit, a simple scientific calculator with a saved calculation notebook.">
+  <title>Orbit — Scientific Calculator</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%231e583f'/%3E%3Ctext x='20' y='29' text-anchor='middle' fill='white' font-size='30'%3E∑%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./src/styles.css">
+  <script type="module" src="./src/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a href="./" class="brand" aria-label="Orbit home"><span class="brand-mark">∑</span> orbit<span class="brand-dot">.</span></a>
+    <span class="project-tag">SCIENTIFIC CALCULATOR</span>
+    <button class="help-button" id="help-button">Quick guide <span>↗</span></button>
+  </header>
+  <main>
+    <div class="intro">
+      <div><p class="eyebrow">A LITTLE SPACE TO THINK</p><h1>Big ideas. Simple math.</h1><p class="subtitle">From everyday numbers to your next scientific discovery.</p></div>
+      <span class="version-badge">Python powered <span aria-hidden="true">✳</span></span>
+    </div>
+    <div class="workspace">
+      <section class="calculator card" aria-label="Scientific calculator">
+        <div class="card-top"><div class="section-label"><span class="small-orbit">◎</span> Calculator</div><div class="mode-toggle" aria-label="Angle mode"><button id="mode-rad" class="active" aria-pressed="true">RAD</button><button id="mode-deg" aria-pressed="false">DEG</button></div></div>
+        <div class="display">
+          <div class="display-meta"><span id="display-mode">RADIANS</span><span>EXPRESSION</span></div>
+          <label class="sr-only" for="expression">Expression</label>
+          <input id="expression" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="256" placeholder="Type an expression…" aria-describedby="expression-help">
+          <div class="result-line"><span class="equals-mark">=</span><output id="result" aria-live="polite">0</output><button id="copy-result" aria-label="Copy result" title="Copy result">⧉</button></div>
+          <p id="message" role="status">Ready when you are.</p>
+        </div>
+        <div class="keypad" id="keypad">
+          <button class="function" data-insert="sin(">sin</button><button class="function" data-insert="cos(">cos</button><button class="function" data-insert="tan(">tan</button><button class="function" data-insert="(">(</button><button class="function" data-insert=")">)</button>
+          <button class="function" data-insert="ln(">ln</button><button class="function" data-insert="log(">log</button><button class="function" data-insert="sqrt(">√</button><button class="function" data-insert="^">xʸ</button><button class="function" data-insert="factorial(">n!</button>
+          <button class="function" data-insert="pi">π</button><button data-insert="7">7</button><button data-insert="8">8</button><button data-insert="9">9</button><button class="operator" data-insert="/">÷</button>
+          <button class="function" data-insert="e">e</button><button data-insert="4">4</button><button data-insert="5">5</button><button data-insert="6">6</button><button class="operator" data-insert="*">×</button>
+          <button class="function" data-insert="^2">x²</button><button data-insert="1">1</button><button data-insert="2">2</button><button data-insert="3">3</button><button class="operator" data-insert="-">−</button>
+          <button class="clear" id="clear">AC</button><button data-insert="0">0</button><button data-insert=".">.</button><button id="backspace" aria-label="Backspace">⌫</button><button class="operator" data-insert="+">+</button>
+        </div>
+        <div class="calculate-row"><span id="expression-help"><kbd>↵</kbd> Enter to calculate & save</span><button class="calculate-button" id="calculate">Calculate <span>=</span></button></div>
+      </section>
+      <aside class="notebook card" aria-label="Saved calculations">
+        <div class="card-top"><div class="section-label">Your notebook <span class="count" id="history-count">0</span></div><button class="text-button" id="refresh">Refresh ↻</button></div>
+        <div class="notebook-intro"><h2>Keep your train of thought.</h2><p>Your calculations, saved as you go.</p></div>
+        <div id="history" aria-live="polite"><div class="empty-state"><span>⌁</span><h3>A fresh page.</h3><p>Your calculations will appear here.<br>Try one of the examples below.</p></div></div>
+        <div class="notebook-footer"><span class="status-dot" id="status-dot"></span><span id="connection-status">Connecting to your notebook…</span></div>
+      </aside>
+    </div>
+    <section class="examples" aria-label="Example expressions"><span class="example-label">A little inspiration</span><button data-example="sqrt(144) + 2^3">√144 + 2³ <span>↗</span></button><button data-example="sin(pi / 2)">sin(π / 2) <span>↗</span></button><button data-example="log(1000)">log(1000) <span>↗</span></button><button data-example="factorial(5)">5! <span>↗</span></button></section>
+    <footer><span>Made for curious minds.</span><span>Orbit / Scientific Calculator <span class="footer-star">✳</span></span></footer>
+  </main>
+  <dialog id="guide"><div class="guide-top"><span class="eyebrow">QUICK GUIDE</span><button id="close-guide" aria-label="Close guide">×</button></div><h2>A few things to know.</h2><p>Use the keypad or type with your keyboard. Press Enter to calculate and save to your notebook.</p><dl><dt>Arithmetic</dt><dd>+ − * / % and ^ for powers. Use * explicitly: 2*pi.</dd><dt>Scientific functions</dt><dd>sin, cos, tan, asin, acos, atan, sqrt, ln, log (base 10), exp, abs, floor, ceil, factorial.</dd><dt>Constants & angles</dt><dd>pi, e, tau. RAD uses radians; DEG uses degrees. Changing modes clears the result until you calculate again.</dd><dt>Your notebook</dt><dd>Reuse an expression, give it a label, or delete it. Saved in PostgreSQL for this shared classroom demo.</dd><dt>Precision</dt><dd>Real numbers with floating-point precision. Expressions are limited to 256 characters. Factorial supports integers 0–170.</dd></dl></dialog>
+</body>
+</html>
