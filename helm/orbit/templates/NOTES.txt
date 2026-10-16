@@ -1,0 +1,5 @@
+Orbit is installed in {{ .Release.Namespace }}.
+kubectl get pods,svc,ingress -n {{ .Release.Namespace }}
+Ingress host: {{ .Values.ingress.host }}
+Forward the ingress controller, then open http://{{ .Values.ingress.host }}:8080.
+The migration Job normally reaches Completed; application pods should be Running.

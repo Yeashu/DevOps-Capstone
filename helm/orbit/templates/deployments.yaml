@@ -1,0 +1,130 @@
+{{- range $component := list "backend" "frontend" }}
+{{- $settings := index $.Values $component }}
+{{- $isBackend := eq $component "backend" }}
+{{- $port := ternary 8000 8080 $isBackend }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $.Release.Name }}-{{ $component }}
+spec:
+  replicas: {{ $settings.replicas }}
+  revisionHistoryLimit: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: {{ $.Release.Name }}
+      component: {{ $component }}
+  template:
+    metadata:
+      labels:
+        app: {{ $.Release.Name }}
+        component: {{ $component }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") $ | sha256sum }}
+    spec:
+      automountServiceAccountToken: false
+      {{- with $.Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: {{ ternary 10001 101 $isBackend }}
+        runAsGroup: {{ ternary 10001 101 $isBackend }}
+        fsGroup: {{ ternary 10001 101 $isBackend }}
+        seccompProfile:
+          type: RuntimeDefault
+      {{- if $isBackend }}
+      initContainers:
+        - name: wait-for-migration
+          image: '{{ $settings.repository }}:{{ $settings.tag }}'
+          imagePullPolicy: {{ $.Values.imagePullPolicy }}
+          command:
+            - python
+            - -c
+            - |
+              import time
+              from app.database import engine
+              from sqlalchemy import text
+              for attempt in range(180):
+                  try:
+                      with engine.connect() as c:
+                          assert c.execute(text('SELECT version_num FROM alembic_version')).scalar() == '0001'
+                      break
+                  except Exception:
+                      time.sleep(2)
+              else:
+                  raise SystemExit('Migration did not become ready')
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $.Values.database.existingSecret }}
+                  key: DATABASE_URL
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: [ALL]
+      {{- end }}
+      containers:
+        - name: {{ $component }}
+          image: '{{ $settings.repository }}:{{ $settings.tag }}'
+          imagePullPolicy: {{ $.Values.imagePullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ $port }}
+          {{- if $isBackend }}
+          envFrom:
+            - configMapRef:
+                name: {{ $.Release.Name }}-config
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $.Values.database.existingSecret }}
+                  key: DATABASE_URL
+          {{- else }}
+          volumeMounts:
+            - name: nginx-config
+              mountPath: /etc/nginx/conf.d/default.conf
+              subPath: default.conf
+          {{- end }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: [ALL]
+          resources:
+            requests:
+              cpu: {{ ternary "100m" "50m" $isBackend }}
+              memory: {{ ternary "128Mi" "32Mi" $isBackend }}
+            limits:
+              cpu: '500m'
+              memory: {{ ternary "256Mi" "128Mi" $isBackend }}
+          startupProbe:
+            httpGet:
+              path: {{ ternary "/health" "/nginx-health" $isBackend }}
+              port: http
+            failureThreshold: 30
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: {{ ternary "/health" "/nginx-health" $isBackend }}
+              port: http
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: {{ ternary "/ready" "/nginx-health" $isBackend }}
+              port: http
+            periodSeconds: 5
+      {{- if not $isBackend }}
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: {{ $.Release.Name }}-nginx
+      {{- end }}
+{{- end }}

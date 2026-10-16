@@ -1,0 +1,26 @@
+backend:
+  repository: orbit-backend
+  tag: local
+  replicas: 2
+frontend:
+  repository: orbit-frontend
+  tag: local
+  replicas: 2
+imagePullPolicy: IfNotPresent
+imagePullSecrets: []
+database:
+  image: postgres:17-alpine
+  existingSecret: orbit-database
+  persistence:
+    enabled: true
+    size: 2Gi
+    storageClass: ''
+ingress:
+  enabled: true
+  className: nginx
+  host: orbit.localhost
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 4
+  targetCPU: 70
