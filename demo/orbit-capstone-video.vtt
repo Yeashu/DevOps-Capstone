@@ -1,0 +1,118 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:06.333
+Scientific calculations saved to PostgreSQL
+
+2
+00:00:06.333 --> 00:00:12.667
+Degree mode: sin(30) = 0.5
+
+3
+00:00:12.667 --> 00:00:17.867
+69 tests passed · isolated test databases
+
+4
+00:00:17.867 --> 00:00:22.333
+Meaningful commits · secrets excluded
+
+5
+00:00:22.333 --> 00:00:27.667
+Three healthy services
+
+6
+00:00:27.667 --> 00:00:33.133
+Non-root containers · multi-stage frontend build
+
+7
+00:00:33.133 --> 00:00:40.200
+Tests → build → scan → publish
+
+8
+00:00:40.200 --> 00:00:45.400
+Backend image tagged with commit SHA
+
+9
+00:00:45.400 --> 00:00:50.333
+Frontend image tagged with commit SHA
+
+10
+00:00:50.333 --> 00:00:54.267
+Backend: no HIGH or CRITICAL findings
+
+11
+00:00:54.267 --> 00:00:58.600
+Frontend: no HIGH or CRITICAL findings
+
+12
+00:00:58.600 --> 00:01:03.533
+Plan: 20 resources
+
+13
+00:01:03.533 --> 00:01:09.133
+Apply: 20 resources created
+
+14
+00:01:09.133 --> 00:01:13.933
+Project VPC · Mumbai region
+
+15
+00:01:13.933 --> 00:01:17.333
+Two public subnets · separate availability zones
+
+16
+00:01:17.333 --> 00:01:20.333
+EKS status: Active
+
+17
+00:01:20.333 --> 00:01:24.533
+Two Ready worker nodes
+
+18
+00:01:24.533 --> 00:01:29.733
+Application and monitoring managed by Helm
+
+19
+00:01:29.733 --> 00:01:34.533
+Backend ×2 · Frontend ×2 · PostgreSQL
+
+20
+00:01:34.533 --> 00:01:39.067
+Internal ClusterIP Services
+
+21
+00:01:39.067 --> 00:01:43.600
+Ingress: / → frontend · /api → backend
+
+22
+00:01:43.600 --> 00:01:48.267
+Prometheus metrics exposed
+
+23
+00:01:48.267 --> 00:01:52.200
+Both backend targets UP
+
+24
+00:01:52.200 --> 00:01:57.067
+Request rate · latency · error rate
+
+25
+00:01:57.067 --> 00:02:02.333
+Helm rollout to published commit
+
+26
+00:02:02.333 --> 00:02:08.067
+Notebook persists after deployment
+
+27
+00:02:08.067 --> 00:02:15.200
+Terraform destroy completed
+
+28
+00:02:15.200 --> 00:02:21.800
+No project AWS resources remaining
+
+29
+00:02:21.800 --> 00:02:28.667
+Temporary credentials removed
+

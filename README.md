@@ -4,6 +4,8 @@ A simple scientific calculator built in **Python with FastAPI**, with a responsi
 
 Repository: **https://github.com/Yeashu/DevOps-Capstone**
 
+Mandatory submission files: [demo/](demo/) contains the MP4 video and PPT/PDF slide deck.
+
 Jump to the [recorded video and all 75 evidence images](#evidence-and-presentation).
 
 **[Green CI run](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38959438459):** all 69 backend tests, frontend checks, the three-service Compose/browser demo, Terraform/Helm validation, both strict Trivy image scans, SHA-tagged GHCR publishing, and real Helm/Ingress/Prometheus/Grafana verification on Kind passed. Screenshots and original logs are included. Real AWS provisioning also passed: VPC, two public subnets, active EKS, two Ready workers, Helm application deployment and live Prometheus/Grafana on EKS are verified. Cloud Console, application and dashboard captures are included. **AWS teardown is complete** and an independent audit confirms no remaining project cluster, VPC, worker instances, database/root volumes, network interfaces or load balancers. The local demo has been stopped and temporary build files removed; restart it with `docker compose up --build`. See [validation results](docs/VALIDATION.md), [evidence](screenshots.md), [recorded EKS rollout](docs/recordings/orbit-eks-rollout.mp4) and [the submission checklist](SUBMISSION.md).
@@ -16,7 +18,9 @@ https://github.com/user-attachments/assets/7b1f9094-c3e5-47e2-8b87-f6ab246e94d6
 
 **[Play the 2:29 video](https://yeashu.github.io/DevOps-Capstone/recordings/?v=silent149r2)** · **[Jump to AWS Console evidence at 01:09](https://yeashu.github.io/DevOps-Capstone/recordings/?v=silent149r2&t=69.133)**
 
-[Download full MP4](docs/recordings/orbit-capstone-walkthrough.mp4) · [Short subtitles](docs/recordings/orbit-capstone-walkthrough.vtt) · [Original 92-second live rollout](docs/recordings/orbit-eks-rollout.mp4) · [Presentation runbook](DEMO.md)
+[Download submission MP4](demo/orbit-capstone-video.mp4) · [Short subtitles](docs/recordings/orbit-capstone-walkthrough.vtt) · [Original 92-second live rollout](docs/recordings/orbit-eks-rollout.mp4) · [Presentation runbook](DEMO.md)
+
+[PowerPoint slides](demo/orbit-capstone-slides.pptx) · [PDF slides](demo/orbit-capstone-slides.pdf) · [Timed voice-over script](demo/voiceover-script.md) · [Slide-by-slide speaking notes](demo/presentation-notes.md)
 
 The **2-minute 29-second silent walkthrough covers all ten modules**, including Terraform plan/apply, the actual AWS VPC and subnets, active EKS cluster and Ready workers, Kubernetes, Prometheus, Grafana, and completed teardown. It uses brief evidence views, roughly 3–7 seconds each, plus clips from the original live demo. Short on-screen labels replace narration; the video has no audio track. AWS resources were destroyed after evidence collection.
 
