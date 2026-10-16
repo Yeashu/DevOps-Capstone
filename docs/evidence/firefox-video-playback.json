@@ -5,10 +5,12 @@
     "presentedFrames": 102
   },
   "aws": {
-    "mediaTime": 69.203,
+    "mediaTime": 69.133,
     "presentedFrames": 114
   },
-  "checkedAt": "2026-10-16T19:57:48.615999+00:00",
-  "environment": "Playwright 1.64.1 Firefox in isolated Linux container, locally served final MP4",
-  "durationSeconds": 148.93737
+  "audio": false,
+  "checkedAt": "2026-10-16T20:02:10.229028+00:00",
+  "environment": "Playwright 1.64.1 Firefox in isolated Linux container, locally served final silent MP4",
+  "durationSeconds": 148.68,
+  "audioStreams": 0
 }

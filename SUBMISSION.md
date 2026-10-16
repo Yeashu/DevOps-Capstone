@@ -16,7 +16,7 @@ The recorded EKS rollout uses [green run 38947611595](https://github.com/Yeashu/
 | M7 · 15 | Real 20-resource plan/apply; Mumbai VPC, two public subnets, EKS and two Ready workers; Console captures; destroy and independent cleanup audit | Complete |
 | M8 · 15 | Actual Helm deployments on Kind and EKS; two replicas per application tier; ClusterIP Services; Ingress, pods, Helm and browser captures | Complete |
 | M9 · 10 | Real metrics, both API targets UP, Prometheus/Grafana installed on Kind and EKS, populated dashboard captures | Complete |
-| M10 · 5 | README, architecture, presentation runbook, full narrated evidence walkthrough plus the original captioned EKS rollout recording | Recording prepared; present/explain at the scheduled session if required |
+| M10 · 5 | README, architecture, presentation runbook, full silent evidence walkthrough plus the original captioned EKS rollout recording | Recording prepared; present/explain at the scheduled session if required |
 
 - [x] Public repository URL and meaningful commit history
 - [x] 69 passing backend tests and frontend test/build evidence

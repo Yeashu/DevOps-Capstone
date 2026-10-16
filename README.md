@@ -12,15 +12,15 @@ Jump to the [recorded video and all 75 evidence images](#evidence-and-presentati
 
 ### Play the full capstone walkthrough
 
-https://github.com/user-attachments/assets/47b02082-23fe-4a16-9df8-e2926443279e
+https://github.com/user-attachments/assets/7b1f9094-c3e5-47e2-8b87-f6ab246e94d6
 
-**[Play the 2:29 video](https://yeashu.github.io/DevOps-Capstone/recordings/?v=short149r2)** · **[Jump to AWS Console evidence at 01:09](https://yeashu.github.io/DevOps-Capstone/recordings/?v=short149r2&t=69.203)**
+**[Play the 2:29 video](https://yeashu.github.io/DevOps-Capstone/recordings/?v=silent149r1)** · **[Jump to AWS Console evidence at 01:09](https://yeashu.github.io/DevOps-Capstone/recordings/?v=silent149r1&t=69.133)**
 
-[Download full MP4](docs/recordings/orbit-capstone-walkthrough.mp4) · [Full captions](docs/recordings/orbit-capstone-walkthrough.vtt) · [Original 92-second live rollout](docs/recordings/orbit-eks-rollout.mp4) · [Presentation runbook](DEMO.md)
+[Download full MP4](docs/recordings/orbit-capstone-walkthrough.mp4) · [Short subtitles](docs/recordings/orbit-capstone-walkthrough.vtt) · [Original 92-second live rollout](docs/recordings/orbit-eks-rollout.mp4) · [Presentation runbook](DEMO.md)
 
-The **2-minute 29-second narrated walkthrough covers all ten modules**, including Terraform plan/apply, the actual AWS VPC and subnets, active EKS cluster and Ready workers, Kubernetes, Prometheus, Grafana, and completed teardown. It uses brief evidence views, roughly 3–7 seconds each, plus clips from the original live demo. Captured scenes and live-recording excerpts are labelled; narration is synthetic. AWS resources were destroyed after evidence collection.
+The **2-minute 29-second silent walkthrough covers all ten modules**, including Terraform plan/apply, the actual AWS VPC and subnets, active EKS cluster and Ready workers, Kubernetes, Prometheus, Grafana, and completed teardown. It uses brief evidence views, roughly 3–7 seconds each, plus clips from the original live demo. Short on-screen labels replace narration; the video has no audio track. AWS resources were destroyed after evidence collection.
 
-If the inline attachment reports “Bad Gateway,” use the separate video player above or download the MP4. The player has clickable chapters and English captions. For local playback, run `python3 -m http.server 8765 --bind 127.0.0.1` and open http://localhost:8765/docs/recordings/.
+If the inline attachment reports “Bad Gateway,” use the separate video player above or download the MP4. The player has clickable chapters and brief on-screen subtitles. For local playback, run `python3 -m http.server 8765 --bind 127.0.0.1` and open http://localhost:8765/docs/recordings/.
 
 Each module below has a main image followed by links to its other images. All **75 evidence images** are included. Browser screenshots are actual captures; command-output images are labelled renders of actual logs. The cloud resources were destroyed after capture. Git metadata uses the owner's assigned timestamp; actual run and capture timestamps are retained.
 
