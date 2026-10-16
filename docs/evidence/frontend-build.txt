@@ -1,0 +1,25 @@
+
+up to date, audited 1 package in 160ms
+
+found 0 vulnerabilities
+
+> orbit-calculator-ui@1.0.0 test
+> node --test tests/*.test.mjs
+
+✔ results show useful precision and reject nonfinite values (0.287208ms)
+✔ API returns actionable backend errors (9.174917ms)
+✔ delete handles empty 204 response (0.079833ms)
+✔ proxy HTML errors produce a readable fallback (0.277625ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 96.584542
+
+> orbit-calculator-ui@1.0.0 build
+> node build.mjs
+
+Orbit production build complete · 329407daff26 · no external browser dependencies

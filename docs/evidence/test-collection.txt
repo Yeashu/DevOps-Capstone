@@ -1,0 +1,71 @@
+tests/test_api.py::test_health_and_migrated_readiness
+tests/test_api.py::test_create_calculation
+tests/test_api.py::test_list_and_read_calculation
+tests/test_api.py::test_update_label_preserves_result
+tests/test_api.py::test_delete_calculation
+tests/test_api.py::test_preview_does_not_save
+tests/test_api.py::test_invalid_input_is_not_persisted[payload0]
+tests/test_api.py::test_invalid_input_is_not_persisted[payload1]
+tests/test_api.py::test_invalid_input_is_not_persisted[payload2]
+tests/test_api.py::test_invalid_input_is_not_persisted[payload3]
+tests/test_api.py::test_invalid_input_is_not_persisted[payload4]
+tests/test_api.py::test_invalid_input_is_not_persisted[payload5]
+tests/test_api.py::test_invalid_input_is_not_persisted[payload6]
+tests/test_api.py::test_pagination_order_and_validation
+tests/test_api.py::test_missing_records
+tests/test_api.py::test_metrics_include_request_counter_and_latency
+tests/test_api.py::test_readiness_fails_when_database_is_unavailable
+tests/test_calculator.py::test_scientific_operations[2 + 3 * 4-14]
+tests/test_calculator.py::test_scientific_operations[(2 + 3) * 4-20]
+tests/test_calculator.py::test_scientific_operations[2^3^2-512]
+tests/test_calculator.py::test_scientific_operations[-2^2--4]
+tests/test_calculator.py::test_scientific_operations[sqrt(144)-12]
+tests/test_calculator.py::test_scientific_operations[ln(e)-1]
+tests/test_calculator.py::test_scientific_operations[log(1000)-3]
+tests/test_calculator.py::test_scientific_operations[sin(pi/2)-1]
+tests/test_calculator.py::test_scientific_operations[cos(pi)--1]
+tests/test_calculator.py::test_scientific_operations[factorial(5)-120]
+tests/test_calculator.py::test_scientific_operations[abs(-7) + floor(2.9)-9]
+tests/test_calculator.py::test_scientific_operations[ceil(2.1)-3]
+tests/test_calculator.py::test_scientific_operations[10 % 3-1]
+tests/test_calculator.py::test_scientific_operations[2 \xd7 3 + 8 \xf7 4-8]
+tests/test_calculator.py::test_scientific_operations[\u03c0-3.141592653589793]
+tests/test_calculator.py::test_scientific_operations[tau-6.283185307179586]
+tests/test_calculator.py::test_scientific_operations[exp(0)-1]
+tests/test_calculator.py::test_scientific_operations[atan(1)-0.7853981633974483]
+tests/test_calculator.py::test_scientific_operations[factorial(170)-7.257415615307999e+306]
+tests/test_calculator.py::test_degrees[sin(30)-0.5]
+tests/test_calculator.py::test_degrees[cos(60)-0.5]
+tests/test_calculator.py::test_degrees[tan(45)-1]
+tests/test_calculator.py::test_degrees[asin(0.5)-30]
+tests/test_calculator.py::test_degrees[acos(0.5)-60]
+tests/test_calculator.py::test_degrees[atan(1)-45]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[   ]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[1/0]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[sqrt(-1)]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[ln(0)]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[(-1)^0.5]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[1e309]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[2^1001]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[factorial(171)]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[factorial(1.5)]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[factorial(-1)]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[__import__('os')]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[(1).__class__]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[[1,2]]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[True]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[sum(1)]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[sqrt(x=4)]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[sin(1, 2)]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[lambda: 1]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[1;2]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions['hello']
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[2(3)]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[++++++++++++++++++++++++++++++++++++++++1]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[1e308 * 10]
+tests/test_calculator.py::test_rejects_unsafe_or_undefined_expressions[2 ** (2 ** 100)]
+tests/test_calculator.py::test_undefined_tangent_and_angle_mode
+
+69 tests collected in 0.01s

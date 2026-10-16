@@ -1,0 +1,33 @@
+Python syntax: backend/app/models.py
+Python syntax: backend/app/database.py
+Python syntax: backend/app/__init__.py
+Python syntax: backend/app/schemas.py
+Python syntax: backend/app/calculator.py
+Python syntax: backend/app/main.py
+Python syntax: backend/app/routes.py
+Python syntax: backend/tests/conftest.py
+Python syntax: backend/tests/test_calculator.py
+Python syntax: backend/tests/test_api.py
+Python syntax: backend/alembic/env.py
+Python syntax: backend/alembic/versions/0001_calculations.py
+Python syntax: scripts/generate-traffic.py
+Python syntax: scripts/render-transcript.py
+Python syntax: scripts/create-db-secret.py
+YAML parsed: docker-compose.yml
+YAML parsed: .github/workflows/ci.yml
+YAML parsed: k8s/namespace.yaml
+YAML parsed: k8s/storageclass-eks.yaml
+YAML parsed: monitoring/prometheus-values.yaml
+YAML parsed: monitoring/grafana-values.yaml
+YAML parsed: gitops/values.yaml
+YAML parsed: gitops/application.yaml
+YAML parsed: helm/orbit/values.yaml
+YAML parsed: helm/orbit/Chart.yaml
+Grafana dashboard JSON parsed
+PASS: docker compose config --quiet
+PASS: terraform -chdir=terraform fmt -check
+PASS: node --check scripts/capture-browser.mjs
+Bash syntax: scripts/install-monitoring.sh
+Bash syntax: scripts/capture-evidence.sh
+Bash syntax: scripts/capture-cluster.sh
+Bash syntax: scripts/deploy-local.sh

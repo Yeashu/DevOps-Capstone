@@ -24,7 +24,7 @@ try {
     assert.equal(saved.status(), 201);
     created.push((await saved.json()).id);
     await page.getByText('Calculated & saved to your notebook.').waitFor();
-    await page.locator('#calculate').isEnabled();
+    await page.waitForFunction(() => !document.querySelector('#calculate').disabled);
   }
   assert.equal(await page.locator('#result').textContent(), '20');
   await page.screenshot({ path: 'docs/screenshots/01-application-desktop.png', fullPage: true });
@@ -39,6 +39,7 @@ try {
   const degreeRow = await (await degreeResponse).json();
   created.push(degreeRow.id);
   await page.getByText('Calculated & saved to your notebook.').waitFor();
+  await page.waitForFunction(() => !document.querySelector('#calculate').disabled);
   assert.equal(await page.locator('#result').textContent(), '0.5');
   await page.screenshot({ path: 'docs/screenshots/03-degrees.png', fullPage: true });
   await page.locator('#expression').fill('1/0');
@@ -65,6 +66,18 @@ try {
   }
   if (process.env.GRAFANA_URL && process.env.GRAFANA_PASSWORD) {
     const url = process.env.GRAFANA_URL;
+    const authorization = `Basic ${Buffer.from(`admin:${process.env.GRAFANA_PASSWORD}`).toString('base64')}`;
+    const metrics = await context.request.post(`${url}/api/ds/query`, {
+      headers: { Authorization: authorization },
+      data: { from: String(Date.now() - 300000), to: String(Date.now()), queries: [{
+        refId: 'A', datasource: { type: 'prometheus', uid: 'prometheus' },
+        expr: 'sum(orbit_http_requests_total{job="orbit-api"})', instant: true,
+        intervalMs: 10000, maxDataPoints: 100,
+      }] },
+    });
+    assert.equal(metrics.status(), 200, 'Grafana datasource query failed');
+    const frames = (await metrics.json()).results?.A?.frames || [];
+    assert.ok(frames.some((frame) => frame.data?.values?.some((values) => values.some((value) => typeof value === 'number' && value > 0))), 'Grafana must have real metric values before capture');
     await page.goto(`${url}/login`);
     await page.getByRole('textbox', { name: /email or username/i }).fill('admin');
     await page.locator('input[type="password"]').fill(process.env.GRAFANA_PASSWORD);
