@@ -1,0 +1,28 @@
+Actual resumed Terraform destroy output excerpt. Plan and repetitive progress omitted.
+Original lifecycle provisioned 20 resources; the first pass removed add-ons and AWS finished deleting the worker group after that CLI process was interrupted.
+The resumed destroy reconciled state and removed all remaining managed resources. See full logs and independent AWS cleanup audit.
+
+aws_eks_cluster.main: Destroying... [id=orbit-capstone]
+aws_route_table_association.public[1]: Destruction complete after 1s
+aws_route_table_association.public[0]: Destruction complete after 1s
+aws_route_table.public: Destroying... [id=rtb-0be1455cc55bd9266]
+aws_route_table.public: Destruction complete after 0s
+aws_internet_gateway.main: Destroying... [id=igw-0152cecee69e2508a]
+aws_iam_role_policy_attachment.nodes["AmazonEKSWorkerNodePolicy"]: Destruction complete after 2s
+aws_iam_role_policy_attachment.nodes["AmazonEC2ContainerRegistryReadOnly"]: Destruction complete after 2s
+aws_iam_role_policy_attachment.nodes["AmazonEKS_CNI_Policy"]: Destruction complete after 2s
+aws_iam_role.nodes: Destroying... [id=orbit-capstone-nodes]
+aws_internet_gateway.main: Destruction complete after 1s
+aws_iam_role.nodes: Destruction complete after 1s
+aws_eks_cluster.main: Destruction complete after 3m7s
+aws_iam_role_policy_attachment.cluster: Destroying... [id=orbit-capstone-cluster/arn:aws:iam::aws:policy/AmazonEKSClusterPolicy]
+aws_subnet.public[0]: Destroying... [id=subnet-0e70e0cf94e8a5731]
+aws_subnet.public[1]: Destroying... [id=subnet-01ae13c30f9d46046]
+aws_subnet.public[1]: Destruction complete after 2s
+aws_subnet.public[0]: Destruction complete after 2s
+aws_vpc.main: Destroying... [id=vpc-0f918dcce080d2a5f]
+aws_iam_role_policy_attachment.cluster: Destruction complete after 3s
+aws_iam_role.cluster: Destroying... [id=orbit-capstone-cluster]
+aws_vpc.main: Destruction complete after 1s
+aws_iam_role.cluster: Destruction complete after 1s
+Destroy complete! Resources: 14 destroyed.

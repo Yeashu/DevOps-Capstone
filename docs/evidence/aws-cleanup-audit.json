@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-10-16T19:04:41.321195+00:00",
+  "region": "ap-south-1",
+  "project": "orbit-capstone",
+  "checks": {
+    "eks_cluster_absent": true,
+    "vpc_absent": true,
+    "no_active_worker_instances": true,
+    "database_ebs_volume_absent": true,
+    "worker_root_volumes_absent": true,
+    "no_remaining_network_interfaces": true,
+    "no_application_load_balancer": true,
+    "no_classic_load_balancer": true,
+    "terraform_state_empty": true
+  }
+}

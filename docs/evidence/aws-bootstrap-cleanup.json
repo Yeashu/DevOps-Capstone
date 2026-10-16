@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-10-16T19:05:17.431695+00:00",
+  "checks": {
+    "bootstrap_user_and_access_key_removed": true,
+    "operator_role_removed": true,
+    "original_default_profile_preserved": true
+  }
+}

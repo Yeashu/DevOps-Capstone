@@ -1,89 +1,23 @@
-# Evidence index
+# Submission evidence
 
-Actual browser captures and labelled renders of real command output are committed under `docs/screenshots/`; source logs are retained under `docs/evidence/`. No screenshots or successful command results are fabricated. Transcript PNGs are not original terminal-window screenshots.
+Browser PNGs are actual captures of Orbit, GitHub, AWS, Prometheus and Grafana. Command-output PNGs are explicitly labelled rendered transcripts of real source logs retained in `docs/evidence/`; they are not native terminal-window screenshots. Capture and hosted run timestamps are actual. Owner-assigned Git timestamps do not establish an earlier completion time.
 
-Verified evidence includes the working local Compose UI, all 69 pytest cases, healthy services, non-root IDs, backend metrics, both clean Trivy reports, a deployed Helm release on Kind, pods/Services/Ingress and two Prometheus targets UP. The non-empty AWS Terraform plan is included as source text and numbered PNGs. The final Grafana capture and green run are included. AWS apply, EKS application/monitoring verification and Console captures are complete; cleanup is pending; see [SUBMISSION.md](SUBMISSION.md) for remaining items.
+| Module | Main evidence |
+| --- | --- |
+| M1, M4 | [Desktop application](docs/screenshots/01-application-desktop.png), [mobile](docs/screenshots/02-application-mobile.png), [degrees](docs/screenshots/03-degrees.png), [domain error](docs/screenshots/04-domain-error.png) |
+| M2 | [Pytest 1](docs/screenshots/pytest-01.png), [2](docs/screenshots/pytest-02.png), [3](docs/screenshots/pytest-03.png); [hosted PostgreSQL source log](docs/evidence/hosted-pytest.txt) |
+| M3 | [GitHub commit history](docs/screenshots/github-commit-history.png), [history credential-pattern check](docs/evidence/git-history-secret-check.json) |
+| M4 | [Healthy services](docs/screenshots/docker-compose-status.png), [non-root users](docs/screenshots/non-root-users.png) |
+| M5 | [Green pipeline](docs/screenshots/github-actions-success.png), [backend SHA tags](docs/screenshots/ghcr-backend.png), [frontend SHA tags](docs/screenshots/ghcr-frontend.png) |
+| M6 | [Backend scan 1](docs/screenshots/trivy-backend-01.png), [2](docs/screenshots/trivy-backend-02.png), [frontend scan](docs/screenshots/trivy-frontend.png), [explanation](security/README.md) |
+| M7 | [Terraform plan source](docs/evidence/terraform-plan.txt), numbered `terraform-plan-*.png`, [apply completion](docs/screenshots/terraform-apply-03.png), [VPC Console](docs/screenshots/aws-vpc-console.png), [two subnets](docs/screenshots/aws-subnets-console.png), [active EKS](docs/screenshots/aws-eks-console.png), [two Ready workers](docs/screenshots/aws-eks-workers-console.png) |
+| M7 cleanup | [Actual destroy completion](docs/screenshots/terraform-destroy.png), [full resumed log](docs/evidence/terraform-destroy.txt), [first interrupted attempt](docs/evidence/terraform-destroy-first-attempt.txt), [independent AWS audit](docs/evidence/aws-cleanup-audit.json), [audit transcript](docs/screenshots/aws-cleanup-audit.png) |
+| M8 on EKS | [Pods](docs/screenshots/eks-pods.png), [nodes](docs/screenshots/eks-nodes.png), [Services](docs/screenshots/eks-services.png), [Helm](docs/screenshots/eks-helm-list.png), [Ingress](docs/screenshots/eks-ingress.png), [Bound PVC](docs/screenshots/eks-pvc.png), [browser through Ingress](docs/screenshots/eks-application-desktop.png) |
+| M9 on EKS | [Metrics source](docs/evidence/eks-metrics.txt), numbered `eks-metrics-*.png`, [Prometheus targets UP](docs/screenshots/eks-prometheus-targets.png), [populated Grafana](docs/screenshots/eks-grafana-dashboard.png) |
+| M10 | [92-second actual rollout](docs/recordings/orbit-eks-rollout.webm), [captions](docs/recordings/orbit-eks-rollout.vtt), [player](docs/recordings/index.html), [updated SHA](docs/screenshots/eks-updated-version.png), [notebook after rollout](docs/screenshots/eks-after-rollout.png), [runbook](DEMO.md) |
 
-- [Recorded EKS rollout](docs/recordings/orbit-eks-rollout.webm) · [captioned player](docs/recordings/index.html)
-- [Updated EKS SHA](docs/screenshots/eks-updated-version.png)
-- [Notebook after rollout](docs/screenshots/eks-after-rollout.png)
-- [AWS VPC Console](docs/screenshots/aws-vpc-console.png)
-- [Two public subnets](docs/screenshots/aws-subnets-console.png)
-- [Active EKS Console](docs/screenshots/aws-eks-console.png)
-- [Two Ready workers in AWS Console](docs/screenshots/aws-eks-workers-console.png)
-- [Application on EKS through Ingress](docs/screenshots/eks-application-desktop.png)
-- [EKS Prometheus targets](docs/screenshots/eks-prometheus-targets.png)
-- [EKS Grafana dashboard](docs/screenshots/eks-grafana-dashboard.png)
-- [Green Actions run](docs/screenshots/github-actions-success.png)
-- [Populated Grafana dashboard](docs/screenshots/16-grafana-dashboard.png)
-- [Application through Ingress](docs/screenshots/ingress-application.png)
-- [Desktop calculator](docs/screenshots/01-application-desktop.png)
-- [Mobile calculator](docs/screenshots/02-application-mobile.png)
-- [Passing tests](docs/screenshots/pytest-03.png)
-- [Healthy Compose services](docs/screenshots/docker-compose-status.png)
-- [Non-root users](docs/screenshots/non-root-users.png)
-- [Running Kubernetes pods](docs/screenshots/kubernetes-pods.png)
-- [ClusterIP Services](docs/screenshots/kubernetes-services.png)
-- [Helm release](docs/screenshots/helm-list.png)
-- [Prometheus targets](docs/screenshots/15-prometheus-targets.png)
-- [Backend clean scan](docs/screenshots/trivy-backend-02.png)
-- [Frontend clean scan](docs/screenshots/trivy-frontend.png)
-- [Backend GHCR SHA tags](docs/screenshots/ghcr-backend.png)
-- [Frontend GHCR SHA tags](docs/screenshots/ghcr-frontend.png)
-- [GitHub commit history](docs/screenshots/github-commit-history.png)
-- [Terraform plan source](docs/evidence/terraform-plan.txt)
+Separate `kubernetes-*`, `helm-list.png`, `15-prometheus-targets.png`, `16-grafana-dashboard.png` and `ingress-application.png` show the successful disposable **Kind** demonstration in [run 38946260879](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38946260879). The explicitly named `eks-*` and `aws-*` evidence shows the real AWS lifecycle. A Completed migration Job is expected; the five application pods are Running/Ready.
 
-The Kind cluster was created by [run 38944998841](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38944998841). Its final Grafana screenshot failed after the live datasource query passed. [Run 38946260879](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38946260879) corrects that selector. Kind evidence is not described as AWS EKS evidence.
+The recording shows an authenticated **local Helm rollout after CI passed**; the optional hosted persistent EKS deployment job was disabled. It is not described as an automatic hosted EKS deployment.
 
-## Required live captures
-
-Run from the root after `.venv` has the backend requirements and Pillow installed:
-
-```bash
-./scripts/capture-evidence.sh
-./scripts/capture-cluster.sh
-```
-
-The first command builds and starts Compose, executes the full tests, captures non-root IDs and `/metrics`, and runs Playwright on the real API-backed UI. The second reads your current cluster, so check `kubectl config current-context` first. The helpers retain source text and label transcript renders. For strict terminal screenshot requirements, also capture the actual terminal window displaying those commands using your operating system screenshot shortcut.
-
-| Module | Capture | Filename / source |
-| --- | --- | --- |
-| M1, M4 | Desktop UI through Compose | `01-application-desktop.png` |
-| M1 | Responsive mobile UI | `02-application-mobile.png` |
-| M1 | Degree calculation and invalid-domain handling | `03-degrees.png`, `04-domain-error.png` |
-| M2 | **Full** passing `pytest -v`, including API cases | `pytest-*.png` plus terminal capture |
-| M3 | Public repository and ≥10 commits | `git-history.png` plus GitHub commits page |
-| M4 | Three healthy Compose services / non-root IDs | `docker-compose-status.png`, `non-root-users.png` |
-| M5 | Green Actions workflow | GitHub browser capture + actual run URL in `SUBMISSION.md` |
-| M5 | Both GHCR image package pages with full SHA tags | Manual package page captures |
-| M6 | Both real Trivy image scan steps | Actions browser captures + downloaded report artifacts |
-| M7 | Terraform non-empty plan | `terraform-plan-*.png` + redacted source plan text |
-| M7 | AWS Console region, VPC, two subnets, EKS/worker group | Manual authenticated AWS Console captures |
-| M7 | Actual destroy completion | `terraform-destroy.png` + completion log |
-| M8 | Pods, Services, Helm release | `kubernetes-pods.png`, `kubernetes-services.png`, `helm-list.png` |
-| M8 | UI through Ingress | `ingress-application.png` |
-| M9 | Real backend `/metrics` | `metrics.png` |
-| M9 | Both application targets UP | `15-prometheus-targets.png` |
-| M9 | Populated live dashboard | `16-grafana-dashboard.png` |
-| M10 | Recorded end-to-end change/deploy or live demo | Recording URL / presentation session |
-
-The workflow's `browser-and-compose-evidence` artifact contains the first four UI captures from the successful browser job in the initial run. `pytest-evidence` contains all 69 passing backend tests. Both are already available even though a later security job failed. A subsequent run must verify the replacement backend image before claiming that image is tested and clean.
-
-## Cluster browser and monitoring captures
-
-Forward the Ingress controller to port 8080, Prometheus to 9090, and Grafana to 3001 as documented in the README. Generate live traffic for at least a minute, then run:
-
-```bash
-export APP_URL=http://orbit.localhost:8080
-export PROMETHEUS_URL=http://localhost:9090
-export GRAFANA_URL=http://localhost:3001
-read -rs GRAFANA_PASSWORD
-export GRAFANA_PASSWORD
-node scripts/capture-browser.mjs
-unset GRAFANA_PASSWORD
-cp docs/screenshots/01-application-desktop.png docs/screenshots/ingress-application.png
-```
-
-This overwrites the numbered app captures using the current APP_URL. The browser smoke JSON records that URL. Preserve Compose captures first if you need both sets. The tool checks live API health, both Prometheus targets and actual Grafana metric values before taking the corresponding evidence. Keep screenshots of passwords, access keys, tokens and raw state out of your submission.
-
-For Terraform, capture `terraform plan -no-color` and `terraform destroy -no-color` output only from the real project lifecycle. Never create fake successful plan/apply/destroy text. Review logs for sensitive values before committing them.
+To reproduce evidence, use `scripts/capture-evidence.sh` for Compose and `scripts/capture-cluster.sh` for your selected cluster. Browser capture checks real API responses, responsive layout, both Prometheus targets and positive Grafana query data before saving. Cloud resources were destroyed after capture; local Compose can still run at http://localhost:3000.

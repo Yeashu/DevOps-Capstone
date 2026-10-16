@@ -1,0 +1,622 @@
+Actual first destroy attempt. Interrupted while waiting for AWS worker deletion. Account ID and administrator CIDR redacted.
+data.aws_availability_zones.available: Reading...
+aws_vpc.main: Refreshing state... [id=vpc-0f918dcce080d2a5f]
+aws_iam_role.nodes: Refreshing state... [id=orbit-capstone-nodes]
+aws_iam_role.cluster: Refreshing state... [id=orbit-capstone-cluster]
+aws_iam_role.ebs: Refreshing state... [id=orbit-capstone-ebs-csi]
+aws_iam_role_policy_attachment.cluster: Refreshing state... [id=orbit-capstone-cluster/arn:aws:iam::aws:policy/AmazonEKSClusterPolicy]
+aws_iam_role_policy_attachment.ebs: Refreshing state... [id=orbit-capstone-ebs-csi/arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy]
+aws_iam_role_policy_attachment.nodes["AmazonEC2ContainerRegistryReadOnly"]: Refreshing state... [id=orbit-capstone-nodes/arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly]
+aws_iam_role_policy_attachment.nodes["AmazonEKS_CNI_Policy"]: Refreshing state... [id=orbit-capstone-nodes/arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy]
+aws_iam_role_policy_attachment.nodes["AmazonEKSWorkerNodePolicy"]: Refreshing state... [id=orbit-capstone-nodes/arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy]
+data.aws_availability_zones.available: Read complete after 3s [id=ap-south-1]
+aws_internet_gateway.main: Refreshing state... [id=igw-0152cecee69e2508a]
+aws_subnet.public[1]: Refreshing state... [id=subnet-01ae13c30f9d46046]
+aws_subnet.public[0]: Refreshing state... [id=subnet-0e70e0cf94e8a5731]
+aws_route_table.public: Refreshing state... [id=rtb-0be1455cc55bd9266]
+aws_eks_cluster.main: Refreshing state... [id=orbit-capstone]
+aws_route_table_association.public[1]: Refreshing state... [id=rtbassoc-0ec135100f8bf10b1]
+aws_route_table_association.public[0]: Refreshing state... [id=rtbassoc-0fc3fb76a8f350037]
+aws_eks_node_group.main: Refreshing state... [id=orbit-capstone:orbit-capstone-workers]
+aws_eks_addon.pod_identity: Refreshing state... [id=orbit-capstone:eks-pod-identity-agent]
+aws_eks_pod_identity_association.ebs: Refreshing state... [id=a-6ydoqqwyqzs74sn7i]
+aws_eks_addon.ebs: Refreshing state... [id=orbit-capstone:aws-ebs-csi-driver]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_eks_addon.ebs will be destroyed
+  - resource "aws_eks_addon" "ebs" {
+      - addon_name               = "aws-ebs-csi-driver" -> null
+      - addon_version            = "v1.67.0-eksbuild.1" -> null
+      - arn                      = "arn:aws:eks:ap-south-1:<AWS_ACCOUNT_ID>:addon/orbit-capstone/aws-ebs-csi-driver/3cd0a2fc-9d3a-d0ae-cdec-b3b519b4e163" -> null
+      - cluster_name             = "orbit-capstone" -> null
+      - created_at               = "2026-10-16T18:28:43Z" -> null
+      - id                       = "orbit-capstone:aws-ebs-csi-driver" -> null
+      - modified_at              = "2026-10-16T18:29:24Z" -> null
+      - region                   = "ap-south-1" -> null
+      - tags                     = {} -> null
+      - tags_all                 = {
+          - "ManagedBy" = "Terraform"
+          - "Project"   = "orbit-capstone"
+        } -> null
+        # (2 unchanged attributes hidden)
+
+      - namespace_config {
+          - namespace = "kube-system" -> null
+        }
+    }
+
+  # aws_eks_addon.pod_identity will be destroyed
+  - resource "aws_eks_addon" "pod_identity" {
+      - addon_name               = "eks-pod-identity-agent" -> null
+      - addon_version            = "v1.3.10-eksbuild.3" -> null
+      - arn                      = "arn:aws:eks:ap-south-1:<AWS_ACCOUNT_ID>:addon/orbit-capstone/eks-pod-identity-agent/2ed0a2fc-6b5c-3dc4-538e-ed53dfc0fc5c" -> null
+      - cluster_name             = "orbit-capstone" -> null
+      - created_at               = "2026-10-16T18:28:18Z" -> null
+      - id                       = "orbit-capstone:eks-pod-identity-agent" -> null
+      - modified_at              = "2026-10-16T18:28:34Z" -> null
+      - region                   = "ap-south-1" -> null
+      - tags                     = {} -> null
+      - tags_all                 = {
+          - "ManagedBy" = "Terraform"
+          - "Project"   = "orbit-capstone"
+        } -> null
+        # (2 unchanged attributes hidden)
+
+      - namespace_config {
+          - namespace = "kube-system" -> null
+        }
+    }
+
+  # aws_eks_cluster.main will be destroyed
+  - resource "aws_eks_cluster" "main" {
+      - arn                           = "arn:aws:eks:ap-south-1:<AWS_ACCOUNT_ID>:cluster/orbit-capstone" -> null
+      - bootstrap_self_managed_addons = true -> null
+      - certificate_authority         = [
+          - {
+              - data = "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURNakNDQWhxZ0F3SUJBZ0lSQU9hS2xuTHVhMHk5aWdrK3VRRHlhZ3N3RFFZSktvWklodmNOQVFFTEJRQXcKSnpFUU1BNEdBMVVFQ2hNSFFWZFRJRVZMVXpFVE1CRUdBMVVFQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TmpFdwpNVFl4T0RFNE1URmFGdzB6TVRFd01UVXhPREU0TVRGYU1DY3hFREFPQmdOVkJBb1RCMEZYVXlCRlMxTXhFekFSCkJnTlZCQU1UQ210MVltVnlibVYwWlhNd2dnRWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUIKQVFDcmJPMC9ha2xZeXFlSCs2U09kUFN1UnM5NFA1T2V5aUhlL0hKdGZmWGJqbkYwUUIxa1l0UlA0Qm81TnFUNgoxaitnOVdiRVBydEtIN2ZxcGlOTDlnVUJpNThPME0wc29pQUh2NmIxQXoxbVNpeGpSQ1dtTkErR3dodktjNzBPCnJ3TklSakFrYVZvZWZwT1hkU1d5ZzZ6dkxaSGlaZGlqOGxPKzM4MGRjcmNBdWZtNVUwQ3lqQlFFUWJFMHkzVVAKVk1qNEZFQTNzY0w0UDRYejhRS3RvV0ZDa2VNaVZuUWp1aUpBMktkMEZwK1ZDdGx0UEZlb2ErY3U3L2IxblBWbwp2MStxUXZ5TW5wbm1xYzhad21tYmFMOE1udEdXOGZ1ZzUxYjBOQUs4TTdnUXRoR2N6WWtUQlhnZUE0UWZrWGFKCkJRMkl4U21tOGdldC92UnhlN2JaRjU4N0FnTUJBQUdqV1RCWE1BNEdBMVVkRHdFQi93UUVBd0lDcERBUEJnTlYKSFJNQkFmOEVCVEFEQVFIL01CMEdBMVVkRGdRV0JCUUZoV1FFUmt1L3FKSThKWktyeVNUSnpucmhnREFWQmdOVgpIUkVFRGpBTWdncHJkV0psY201bGRHVnpNQTBHQ1NxR1NJYjNEUUVCQ3dVQUE0SUJBUUNHcmpPajdQRUxud2o1CmMvVW5aWENKVHBHUGxYeTdDbkNrRUt3UnJ0OHBzd1crdnJrVUVyM3UwZWMyS3FFV2IwYys3eUF3d05XNU1hbE8KRTN4eFJWY0pXdURjQWdFTUJraUFTWi9mTXQ3dVRmZ1VNTllhWmM4VW82TUtkaXlCaHJtVmtnRGFDQ0s1QVpxdApXTm1uS3dBOWNveDc0emRYdzlPKzJqSDJGdTd3Z0gzTFBBVUEzOEM1ajlxUXhoOHI5em5wd1l1LzBEWUdVWFNiCjFmcUl3cDhHK3VOblJNQTFMK0NHZUNCcXZMa2RkaG8vcUg3c1VqdUhMVGJtUzJ4ZWM3UmJLbUVraFI5Y3MrWWUKWHIxQ2ZLdHRQK0JqZzFDQXFoa0twMkRVRmt3amdNVkhLSDFWWUhXdlY2eFprS1BuZXc0K0VMUTNQblQzbDJXZQpyTDNmU2FwdAotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg=="
+            },
+        ] -> null
+      - created_at                    = "2026-10-16T18:18:01Z" -> null
+      - deletion_protection           = false -> null
+      - enabled_cluster_log_types     = [] -> null
+      - endpoint                      = "https://7910ACACE87F93EDE9460D2374653D87.gr7.ap-south-1.eks.amazonaws.com" -> null
+      - id                            = "orbit-capstone" -> null
+      - identity                      = [
+          - {
+              - oidc = [
+                  - {
+                      - issuer = "https://oidc.eks.ap-south-1.amazonaws.com/id/7910ACACE87F93EDE9460D2374653D87"
+                    },
+                ]
+            },
+        ] -> null
+      - name                          = "orbit-capstone" -> null
+      - platform_version              = "eks.5" -> null
+      - region                        = "ap-south-1" -> null
+      - role_arn                      = "arn:aws:iam::<AWS_ACCOUNT_ID>:role/orbit-capstone-cluster" -> null
+      - status                        = "ACTIVE" -> null
+      - tags                          = {} -> null
+      - tags_all                      = {
+          - "ManagedBy" = "Terraform"
+          - "Project"   = "orbit-capstone"
+        } -> null
+      - version                       = "1.37" -> null
+
+      - access_config {
+          - authentication_mode                         = "API" -> null
+          - bootstrap_cluster_creator_admin_permissions = true -> null
+        }
+
+      - compute_config {
+          - enabled       = false -> null
+          - node_pools    = [] -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - control_plane_scaling_config {
+          - tier = "standard" -> null
+        }
+
+      - kube_api_server_config {
+          - event_ttl = "60m" -> null
+
+          - service_node_port_range {
+              - max_port = 32767 -> null
+              - min_port = 30000 -> null
+            }
+        }
+
+      - kube_controller_manager_config {
+          - horizontal_pod_autoscaler_controller_config {
+              - horizontal_pod_autoscaler_sync_period = "15s" -> null
+            }
+          - pod_gc_controller_config {
+              - terminated_pod_gc_threshold = 12500 -> null
+            }
+        }
+
+      - kube_scheduler_config {
+          - node_resources_fit {
+              - scoring_strategy {
+                  - type = "LeastAllocated" -> null
+
+                  - resource {
+                      - name   = "cpu" -> null
+                      - weight = 1 -> null
+                    }
+                  - resource {
+                      - name   = "memory" -> null
+                      - weight = 1 -> null
+                    }
+                }
+            }
+        }
+
+      - kubernetes_network_config {
+          - ip_family         = "ipv4" -> null
+          - service_ipv4_cidr = "172.20.0.0/16" -> null
+            # (1 unchanged attribute hidden)
+
+          - elastic_load_balancing {
+              - enabled = false -> null
+            }
+        }
+
+      - storage_config {
+          - block_storage {
+              - enabled = false -> null
+            }
+        }
+
+      - upgrade_policy {
+          - support_type = "STANDARD" -> null
+        }
+
+      - vpc_config {
+          - cluster_security_group_id = "sg-03fd7ff75a0881459" -> null
+          - control_plane_egress_mode = "AWS_MANAGED" -> null
+          - endpoint_private_access   = true -> null
+          - endpoint_public_access    = true -> null
+          - public_access_cidrs       = [
+              - "<ADMIN_CIDR>",
+            ] -> null
+          - security_group_ids        = [] -> null
+          - subnet_ids                = [
+              - "subnet-01ae13c30f9d46046",
+              - "subnet-0e70e0cf94e8a5731",
+            ] -> null
+          - vpc_id                    = "vpc-0f918dcce080d2a5f" -> null
+        }
+    }
+
+  # aws_eks_node_group.main will be destroyed
+  - resource "aws_eks_node_group" "main" {
+      - ami_type               = "AL2023_x86_64_STANDARD" -> null
+      - arn                    = "arn:aws:eks:ap-south-1:<AWS_ACCOUNT_ID>:nodegroup/orbit-capstone/orbit-capstone-workers/20d0a2fb-843f-344e-8d81-89d685d4f9f6" -> null
+      - capacity_type          = "ON_DEMAND" -> null
+      - cluster_name           = "orbit-capstone" -> null
+      - disk_size              = 20 -> null
+      - id                     = "orbit-capstone:orbit-capstone-workers" -> null
+      - instance_types         = [
+          - "t3.medium",
+        ] -> null
+      - labels                 = {} -> null
+      - node_group_name        = "orbit-capstone-workers" -> null
+      - node_role_arn          = "arn:aws:iam::<AWS_ACCOUNT_ID>:role/orbit-capstone-nodes" -> null
+      - region                 = "ap-south-1" -> null
+      - release_version        = "1.37.0-20261012" -> null
+      - resources              = [
+          - {
+              - autoscaling_groups              = [
+                  - {
+                      - name = "eks-orbit-capstone-workers-20d0a2fb-843f-344e-8d81-89d685d4f9f6"
+                    },
+                ]
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - status                 = "ACTIVE" -> null
+      - subnet_ids             = [
+          - "subnet-01ae13c30f9d46046",
+          - "subnet-0e70e0cf94e8a5731",
+        ] -> null
+      - tags                   = {} -> null
+      - tags_all               = {
+          - "ManagedBy" = "Terraform"
+          - "Project"   = "orbit-capstone"
+        } -> null
+      - version                = "1.37" -> null
+        # (1 unchanged attribute hidden)
+
+      - scaling_config {
+          - desired_size = 2 -> null
+          - max_size     = 3 -> null
+          - min_size     = 1 -> null
+        }
+
+      - update_config {
+          - max_unavailable            = 1 -> null
+          - max_unavailable_percentage = 0 -> null
+            # (1 unchanged attribute hidden)
+        }
+    }
+
+  # aws_eks_pod_identity_association.ebs will be destroyed
+  - resource "aws_eks_pod_identity_association" "ebs" {
+      - association_arn      = "arn:aws:eks:ap-south-1:<AWS_ACCOUNT_ID>:podidentityassociation/orbit-capstone/a-6ydoqqwyqzs74sn7i" -> null
+      - association_id       = "a-6ydoqqwyqzs74sn7i" -> null
+      - cluster_name         = "orbit-capstone" -> null
+      - disable_session_tags = false -> null
+      - id                   = "a-6ydoqqwyqzs74sn7i" -> null
+      - namespace            = "kube-system" -> null
+      - region               = "ap-south-1" -> null
+      - role_arn             = "arn:aws:iam::<AWS_ACCOUNT_ID>:role/orbit-capstone-ebs-csi" -> null
+      - service_account      = "ebs-csi-controller-sa" -> null
+      - tags_all             = {
+          - "ManagedBy" = "Terraform"
+          - "Project"   = "orbit-capstone"
+        } -> null
+    }
+
+  # aws_iam_role.cluster will be destroyed
+  - resource "aws_iam_role" "cluster" {
+      - arn                   = "arn:aws:iam::<AWS_ACCOUNT_ID>:role/orbit-capstone-cluster" -> null
+      - assume_role_policy    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "sts:AssumeRole"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = "eks.amazonaws.com"
+                        }
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - create_date           = "2026-10-16T18:17:41Z" -> null
+      - force_detach_policies = false -> null
+      - id                    = "orbit-capstone-cluster" -> null
+      - managed_policy_arns   = [
+          - "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
+        ] -> null
+      - max_session_duration  = 3600 -> null
+      - name                  = "orbit-capstone-cluster" -> null
+      - path                  = "/" -> null
+      - tags                  = {} -> null
+      - tags_all              = {
+          - "ManagedBy" = "Terraform"
+          - "Project"   = "orbit-capstone"
+        } -> null
+      - unique_id             = "AROA45WUT4Y6EET6JTBYN" -> null
+        # (3 unchanged attributes hidden)
+    }
+
+  # aws_iam_role.ebs will be destroyed
+  - resource "aws_iam_role" "ebs" {
+      - arn                   = "arn:aws:iam::<AWS_ACCOUNT_ID>:role/orbit-capstone-ebs-csi" -> null
+      - assume_role_policy    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = [
+                          - "sts:AssumeRole",
+                          - "sts:TagSession",
+                        ]
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = "pods.eks.amazonaws.com"
+                        }
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - create_date           = "2026-10-16T18:17:41Z" -> null
+      - force_detach_policies = false -> null
+      - id                    = "orbit-capstone-ebs-csi" -> null
+      - managed_policy_arns   = [
+          - "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy",
+        ] -> null
+      - max_session_duration  = 3600 -> null
+      - name                  = "orbit-capstone-ebs-csi" -> null
+      - path                  = "/" -> null
+      - tags                  = {} -> null
+      - tags_all              = {
+          - "ManagedBy" = "Terraform"
+          - "Project"   = "orbit-capstone"
+        } -> null
+      - unique_id             = "AROA45WUT4Y6C6QY5VODY" -> null
+        # (3 unchanged attributes hidden)
+    }
+
+  # aws_iam_role.nodes will be destroyed
+  - resource "aws_iam_role" "nodes" {
+      - arn                   = "arn:aws:iam::<AWS_ACCOUNT_ID>:role/orbit-capstone-nodes" -> null
+      - assume_role_policy    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "sts:AssumeRole"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = "ec2.amazonaws.com"
+                        }
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - create_date           = "2026-10-16T18:17:41Z" -> null
+      - force_detach_policies = false -> null
+      - id                    = "orbit-capstone-nodes" -> null
+      - managed_policy_arns   = [
+          - "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+          - "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
+          - "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
+        ] -> null
+      - max_session_duration  = 3600 -> null
+      - name                  = "orbit-capstone-nodes" -> null
+      - path                  = "/" -> null
+      - tags                  = {} -> null
+      - tags_all              = {
+          - "ManagedBy" = "Terraform"
+          - "Project"   = "orbit-capstone"
+        } -> null
+      - unique_id             = "AROA45WUT4Y6GRBLC6HMY" -> null
+        # (3 unchanged attributes hidden)
+    }
+
+  # aws_iam_role_policy_attachment.cluster will be destroyed
+  - resource "aws_iam_role_policy_attachment" "cluster" {
+      - id         = "orbit-capstone-cluster/arn:aws:iam::aws:policy/AmazonEKSClusterPolicy" -> null
+      - policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy" -> null
+      - role       = "orbit-capstone-cluster" -> null
+    }
+
+  # aws_iam_role_policy_attachment.ebs will be destroyed
+  - resource "aws_iam_role_policy_attachment" "ebs" {
+      - id         = "orbit-capstone-ebs-csi/arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy" -> null
+      - policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy" -> null
+      - role       = "orbit-capstone-ebs-csi" -> null
+    }
+
+  # aws_iam_role_policy_attachment.nodes["AmazonEC2ContainerRegistryReadOnly"] will be destroyed
+  - resource "aws_iam_role_policy_attachment" "nodes" {
+      - id         = "orbit-capstone-nodes/arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly" -> null
+      - policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly" -> null
+      - role       = "orbit-capstone-nodes" -> null
+    }
+
+  # aws_iam_role_policy_attachment.nodes["AmazonEKSWorkerNodePolicy"] will be destroyed
+  - resource "aws_iam_role_policy_attachment" "nodes" {
+      - id         = "orbit-capstone-nodes/arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy" -> null
+      - policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy" -> null
+      - role       = "orbit-capstone-nodes" -> null
+    }
+
+  # aws_iam_role_policy_attachment.nodes["AmazonEKS_CNI_Policy"] will be destroyed
+  - resource "aws_iam_role_policy_attachment" "nodes" {
+      - id         = "orbit-capstone-nodes/arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy" -> null
+      - policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy" -> null
+      - role       = "orbit-capstone-nodes" -> null
+    }
+
+  # aws_internet_gateway.main will be destroyed
+  - resource "aws_internet_gateway" "main" {
+      - arn      = "arn:aws:ec2:ap-south-1:<AWS_ACCOUNT_ID>:internet-gateway/igw-0152cecee69e2508a" -> null
+      - id       = "igw-0152cecee69e2508a" -> null
+      - owner_id = "<AWS_ACCOUNT_ID>" -> null
+      - region   = "ap-south-1" -> null
+      - tags     = {
+          - "Name" = "orbit-capstone-igw"
+        } -> null
+      - tags_all = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "orbit-capstone-igw"
+          - "Project"   = "orbit-capstone"
+        } -> null
+      - vpc_id   = "vpc-0f918dcce080d2a5f" -> null
+    }
+
+  # aws_route_table.public will be destroyed
+  - resource "aws_route_table" "public" {
+      - arn              = "arn:aws:ec2:ap-south-1:<AWS_ACCOUNT_ID>:route-table/rtb-0be1455cc55bd9266" -> null
+      - id               = "rtb-0be1455cc55bd9266" -> null
+      - owner_id         = "<AWS_ACCOUNT_ID>" -> null
+      - propagating_vgws = [] -> null
+      - region           = "ap-south-1" -> null
+      - route            = [
+          - {
+              - cidr_block                 = "0.0.0.0/0"
+              - gateway_id                 = "igw-0152cecee69e2508a"
+                # (12 unchanged attributes hidden)
+            },
+        ] -> null
+      - tags             = {
+          - "Name" = "orbit-capstone-public"
+        } -> null
+      - tags_all         = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "orbit-capstone-public"
+          - "Project"   = "orbit-capstone"
+        } -> null
+      - vpc_id           = "vpc-0f918dcce080d2a5f" -> null
+    }
+
+  # aws_route_table_association.public[0] will be destroyed
+  - resource "aws_route_table_association" "public" {
+      - id             = "rtbassoc-0fc3fb76a8f350037" -> null
+      - region         = "ap-south-1" -> null
+      - route_table_id = "rtb-0be1455cc55bd9266" -> null
+      - subnet_id      = "subnet-0e70e0cf94e8a5731" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # aws_route_table_association.public[1] will be destroyed
+  - resource "aws_route_table_association" "public" {
+      - id             = "rtbassoc-0ec135100f8bf10b1" -> null
+      - region         = "ap-south-1" -> null
+      - route_table_id = "rtb-0be1455cc55bd9266" -> null
+      - subnet_id      = "subnet-01ae13c30f9d46046" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # aws_subnet.public[0] will be destroyed
+  - resource "aws_subnet" "public" {
+      - arn                                            = "arn:aws:ec2:ap-south-1:<AWS_ACCOUNT_ID>:subnet/subnet-0e70e0cf94e8a5731" -> null
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "ap-south-1a" -> null
+      - availability_zone_id                           = "aps1-az1" -> null
+      - cidr_block                                     = "10.42.0.0/24" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-0e70e0cf94e8a5731" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = true -> null
+      - owner_id                                       = "<AWS_ACCOUNT_ID>" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - region                                         = "ap-south-1" -> null
+      - tags                                           = {
+          - "Name"                                 = "orbit-capstone-public-1"
+          - "kubernetes.io/cluster/orbit-capstone" = "shared"
+          - "kubernetes.io/role/elb"               = "1"
+        } -> null
+      - tags_all                                       = {
+          - "ManagedBy"                            = "Terraform"
+          - "Name"                                 = "orbit-capstone-public-1"
+          - "Project"                              = "orbit-capstone"
+          - "kubernetes.io/cluster/orbit-capstone" = "shared"
+          - "kubernetes.io/role/elb"               = "1"
+        } -> null
+      - vpc_id                                         = "vpc-0f918dcce080d2a5f" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # aws_subnet.public[1] will be destroyed
+  - resource "aws_subnet" "public" {
+      - arn                                            = "arn:aws:ec2:ap-south-1:<AWS_ACCOUNT_ID>:subnet/subnet-01ae13c30f9d46046" -> null
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "ap-south-1b" -> null
+      - availability_zone_id                           = "aps1-az3" -> null
+      - cidr_block                                     = "10.42.1.0/24" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-01ae13c30f9d46046" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = true -> null
+      - owner_id                                       = "<AWS_ACCOUNT_ID>" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - region                                         = "ap-south-1" -> null
+      - tags                                           = {
+          - "Name"                                 = "orbit-capstone-public-2"
+          - "kubernetes.io/cluster/orbit-capstone" = "shared"
+          - "kubernetes.io/role/elb"               = "1"
+        } -> null
+      - tags_all                                       = {
+          - "ManagedBy"                            = "Terraform"
+          - "Name"                                 = "orbit-capstone-public-2"
+          - "Project"                              = "orbit-capstone"
+          - "kubernetes.io/cluster/orbit-capstone" = "shared"
+          - "kubernetes.io/role/elb"               = "1"
+        } -> null
+      - vpc_id                                         = "vpc-0f918dcce080d2a5f" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # aws_vpc.main will be destroyed
+  - resource "aws_vpc" "main" {
+      - arn                                  = "arn:aws:ec2:ap-south-1:<AWS_ACCOUNT_ID>:vpc/vpc-0f918dcce080d2a5f" -> null
+      - assign_generated_ipv6_cidr_block     = false -> null
+      - cidr_block                           = "10.42.0.0/16" -> null
+      - default_network_acl_id               = "acl-093371ed202ffb20f" -> null
+      - default_route_table_id               = "rtb-0a2115681a91e880f" -> null
+      - default_security_group_id            = "sg-0aaa7183bfd14f0e5" -> null
+      - dhcp_options_id                      = "dopt-040a2ac0916e1f77a" -> null
+      - enable_dns_hostnames                 = true -> null
+      - enable_dns_support                   = true -> null
+      - enable_network_address_usage_metrics = false -> null
+      - id                                   = "vpc-0f918dcce080d2a5f" -> null
+      - instance_tenancy                     = "default" -> null
+      - ipv6_netmask_length                  = 0 -> null
+      - main_route_table_id                  = "rtb-0a2115681a91e880f" -> null
+      - owner_id                             = "<AWS_ACCOUNT_ID>" -> null
+      - region                               = "ap-south-1" -> null
+      - tags                                 = {
+          - "Name" = "orbit-capstone"
+        } -> null
+      - tags_all                             = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "orbit-capstone"
+          - "Project"   = "orbit-capstone"
+        } -> null
+        # (4 unchanged attributes hidden)
+    }
+
+Plan: 0 to add, 0 to change, 20 to destroy.
+
+Changes to Outputs:
+  - cluster_name       = "orbit-capstone" -> null
+  - kubeconfig_command = "aws eks update-kubeconfig --name orbit-capstone --region ap-south-1" -> null
+  - public_subnet_ids  = [
+      - "subnet-0e70e0cf94e8a5731",
+      - "subnet-01ae13c30f9d46046",
+    ] -> null
+  - region             = "ap-south-1" -> null
+  - vpc_id             = "vpc-0f918dcce080d2a5f" -> null
+aws_eks_addon.ebs: Destroying... [id=orbit-capstone:aws-ebs-csi-driver]
+aws_eks_addon.ebs: Destruction complete after 8s
+aws_eks_pod_identity_association.ebs: Destroying... [id=a-6ydoqqwyqzs74sn7i]
+aws_eks_pod_identity_association.ebs: Destruction complete after 1s
+aws_iam_role_policy_attachment.ebs: Destroying... [id=orbit-capstone-ebs-csi/arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy]
+aws_eks_addon.pod_identity: Destroying... [id=orbit-capstone:eks-pod-identity-agent]
+aws_iam_role_policy_attachment.ebs: Destruction complete after 1s
+aws_iam_role.ebs: Destroying... [id=orbit-capstone-ebs-csi]
+aws_eks_addon.pod_identity: Destruction complete after 1s
+aws_eks_node_group.main: Destroying... [id=orbit-capstone:orbit-capstone-workers]
+aws_iam_role.ebs: Destruction complete after 1s
+aws_eks_node_group.main: Still destroying... [id=orbit-capstone:orbit-capstone-workers, 00m10s elapsed]
+aws_eks_node_group.main: Still destroying... [id=orbit-capstone:orbit-capstone-workers, 00m20s elapsed]
+aws_eks_node_group.main: Still destroying... [id=orbit-capstone:orbit-capstone-workers, 00m30s elapsed]
+aws_eks_node_group.main: Still destroying... [id=orbit-capstone:orbit-capstone-workers, 00m40s elapsed]
+aws_eks_node_group.main: Still destroying... [id=orbit-capstone:orbit-capstone-workers, 00m50s elapsed]
+aws_eks_node_group.main: Still destroying... [id=orbit-capstone:orbit-capstone-workers, 01m00s elapsed]
+aws_eks_node_group.main: Still destroying... [id=orbit-capstone:orbit-capstone-workers, 01m10s elapsed]
+aws_eks_node_group.main: Still destroying... [id=orbit-capstone:orbit-capstone-workers, 01m20s elapsed]
+aws_eks_node_group.main: Still destroying... [id=orbit-capstone:orbit-capstone-workers, 01m30s elapsed]
+aws_eks_node_group.main: Still destroying... [id=orbit-capstone:orbit-capstone-workers, 01m40s elapsed]
+aws_eks_node_group.main: Still destroying... [id=orbit-capstone:orbit-capstone-workers, 01m50s elapsed]
+aws_eks_node_group.main: Still destroying... [id=orbit-capstone:orbit-capstone-workers, 02m00s elapsed]
+aws_eks_node_group.main: Still destroying... [id=orbit-capstone:orbit-capstone-workers, 02m10s elapsed]
+aws_eks_node_group.main: Still destroying... [id=orbit-capstone:orbit-capstone-workers, 02m20s elapsed]
+aws_eks_node_group.main: Still destroying... [id=orbit-capstone:orbit-capstone-workers, 02m30s elapsed]
+aws_eks_node_group.main: Still destroying... [id=orbit-capstone:orbit-capstone-workers, 02m40s elapsed]
+aws_eks_node_group.main: Still destroying... [id=orbit-capstone:orbit-capstone-workers, 02m50s elapsed]
+aws_eks_node_group.main: Still destroying... [id=orbit-capstone:orbit-capstone-workers, 03m00s elapsed]
+Stopping operation...
+
+Interrupt received.
+Please wait for Terraform to exit or data loss may occur.
+Gracefully shutting down...
+
+
+Error: waiting for EKS Node Group (orbit-capstone:orbit-capstone-workers) delete: context canceled
+
+
+Error: execution halted
+
+
+Error: execution halted
+

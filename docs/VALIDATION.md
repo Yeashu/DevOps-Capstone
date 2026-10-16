@@ -1,39 +1,43 @@
-# Validation record — 16 October 2026
+# Validation record
 
-This record contains executed results for Orbit. Earlier network and Docker restrictions were removed; the following checks supersede the initial blocked attempts.
+Orbit was built and exercised locally, in GitHub Actions, on disposable Kind and on real AWS EKS. The following are executed results, supported by the [evidence index](../screenshots.md).
 
-| Check | Actual result |
+| Check | Verified result |
 | --- | --- |
-| Backend tests | **69 passed** locally on isolated SQLite and in Actions on migrated disposable PostgreSQL |
-| Ruff | Passed locally and in Actions |
-| Frontend | Four tests and production build passed |
-| Source security | Bandit, pip-audit and Trivy secret scan passed |
-| Terraform | Network-enabled init and validate passed; real AWS plan: **20 to add, 0 to change, 0 to destroy** |
-| Docker | Both images built; three Compose services healthy; backend UID 10001, frontend UID 101 |
-| Browser | Real API-backed desktop/mobile, scientific calculation, degrees, error state and label update passed |
-| Image security | Both remediated images: **zero HIGH/CRITICAL findings**; unfixed findings are included in the gate |
+| Backend tests | **69 passed** locally on isolated SQLite and in Actions on migrated disposable PostgreSQL; Ruff passed |
+| Frontend | Four tests and production build passed; real browser checks passed on Compose and EKS |
+| Source security | Bandit, pip-audit and Trivy secret scanning passed |
+| Containers | Both images built; three Compose services healthy; backend UID 10001 and frontend UID 101 |
+| Image security | Both remediated images passed the unchanged HIGH/CRITICAL Trivy gate with zero findings at those severities, including unfixed vulnerabilities |
 | Registry | Both exact scanned images published to GHCR with full commit SHA tags |
-| Kubernetes | Helm release deployed on both Kind and **real EKS**; two backend + two frontend replicas and PostgreSQL Running; Services and Ingress verified |
-| Observability | On Kind and EKS: both application targets UP, Grafana datasource returned positive real values, populated dashboard captured |
-| AWS | **Apply complete: 20 added, 0 changed, 0 destroyed**; EKS Active, two Ready workers, VPC/two subnets verified; destroy pending |
-| Presentation | Captioned **92-second actual technical walkthrough** recorded; live student explanation remains a presentation-session activity |
+| Terraform | Network-enabled init/validate passed; actual plan **20 to add, 0 to change, 0 to destroy**; apply **20 added** |
+| AWS | Mumbai VPC, two public subnets in separate AZs, active EKS 1.37, two Ready t3.medium workers, EBS CSI and Pod Identity verified |
+| Kubernetes | Actual Helm installs on Kind and EKS; two backend + two frontend replicas and PostgreSQL Running/Ready; Services, Ingress and Bound gp3 PVC verified |
+| Monitoring | On Kind and EKS: both API targets UP, Grafana datasource returned positive actual metrics, populated dashboard captured |
+| Rollout | EKS upgraded to the exact successful pipeline SHA; health returned that SHA and the database notebook survived |
+| Cleanup | Terraform destroy completed; empty state and independent AWS residual-resource audit passed; temporary IAM bootstrap user/key/operator role removed |
+| Recording | Actual 92-second technical walkthrough, captions and presentation runbook included |
 
-[Run 38944998841](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38944998841) verified all the results above except AWS. Its final screenshot failed because the Grafana panel title and legend matched the same text selector. The actual datasource query had already passed. [Run 38946260879](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38946260879) contains the corrected heading selector and is in progress.
+Verified green runs: [38946260879](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38946260879), [38947611595](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38947611595), and [38949107515](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38949107515). The final run linked here validates commit `903a3b1dadc588b93657852dd9ec0e605d56f159`; subsequent cleanup documentation is separate evidence.
 
-The original backend security gate correctly blocked publication in [run 38943294699](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38943294699). The Alpine runtime update and removal of unused pip/ensurepip vendored libraries resolved its findings without weakening the policy. See [the security explanation](../security/README.md).
+## Actual AWS deployment and rollout
 
-Actual browser captures and source logs are in `docs/screenshots/` and `docs/evidence/`. Command-output PNGs are explicitly labelled rendered transcripts; they are not OS terminal screenshots. Kind evidence demonstrates Kubernetes/Helm/monitoring and is not represented as EKS evidence. Terraform account IDs and administrator CIDRs are explicitly redacted in the committed plan; state, credentials, real tfvars and binary plans are excluded from Git.
+Terraform provisioned EKS in `ap-south-1`. Helm initially deployed the published `e3ecd48c1aa5a84f8033d850aa04cd8f8154b60e` images. Five application pods were Running/Ready; the Alembic Job was Completed. Ingress was accessed through a port-forward to the ClusterIP Traefik controller, providing a real Ingress path to the AWS pods without an additional cloud load balancer.
 
-Git metadata note: at the owner’s request, subsequent commits use the assigned author/committer timestamp `2026-10-16T23:54:00+05:30`. This is metadata, not the time the later AWS operations or captures completed. Actions run timestamps and captured-at evidence remain their actual times.
+After run 38947611595 passed, **local authenticated Helm** upgraded both EKS Deployments to `7f36cafc34b923fa34b1a0e727b2d359a060c757`. The migration Job completed, both replicas per tier became Ready, `/api/health` returned the target SHA and the notebook remained populated. The actual output, machine-readable recording events and captioned browser video are included. The optional hosted persistent EKS delivery job was disabled; the recording identifies the local CLI rollout accurately.
 
-Final hosted result: [run 38946260879](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38946260879) completed successfully. The Ingress browser and populated Grafana captures are now committed; optional persistent EKS delivery was skipped because its runner/OIDC bootstrap is not configured. The Kind deployment job did run and passed.
+The explicitly named `eks-*` and `aws-*` evidence shows the real AWS lifecycle. Earlier Kind evidence remains separately labelled.
 
-## Actual AWS deployment
+## Completed cleanup
 
-Terraform applied successfully in `ap-south-1` using Kubernetes 1.37 and two t3.medium workers. Both nodes are Ready; EBS CSI/Pod Identity are healthy, the PostgreSQL PVC is Bound, and Helm deployed the published `e3ecd48c1aa5a84f8033d850aa04cd8f8154b60e` images. Five application pods are Running/Ready; the Alembic Job is Completed. Ingress is accessed through a port-forward to the ClusterIP Traefik controller, avoiding an extra AWS load balancer. This is a real Ingress path to the AWS pods.
+The first destroy was interrupted while waiting for the worker group; AWS completed that deletion asynchronously. A resumed `terraform destroy` refreshed state and removed the **14 remaining resources**. Both actual logs are retained, with the final completion excerpt rendered as `terraform-destroy.png`.
 
-Separate `eks-*` screenshots and source logs prove this deployment; the earlier Kind evidence remains explicitly labelled. EKS Prometheus scrapes both API replicas UP, Grafana returned positive real metrics, and its populated dashboard was captured. Cloud deletion is still pending.
+An independent audit confirms that the project cluster and VPC are absent, no active worker instances remain, the database and both recorded worker root volumes are absent, no project ENIs or load balancers remain, and Terraform state is empty. Temporary bootstrap credentials and the operator IAM role were then removed. The original default AWS profile was verified unchanged. Local Compose remains healthy at http://localhost:3000.
 
-## Successful SHA rollout
+## Security and evidence provenance
 
-[Run 38947611595](https://github.com/Yeashu/DevOps-Capstone/actions/runs/38947611595) passed all required jobs. After it passed, local Helm upgraded both EKS Deployments from `e3ecd48c1aa5a84f8033d850aa04cd8f8154b60e` to `7f36cafc34b923fa34b1a0e727b2d359a060c757`; the migration Job completed, both replicas per tier became Ready and `/api/health` returned the target SHA. The notebook remained populated. Actual rollout output, machine-readable recording events and the captioned video are included. Automatic persistent EKS delivery was not enabled; the local CLI action is explicitly identified in the recording.
+The initial backend image security gate correctly blocked publication. Updating the Alpine runtime and physically removing unused pip/ensurepip vendored libraries resolved its findings without weakening severity or unfixed-vulnerability policy. See [the actual scan explanation](../security/README.md).
+
+Browser PNGs are actual captures. Command-output PNGs are labelled renders of actual source logs, not native terminal-window screenshots. Account IDs and administrator CIDRs are explicitly redacted in committed Terraform logs. Real state, tfvars, binary plans, session cookies and credentials are excluded from Git.
+
+**Git metadata:** at the owner's request, commits after that instruction use the assigned author/committer timestamp `2026-10-16T23:54:00+05:30`. This is metadata, not the completion time of later AWS operations. Actual Actions and capture timestamps are unchanged; evidence collected after midnight is not represented as having completed before the deadline.
